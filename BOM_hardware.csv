@@ -1,0 +1,78 @@
+Group,Qty,Component,Description,Approx. Cost,Source
+Filament,~2.8 kg,"PETG, black","Every printed part except the cowl (includes ~10 % for brims, supports, failed prints)",$45-60,Bambu / Amazon
+Filament,~1.3 kg,"PETG, yellow",The six top cowl sections,$20-25,Bambu / Amazon
+Thrusters (x6),6,1200 GPH bilge pump motor cartridge,,$20-25 each,Amazon / marine store
+Thrusters (x6),6,Brass shaft coupler 3 -> 5 mm,"Ream the 3 mm end to 1/8""",$12,Amazon
+Thrusters (x6),6 / 6 / 6,"M5 x 20 set screw, M5 nut, M5 nyloc","Prop drive, stainless",$8,Hardware store
+Thrusters (x6),18,M3 x 6 button head,Nose cones,$4,Hardware store
+Thrusters (x6),6,O-ring 32 x 2 mm nitrile,Tail cone spigot,$6 (kit),Amazon
+Thrusters (x6),6,"Cable gland M12 x 1.5, 3-6.5 mm",Tail cones,$8 (10-pack),Amazon
+Thrusters (x6),12 / 6 / 500 ml,M4 set screws; nitrile finger cots; mineral oil,Oil fill ports + compensator,$15,Hardware / pharmacy
+Thrusters (x6),12 + 12,M4 x 30 SHCS + M4 heat-set inserts,Pylon pinch bolts,$10,Amazon
+Side plates,1,"1/2"" (12.7 mm) black HDPE sheet, 24 x 24""","Both side plates, 478 x 300 mm each. Needs at least 605 mm (23.8"") one way: measure it",$40-60,Amazon / plastics supplier
+Side plates,-,"Jigsaw blades (fine tooth), spray adhesive, drill bits 3.5 / 4.5 / 5.5 / 10 mm",Cutting the plates,$20,Hardware store
+Frame,24 + 24,M5 x 25 SHCS + M5 heat-set inserts,Plates to station arms (16) and corner brackets (8),$14,Amazon
+Frame,4 / 4 / 8,"M4 x 30, M4 x 20 SHCS, M4 nuts","Station joints: hull pair (x30), pod pair (x20)",$5,Hardware store
+Frame,2 + 2,M4 x 16 SHCS + M4 nut,"Station top halves, centre rib",$2,Hardware store
+Frame,16 + 16,M3 x 12 SHCS + M3 heat-set inserts,Corner pylons to brackets,$8,Amazon
+Frame,8 + 8 + 8,M3 x 25 SHCS + M3 nyloc + 1 mm washers,Vertical pylons straight through the plates,$5,Hardware store
+Frame,4 + 4,M4 x 30 SHCS + M4 heat-set inserts,Belly pan hangers into the lower arms,$4,Amazon
+Frame,1.6-2.3 kg,Lead shot in sealed bags (or bar),"Belly pan ballast, trimmed in the water",$15-25,Sporting goods
+Cowl,18 + 18,M3 x 20 SHCS + M3 nyloc,Cowl centre and section seams,$6,Hardware store
+Cowl,8 + 8,M3 x 20 SHCS + M3 heat-set inserts,Cowl feet to the side plates,$4,Amazon
+Cowl,2,M3 x 8 set screw,Locks each light head in its sleeve,$1,Hardware store
+Cowl,1.0-1.7 L,"Depth-rated closed-cell foam (PVC core foam such as H80, or 2-lb closed-cell PU)",Blocks inside the cowl. Not pink/blue insulation board: it crushes at depth,$20-35,Composites supplier / Amazon
+Junction box,2 + 4 + 6,"M3 x 10 SHCS (deck), M3 x 8 SHCS (box), M3 heat-set inserts",Deck to station ribs (2); box to deck (4 inserts in the deck),$3,Hardware store
+Junction box,4 + 4,M3 x 8 countersunk screws + M3 heat-set inserts,Lid 503 to the box bosses,$2,Hardware store
+Junction box,6 pairs,"SP13 IP68 2-pin connector, panel socket (rear nut) + cable plug, 4-6.5 mm cable",Thrusters T1-T6 plug into the box sides,$18-25,Amazon / AliExpress
+Junction box,2 pairs,"SP13 IP68 3-pin connector, panel socket (rear nut) + cable plug","Lights L1, L2 on the front face (3-pin so they can't go in a motor socket)",$6-9,Amazon / AliExpress
+Junction box,1,Silicone dielectric grease,Plug threads and pins before mating,$6,Hardware store
+Hull,1,"4"" Sch40 PVC pipe, 16"" (406 mm)",Electronics hull,$15,Hardware store
+Hull,1,"4"" acrylic CCTV dome, 100 mm","UQISOVI, Amazon B0DR2HP4YQ",$15-25,Amazon
+Hull,5 + 1,"O-rings AS568-240 (x5), -239 (x1)","Flange radial seals + dome face (-240), rear cap face (-239)",$11,Amazon / McMaster
+Hull,12 / 6+6,M3 x 16 SHCS; M3 x 10 SHCS + M3 heat-set inserts,"Rear cap + dome ring (into the flange faces, tapped M3); radial flange screws through the pipe wall",$8,Amazon
+Hull,2 + 2,Cable gland M16 x 1.5 / M12 x 1.5,MOTORS + BATTERY / LIGHTS + TETHER,$10,Amazon
+Hull + pod,1 / 2 / 4,"M10 x 1.0 brass hose barb (6 mm / 1/4"" hose); M10 x 1.0 x 12 stainless hex bolt; M10 bonded (Dowty) washer","VENT ports in 202 and 302: barb for the vacuum test, bolt + washer to dive (2 spare washers)",$15,Amazon
+Electronics sled,4 + 24,M3 threaded rod ~340 mm + nuts,Sled rods (4 extra nuts hold the pan-tilt base),$6,Hardware store
+Electronics sled,12 + 12 + 24,"M3 x 8 male-female standoffs, M3 x 8 female-female standoffs, M3 x 6 screws","IBT_2 boards, stacked in pairs on the deck",$10,Amazon
+Electronics sled,4 + 4,"M2.5 x 8 standoffs (Pi Zero), M3 x 10 standoffs (Pico breakout)",8 mm under the Pi so the HAT's micro-USB link board clears the deck; 10 mm under the breakout,$6,Amazon
+Electronics sled,2,Wago 221-415 lever connectors,12 V and GND bus on the rear bulkhead,$6,Amazon
+Camera,1,Arducam for Pi Zero (Pi Camera v2 size board) + Pi Zero ribbon,,$20-30,Arducam / Amazon
+Camera,2,MG90S metal-gear micro servo (SG90 size),Pan and tilt,$10,Amazon
+Camera,-,"1 mm music wire, M2 x 6 / x 8 screws, 4 x 2 mm M2 standoffs, M2 washer","Tilt pushrod, cradle pivot and lever, camera",$6,Hobby shop
+Battery pod,1,"3"" Sch40 PVC pipe, 300 mm",Battery pod,$12,Hardware store
+Battery pod,4 / 12+12 / 1,O-ring 74 x 2.5; M5 x 16 + M5 inserts; M16 gland,"Both pod caps (2 O-rings, 6 bolts each); gland in the rear cap",$16,Amazon
+Battery pod,-,2-part marine epoxy (e.g. JB Weld Marine / West System),Bonds both printed flanges onto the pipe,$10,Hardware store
+Battery pod,24 + 1,"18650 cells + 3S BMS, 40 A, balancing",3S8P pack,$12 (BMS),Amazon
+Battery pod,4 + 16 / 1,M4 threaded rod ~215 mm + nuts; pure nickel strip 8 x 0.2 mm (~3 m),"Pack tie rods; cell links (pure nickel, not nickel-plated steel)",$14,Amazon
+Lights (x2),2 (+1),"Cree XHP50.2 6 V, 5000 K, on 20 mm copper DTP star",About 500-600 lm each at 700 mA,$8-12 each,Amazon / Satisled / KaiDomain
+Lights (x2),2,Mean Well LDD-700HW constant-current driver,"9-56 V in, PWM dim; inside the hull",$8-10 each,Amazon / Jameco / Digi-Key
+Lights (x2),2,"Glass lens 28 x 3 mm, AR coated",Window,$8 (pack),Amazon
+Lights (x2),1,"6061 round bar 1-3/4"" x 6""",Two 5 mm heat-sink discs,$12,Amazon
+Lights (x2),1 / 1 / 6,Thermal adhesive (Arctic Alumina); O-ring kit 1.5 mm; M2.5 x 16 SHCS (thread straight into the 401 body),,$32,Amazon
+Wiring,~4 m,2-core 18 AWG marine cable (OD 5-6 mm),6 thruster leads + 2 light leads to their SP13 plugs,$15,Amazon
+Wiring,0.8 m,12-core 0.5 mm2 control cable (OD <= 10 mm),Junction box to the hull MOTORS gland and on to every IBT_2,$10,Amazon
+Wiring,0.5 m,"4-core 0.5-0.75 mm2 cable, OD 3-6.5 mm",Junction box to the hull LIGHTS gland: two separate LED pairs,$4,Amazon
+Wiring,0.6 m,2-core 12 AWG silicone or marine cable (OD <= 10 mm),Battery pod to hull,$6,Amazon
+Wiring,1,MG Chemicals 832B epoxy potting compound,Junction box (behind the sockets) + light cavities,$35-40,Amazon
+Wiring,1,Cat6 tether + strain relief,Data only (power is on board),$20-40,Amazon
+Battery pod,-,"Fish-paper insulator rings, Kapton tape, inline ATO fuse holder (12 AWG) + 35 A fuse, silica gel",See the battery pack guide,$25,Amazon
+Electronics,6,IBT_2 (BTS7960) H-bridge driver,"U1-U6: One per thruster, heatsinks removed. Logic VCC from the Pico 3V3",$40-60,Amazon
+Electronics,2,"Mini MP1584EN 5 V 1.8 A buck boards (5-30 V in, fixed 5 V out)","U9A, U9B: Top face, port side beside the Pi: U9A for the Pi, HAT, camera and Pico; U9B for the servos only",already owned,Amazon
+Electronics,-,Clear 20-25 mm heat-shrink + double-sided foam tape,"U9 mounting: One sleeve over each mini buck, taped to the deck",$3,Any
+Electronics,1,"Raspberry Pi Pico, headers fitted, on a 57 x 63 mm screw-terminal breakout board","U10: Underneath at the front, centred between the rails, USB to the front",already owned,Amazon
+Electronics,1,"Raspberry Pi Zero 2W, header fitted","U11: Top face, header to starboard",$15-18,Pi reseller
+Electronics,1,Waveshare ETH/USB HUB HAT (RTL8152B: 1 x RJ45 + 3 x USB-A) with its micro-USB link board,"U12: On the Pi Zero, 11 mm above it; tether to topside",already owned,Waveshare / Amazon
+Electronics,1 + 1,"Cat6 patch lead, 0.3 m, one end 90-degree (left or right angle), + RJ45 inline coupler",Ethernet: HAT RJ45 to the tether: the plug has to turn aft within 25 mm,$8-10,Amazon
+Electronics,1,"Inline ATO/ATC fuse holder, 12 AWG, + 30 A fuse","F1: Battery red, into the +12V Wago",$7,Auto parts store
+Electronics,1,Inline mini-blade holder + 3 A fuse,F2: Aux branch: LED drivers and both 5 V bucks,$4,Auto parts store
+Electronics,1,1000 uF 25 V low-ESR electrolytic,"C1: Across the 5 V bucks' 12 V feed, in the port trough",$1,DigiKey / Mouser
+Electronics,1,470 uF 10 V electrolytic,C2: Across +5V / GND at the servo plugs,$0.50,DigiKey / Mouser
+Electronics,1,1N5817 Schottky diode,"D1: U9A 5 V to Pico VSYS, band toward the Pico",$0.25,DigiKey / Mouser
+Electronics,2,"10 k resistor, 1/4 W","R1, R2: ARM and DIM pull-downs",$0.10,Any
+Electronics,1 + 1,"33 k and 10 k resistors, 1/4 W","R3, R4: Battery-voltage divider to GP26",$0.20,Any
+Electronics,1 m + 1 m,"14 AWG silicone wire, red + black",Wire: Bus to the three top boards,$8,Amazon
+Electronics,0.5 m + 0.5 m,"16 AWG silicone wire, red + black",Wire: Jumpers to the bottom boards,$6,Amazon
+Electronics,1 m + 1 m,"20 AWG silicone wire, red + black",Wire: Aux branch: F2 to LED drivers and both 5 V bucks,$5,Amazon
+Electronics,1 set,"Dupont female housings + 22 AWG hook-up wire, crimp splices","Wire: Logic bundles (Dupont at the IBT_2 headers, bare ends into the Pico terminals), UART, DIM, 5 V",$8,Amazon
+Electronics,-,"Zip ties 2.5-3.6 mm, heat-shrink assortment","Misc: Boards, harness ties, every splice",$8,Any

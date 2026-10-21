@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editors
+.vscode/
+.idea/
+
+# Arduino / host test builds (the ready-to-flash Firmware/build/pico_rov.ino.uf2 is kept)
+Firmware/test/t
+Firmware/test/*.o
+
+# Over GitHub's 100 MB file limit: published as a zipped release asset instead
+CAD/STEP/TinkerSub_KB-1_assembly.step

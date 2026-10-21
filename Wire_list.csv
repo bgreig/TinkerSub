@@ -1,0 +1,25 @@
+Wire #,From,To,Wire
+1,BATTERY gland,"F1 -> +12V Wago, slot 1",12 AWG red (twin lead)
+2,BATTERY gland,"GND Wago, slot 1",12 AWG black (twin lead)
+3,+12V Wago,T3 B+ (top),14 AWG red
+4,GND Wago,T3 B- (top),14 AWG black
+5,+12V Wago,T2 B+ (top),14 AWG red
+6,GND Wago,T2 B- (top),14 AWG black
+7,+12V Wago,T1 B+ (top),14 AWG red
+8,GND Wago,T1 B- (top),14 AWG black
+9,T3 B+ / B-,T6 B+ / B- (below),16 AWG red + black
+10,T2 B+ / B-,T5 B+ / B- (below),16 AWG red + black
+11,T1 B+ / B-,T4 B+ / B- (below),16 AWG red + black
+12,MOTORS gland,M+ / M- of T1-T6,"12-core, one pair per board"
+13,"+12V Wago, slot 5",F2 (3 A),20 AWG red
+14,F2,"LDD 1 +Vin, LDD 2 +Vin, U9A + U9B IN+","20 AWG red, spliced; C1 across the converter feed"
+15,"GND Wago, slot 5","LDD 1 -Vin, LDD 2 -Vin, U9A + U9B IN-","20 AWG black, spliced"
+16,LIGHTS gland,"LDD 1 +Vo/-Vo, LDD 2 +Vo/-Vo",4-core: two separate pairs
+17,TETHER gland,HAT RJ45 (on the Pi),"Cat6, inline coupler + 90-degree patch lead"
+18,HAT hub input,Pi Zero USB OTG,micro-USB link board (comes with the HAT)
+19,IBT_2 header (each),Pico breakout terminals (see pinout),"x 6: RPWM, LPWM, R_EN+L_EN, VCC, GND; Dupont at the IBT_2"
+20,"Pi pins 6, 8, 10 (HAT stacking pins)","Pico terminals 3, 2, 1","soldered at the Pi: GND, TXD->GP1, RXD<-GP0"
+21,U9A OUT+,"Pi pin 2 (5 V, HAT stacking pin)",via the 5 V splice behind the Pi
+22,5 V splice; U9A OUT-,D1 -> Pico VSYS (39); Pico GND (38),red + 1N5817; black
+23,Pico GP16 / GP17; U9B OUT+ / OUT-,Pan / tilt servo plugs,servo leads; C2 470 uF at the plugs
+24,Pico GP14 (pin 19),"LDD 1 DIM, LDD 2 DIM",spliced; R2 10 k to GND at the terminal

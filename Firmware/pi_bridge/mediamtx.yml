@@ -1,0 +1,18 @@
+# MediaMTX config for the Arducam on the Pi Zero 2 W (rpiCamera source, hardware H.264).
+# Watch: http://192.168.2.2:8889/cam (WebRTC, ~150-250 ms)  or  rtsp://192.168.2.2:8554/cam
+logLevel: warn
+rtsp: yes
+webrtc: yes
+hls: no
+rtmp: no
+srt: no
+paths:
+  cam:
+    source: rpiCamera
+    rpiCameraWidth: 1280
+    rpiCameraHeight: 720
+    rpiCameraFPS: 30
+    rpiCameraBitrate: 2500000
+    rpiCameraIDRPeriod: 30      # a keyframe every second: quick recovery after a tether glitch
+    rpiCameraHFlip: false       # set both true if the camera is mounted upside down in cradle 218
+    rpiCameraVFlip: false

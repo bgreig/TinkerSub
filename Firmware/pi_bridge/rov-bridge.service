@@ -1,0 +1,13 @@
+[Unit]
+Description=ROV UDP <-> UART bridge to the Pico
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/rov/rov_bridge.py --serial /dev/serial0
+Restart=always
+RestartSec=1
+User=pi
+
+[Install]
+WantedBy=multi-user.target
