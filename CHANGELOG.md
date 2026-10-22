@@ -3,6 +3,8 @@
 Changes to the TinkerSub KB-1 files. Part numbers are the three digits debossed on each printed part.
 
 ## 2026-10-22
+- Guide section 6: the template-tile, finished-plate and sheet-layout figures redrawn from the current plate CAD (they still showed the rear cowl-foot hole in its old place). `Source/plate_figs.py` makes them.
+- `Source/guide_images_from_pdf.py`: recovers the guide images that aren't shipped in the package, so `prep_guide_inputs.py` can rebuild the guide after a text-only change.
 - Battery pack build guide added as `docs/Battery_Pack_Build.md` (was a private link). Pack tie rods corrected to ~225 mm (were listed as ~215 mm, too short).
 - License texts added: `LICENSE` (CERN-OHL-S-2.0), `LICENSES/` (CC BY-SA 4.0, MIT).
 - `Source/` is complete: every module the generators import, the input parts, `requirements.txt` and `Source/README.md`. A clean checkout rebuilds every printed part to match `STL/`.

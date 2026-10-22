@@ -4,16 +4,17 @@ Rebuild the inputs build_guide_final.py needs (render crops, vols.json, mix_fina
 change without re-running the geometry and render pipeline.
 
 Usage (from the workspace folder):
-  python3 prep_guide_inputs.py <old ROV_Build_Package dir> <old ROV_Assembly_Guide.pdf>
+  python3 prep_guide_inputs.py <old TinkerSub_KB-1_Build_Package dir> <old TinkerSub_KB-1_Assembly_Guide.pdf>
+  python3 guide_images_from_pdf.py <old TinkerSub_KB-1_Assembly_Guide.pdf>     (label close-ups, Appendix B and insert-chart renders)
   python3 build_guide_final.py render/final outdir
-  rm -rf outdir/ROV_Build_Package/CAD/STEP; cp <old package>/README.txt outdir/ROV_Build_Package/
-Then diff the new package against the old one: only the text you changed should differ.
+The package's CAD/STEP comes from the old package (the 146 MB assembly STEP only if the old package had it).
+Then diff the new package against the old one: only what you changed should differ.
 Needs: pymupdf, trimesh, reportlab, pillow, pypdf (the guide appends the side-plate templates as Appendix A).
 """
 import sys, os, glob, shutil, json, csv
-import pymupdf as fitz, trimesh
+import trimesh
 
-P, OLD_PDF = sys.argv[1], sys.argv[2]
+P = sys.argv[1]                                          # argv[2] (old guide PDF) is used by guide_images_from_pdf.py
 CROP = "render/final/crop"
 for d in ("out_lbl", "out_final/step", "out", CROP, "outdir"): os.makedirs(d, exist_ok=True)
 for f in glob.glob(os.path.join(P, "STL", "*", "*.stl")): shutil.copy(f, "out_lbl")
@@ -33,23 +34,14 @@ _v = json.load(open("render_threejs/views_elec.json"))
 json.dump({k: [l[2] for l in v.get("labels", []) if l[1] != "C"] for k, v in _v.items()}, open("render/elec_legends.json", "w"), indent=1)
 shutil.copy(os.path.join(P, "Images/Diagrams/thruster_layout.png"), os.path.join(CROP, "f_layout.png"))
 shutil.copy(os.path.join(P, "Images/Diagrams/side_plates_on_24x24_sheet.png"), os.path.join(CROP, "f_nest.png"))
+FP = "TinkerSub_KB-1"                                   # package names; build outputs keep their internal ROV_* names
 for n in ("Frame", "Core"):
-    shutil.copy(os.path.join(P, f"ROV_{n}.3mf"), "outdir")
-    shutil.copy(os.path.join(P, "Images/Diagrams", f"ROV_{n}_plates.png"), "outdir")
-
-# Label close-ups (L_*.png) are not in the package: take them from the old guide, in the order the guide places them.
-doc = fitz.open(OLD_PDF)
-def page_images(marker):
-    for p in doc:
-        if marker in p.get_text():
-            return [b["xref"] for b in sorted(p.get_image_info(xrefs=True), key=lambda b: (round(b["bbox"][1] / 20), b["bbox"][0]))]
-    raise SystemExit("marker not found: " + marker)
-def save(xref, name):
-    pix = fitz.Pixmap(doc, xref)
-    if pix.n - pix.alpha > 3: pix = fitz.Pixmap(fitz.csRGB, pix)
-    pix.save(os.path.join(CROP, name))
-save(page_images("214 sled deck, top face")[0], "L_deck214.png")
-for x, n in zip(page_images("Left: 202 hull rear cap"), ("L_rearcap", "L_deck", "L_jbox", "L_bh215", "L_station")): save(x, n + ".png")
+    shutil.copy(os.path.join(P, f"{FP}_{n}.3mf"), f"outdir/ROV_{n}.3mf")
+    shutil.copy(os.path.join(P, "Images/Diagrams", f"{FP}_{n}_plates.png"), f"outdir/ROV_{n}_plates.png")
+for f in glob.glob(os.path.join(P, f"{FP}_Reprint_*.3mf")): shutil.copy(f, os.path.join("outdir", os.path.basename(f).replace(FP + "_", "ROV_")))
+os.makedirs("out_final/step", exist_ok=True)
+for f in glob.glob(os.path.join(P, "CAD/STEP/*.*")): shutil.copy(f, "out_final/step")
+shutil.copytree(os.path.join(P, "CAD/STEP/parts"), "out_final/step/parts", dirs_exist_ok=True)
 
 # vols.json: extents from the STLs, volume back-solved from the old BOM so filament estimates stay identical.
 vols = {}

@@ -21,12 +21,19 @@ Run everything from this folder. Tested with Python 3.13 on Linux; `pip install 
 | Bambu projects | `PLATE_PLAN=plates_core.json PRINTED_MOD=parts_final PRINTED_ATTR=PRINTED_B python3 make_3mf.py ps.json - - - n3/ROV_Core.3mf` (and `plates_frame.json` / `PRINTED_A` for the Frame project, `plates_reprint.json` / `reprint_parts` / `PRINTED_R` for the reprint) | `n3/*.3mf` |
 | Plate maps | `python3 plate_preview.py n3/ROV_Core.3mf n3/ROV_Core_plates.png` | plate map images |
 | Side plates | `python3 plate_templates_final.py` | `out_final/` DXFs and template PDFs |
+| Side-plate guide figures | `python3 plate_figs.py render/final/crop`, then `cd render && python3 shoot.py views_plate.json ../render/final/crop` (rename `plate.png` to `f_plate.png`) | template tile, sheet layout and finished-plate pictures |
 | STEP | `python3 make_step.py asm rov_viewer/assembly_v6.json`, `python3 make_step.py parts` | `out_final/step/` |
 | Heat-set insert map | `python3 insert_map.py out_lbl render ins.json` | insert scenes for the Appendix B chart |
 | Renders | `scene_final.py`, `light_scene.py`, `elec_scene.py` and `insert_map.py` write the scenes; `cd render && python3 shoot.py views_final.json out` renders them | guide pictures (three.js in headless Chromium via Playwright) |
 | Guide + package | `python3 build_guide_final.py render/final outdir` | the guide PDF and the whole package |
 
-The guide build needs the rendered pictures. To rebuild the guide after a text-only change without re-rendering, `prep_guide_inputs.py` pulls the pictures and files back out of an existing build package.
+The guide build needs the rendered pictures. To rebuild the guide after a text-only change without re-rendering, `prep_guide_inputs.py` pulls the pictures and files back out of an existing build package, and `guide_images_from_pdf.py` recovers the few pictures that only live inside the old guide PDF (label close-ups, Appendix B):
+
+```
+python3 prep_guide_inputs.py <old package folder> <old guide PDF>
+python3 guide_images_from_pdf.py <old guide PDF>
+python3 build_guide_final.py render/final outdir
+```
 
 ## Where to change things
 

@@ -136,7 +136,7 @@ SOURCE_PY = ["thruster.py", "pylon.py", "ring.py", "bracket.py", "mount.py", "ro
              "rail_notch.py", "parts_final.py", "label_parts.py", "engrave.py", "jbox.py", "make_3mf.py", "plate_preview.py", "reprint_parts.py",
              "plate_templates_final.py", "plate_stl_final.py", "step_export.py", "make_step.py", "viewer_and_mesh.py", "insert_map.py",
              "insert_walls.py", "print_review.py", "scene_final.py", "light_scene.py", "elec_scene.py", "elec_drawings.py",
-             "prep_guide_inputs.py", "build_guide.py", "build_guide_final.py"]
+             "prep_guide_inputs.py", "guide_images_from_pdf.py", "plate_figs.py", "build_guide.py", "build_guide_final.py"]
 SOURCE_DATA = ["ps.json", "plates_core.json", "plates_frame.json", "plates_reprint.json"]
 SOURCE_INPUTS = ["rov_project/" + f for f in ("br_flange_rear.stl", "br_flange_rear.step", "br_flange_front_dome.stl", "br_flange_front_dome.step",
                  "dome_retaining_ring.stl", "dome_retaining_ring.step", "br_endcap_rear.stl", "br_endcap_rear.step", "rov_br_style_caps.py",
