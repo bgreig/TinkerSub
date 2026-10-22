@@ -1,0 +1,72 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:#e9edf0}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"./three.module.min.js"}}</script></head>
+<body><script type="module">
+// Realistic electronics renders: physical materials, room-environment reflections, ACES tone mapping, soft shadows.
+// window.CFG: scene, w, h, dir, up, fov, dist, target, keys/drop (mesh-key filters), anchors {name: [x,y,z]} -> window.ANCH (pixels)
+import * as THREE from "three";
+import { RoomEnvironment } from "./RoomEnvironment.js";
+const C = window.CFG, W = C.w, H = C.h;
+const renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true});
+renderer.setPixelRatio(1); renderer.setSize(W, H);
+renderer.setClearColor(C.bg ?? 0xe9edf0, 1);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = C.exposure ?? 0.72;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+scene.environmentIntensity = C.env ?? 0.5;
+
+function b64(s, T) { const b = atob(s); const u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return new T(u.buffer); }
+const d = await (await fetch(C.scene)).json();
+const match = (k0, list) => { const k = k0.split("|")[0]; return list.some(p => k === p || (p.endsWith("*") && k.startsWith(p.slice(0, -1)))); };
+const root = new THREE.Group(); scene.add(root);
+for (const [k, m] of Object.entries(d.meshes)) {
+  if (C.keys && !match(k, C.keys)) continue;
+  if (C.drop && match(k, C.drop)) continue;
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.BufferAttribute(b64(m.v, Float32Array), 3));
+  g.setIndex(new THREE.BufferAttribute(b64(m.i, Uint32Array), 1));
+  const geo = m.smooth ? (g.computeVertexNormals(), g) : (() => { const n = g.toNonIndexed(); n.computeVertexNormals(); return n; })();
+  const op = (C.ghost && match(k, C.ghost)) ? (C.ghostOpacity ?? 0.12) : (m.opacity ?? 1);
+  const mat = new THREE.MeshPhysicalMaterial({color: new THREE.Color(m.color), roughness: m.rough ?? 0.6,
+      metalness: m.metal ?? 0.0, clearcoat: m.clear ?? 0.0, clearcoatRoughness: 0.3,
+      transparent: op < 1, opacity: op, side: THREE.DoubleSide, depthWrite: op >= 0.5});
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.castShadow = op >= 0.5; mesh.receiveShadow = true;
+  root.add(mesh);
+}
+if (C.rot) root.rotation.set(...C.rot.map(a => a * Math.PI / 180));
+root.updateMatrixWorld(true);
+const box = new THREE.Box3().setFromObject(root);
+const ctr = C.target ? new THREE.Vector3(...C.target).applyMatrix4(root.matrixWorld) : box.getCenter(new THREE.Vector3());
+const rad = C.rad ?? box.getSize(new THREE.Vector3()).length() / 2;
+if (C.ground !== false) {
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(rad * 30, rad * 30), new THREE.ShadowMaterial({opacity: C.shadow ?? 0.22}));
+  ground.rotation.x = -Math.PI / 2; ground.position.y = box.min.y - 0.3; ground.receiveShadow = true; scene.add(ground);
+}
+scene.add(new THREE.HemisphereLight(0xffffff, 0xb8c0c8, C.hemi ?? 0.35));
+const sun = new THREE.DirectionalLight(0xfff6ea, C.sun ?? 1.9);
+const ld = new THREE.Vector3(...(C.light || [0.35, 1.0, 0.45])).normalize();
+sun.position.copy(ctr).addScaledVector(ld, rad * 4); sun.target.position.copy(ctr); scene.add(sun.target);
+sun.castShadow = true; sun.shadow.mapSize.set(4096, 4096);
+const sc = sun.shadow.camera; sc.left = -rad * 1.5; sc.right = rad * 1.5; sc.top = rad * 1.5; sc.bottom = -rad * 1.5; sc.near = rad; sc.far = rad * 8;
+sun.shadow.radius = 5; sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.3;
+scene.add(sun);
+const fill = new THREE.DirectionalLight(0xe8f0ff, C.fill ?? 0.6); fill.position.copy(ctr).addScaledVector(new THREE.Vector3(-0.7, 0.4, -0.6), rad * 4); scene.add(fill);
+
+const dir = new THREE.Vector3(...C.dir).normalize();
+const cam = new THREE.PerspectiveCamera(C.fov || 24, W / H, 1, rad * 60);
+cam.up.set(...(C.up || [0, 1, 0]));
+cam.position.copy(ctr).addScaledVector(dir, rad * (C.dist || 4.2));
+cam.lookAt(ctr); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
+renderer.render(scene, cam);
+const A = {};
+for (const [n, p] of Object.entries(C.anchors || {})) {
+  const v = new THREE.Vector3(...p).applyMatrix4(root.matrixWorld).project(cam);
+  A[n] = [(v.x + 1) / 2 * W, (1 - v.y) / 2 * H];
+}
+window.ANCH = A; window.DONE = true;
+</script></body></html>

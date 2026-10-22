@@ -1,72 +1,92 @@
 # TinkerSub KB-1: source
 
-Everything in the build package is generated from the Python in this folder: the printed parts (STL), the Bambu Studio projects (3MF), the side-plate templates and DXFs, the STEP files, the renders and the build guide. The CAD is code: change a number, re-run, and every file downstream follows.
+Everything generated in this repository comes from the Python in this folder: the printed parts (`STL/`), the Bambu Studio projects (`*.3mf`), the side-plate templates and DXFs (`CAD/`), the STEP files, the pictures and the build guide. The CAD is code: change a number, rebuild, and every file downstream follows.
 
-Run everything from this folder. Tested with Python 3.13 on Linux; `pip install -r requirements.txt`.
+You don't need any of this to build the ROV. You need it to change the design.
 
-## What makes what
+## Quick start
 
-| Step | Command | Writes |
+```
+pip install -r Source/requirements.txt
+playwright install chromium            # for the renders and schematics
+python3 Source/build.py all            # about 10 minutes; add --step for the STEP files (slow)
+python3 Source/build.py install        # copy what changed into the repository
+```
+
+`all` ends with a check that compares every generated file with the one in the repository and lists what changed. Nothing in the repository is touched until you run `install`, and `install` only writes files that really changed (a 3MF whose only difference is its object IDs and date is left alone). Everything is built in `Source/build/` (git-ignored).
+
+Tested with Python 3.13 on Linux.
+
+## The build steps
+
+`python3 Source/build.py <step> [<step> ...]` runs one or more steps; `all` runs them in this order. Each step uses what the steps before it wrote in the build folder.
+
+| Step | What it does | Main output |
 |---|---|---|
-| Thrusters | `python3 thruster.py` | `out/` housing, tail cone, props, nose cone, coupler gauge (101-105, 107) |
-| Pylon clamp | `python3 pylon.py` | `out/pylon_clamp.stl` (106) |
-| Pod parts, lights | `python3 export_v4.py` | `out/` pod flange and caps, light heads (301-303, 401-403) |
-| Junction box | `python3 jbox.py` | `out/rov_junction_box.stl`, `rov_junction_lid.stl` (501, 503) |
-| Frame, cowl, plates | `python3 export_v5.py` | `out_v5/` stations, brackets, belly pan, cowl, side plates (601-608, 701, 801-806) |
-| Pod front cap | `python3 export_v6.py` | `out_v5/rov6_pod_endcap_3in_blank.stl` (303) |
-| Pan-tilt | `python3 -c "import pantilt_fit as P; P.export('prep')"` | `prep/pantilt_*.stl` (216-219) |
-| Assembly + fit check | `python3 rov_v6.py` | `rov_viewer/assembly_v6.json`; prints any interference |
-| Final file names | `python3 parts_final.py vols.json` | `out_final/<name>.stl`, part volumes |
-| Part numbers + labels | `python3 label_parts.py` | `out_lbl/<PN>_<name>.stl`: the files in `STL/` |
-| Bambu projects | `PLATE_PLAN=plates_core.json PRINTED_MOD=parts_final PRINTED_ATTR=PRINTED_B python3 make_3mf.py ps.json - - - n3/ROV_Core.3mf` (and `plates_frame.json` / `PRINTED_A` for the Frame project, `plates_reprint.json` / `reprint_parts` / `PRINTED_R` for the reprint) | `n3/*.3mf` |
-| Plate maps | `python3 plate_preview.py n3/ROV_Core.3mf n3/ROV_Core_plates.png` | plate map images |
-| Side plates | `python3 plate_templates_final.py` | `out_final/` DXFs and template PDFs |
-| Side-plate guide figures | `python3 plate_figs.py render/final/crop`, then `cd render && python3 shoot.py views_plate.json ../render/final/crop` (rename `plate.png` to `f_plate.png`) | template tile, sheet layout and finished-plate pictures |
-| STEP | `python3 make_step.py asm rov_viewer/assembly_v6.json`, `python3 make_step.py parts` | `out_final/step/` |
-| Heat-set insert map | `python3 insert_map.py out_lbl render ins.json` | insert scenes for the Appendix B chart |
-| Renders | `scene_final.py`, `light_scene.py`, `elec_scene.py` and `insert_map.py` write the scenes; `cd render && python3 shoot.py views_final.json out` renders them | guide pictures (three.js in headless Chromium via Playwright) |
-| Guide + package | `python3 build_guide_final.py render/final outdir` | the guide PDF and the whole package |
+| `parts` | Generates every printed part, assembles the whole ROV (and reports any interference between parts), names, numbers and labels the parts | `out_lbl/<PN>_<name>.stl`: the files in `STL/` |
+| `plates` | HDPE side plates: DXFs, cutting templates, one-piece plate STLs | `out_final/`: the files in `CAD/` |
+| `3mf` | Bambu Studio projects (Frame, Core, Reprint) and their plate maps | `outdir/` |
+| `step` | STEP files for Fusion 360 and other CAD apps, and the positioned mesh assembly. Slow (the assembly is 146 MB): not part of `all` unless you add `--step` | `out_final/step/` |
+| `figures` | Drawn figures: thruster layout, pan-tilt fit diagram, side-plate figures, the two schematic sheets, the wiring diagram and the wire list | `render/final/crop/` |
+| `scenes` | 3D scenes for the renders: the assembly, the lights, the electronics sled, the heat-set insert map, single parts | `render/*.json` |
+| `renders` | Renders every view in `render/views/*.json` in headless Chromium | `render/final/crop/` |
+| `guide` | Builds the guide PDF and the whole generated package | `outdir/TinkerSub_KB-1_Build_Package/` |
+| `check` | Compares the package with the repository, file by file | a list: same / equivalent / changed / new |
+| `install` | Copies changed and new files into the repository. Never deletes | |
 
-The guide build needs the rendered pictures. To rebuild the guide after a text-only change without re-rendering, `prep_guide_inputs.py` pulls the pictures and files back out of an existing build package, and `guide_images_from_pdf.py` recovers the few pictures that only live inside the old guide PDF (label close-ups, Appendix B):
+The guide uses about 120 pictures. About 60 of them are regenerated by `figures` and `renders`. The rest are older renders whose camera setups no longer exist (most of the part thumbnails, the thruster, sled and pod pictures, the label close-ups in `Images/Labels/`). The `guide` step takes every picture it didn't regenerate from the repository's `Images/` folder, so you can rebuild the guide after a text change with:
 
 ```
-python3 prep_guide_inputs.py <old package folder> <old guide PDF>
-python3 guide_images_from_pdf.py <old guide PDF>
-python3 build_guide_final.py render/final outdir
+python3 Source/build.py parts plates guide check
 ```
+
+## Folders
+
+| Folder | What's in it |
+|---|---|
+| `build.py` | The one entry point. Its docstring lists every step. |
+| `geometry/` | The parts themselves. `thruster.py` (housing, duct, props, tail cone), `pylon.py`, `lights.py`, `rov_parts.py` (pod flanges and caps, sled bulkhead), `jbox.py` (junction box and lid), `pantilt_fit.py` (camera pan-tilt and its fit check), `rov_v5.py` (stations, brackets, belly pan, cowl, side plates, light aim). `frame_clamp.py`, `pvc.py`, `ring.py`, `bracket.py`, `mount.py` and `wiring.py` are earlier versions the current parts still build on. `rail_notch.py` cut the wire opening in the sled rails once; its output is in `inputs/`. |
+| `assembly/` | `rov_v6.py` puts every part in place and checks for interference. `export_v4/5/6.py` write the parts in print orientation. `parts_final.py` is the master part list: part numbers, file names, print notes, labels. `label_parts.py` + `engrave.py` deboss the part numbers. |
+| `outputs/` | `make_3mf.py` (Bambu projects; plate layouts in `plates_*.json`, print profile in `ps.json`), `plate_preview.py` (plate maps), `plate_templates_final.py` and `plate_stl_final.py` (side plates), `make_step.py` + `step_export.py` (STEP), `viewer_and_mesh.py` (mesh assembly). |
+| `checks/` | `print_review.py` checks every printed part for bed fit, loose columns, floating islands, overhangs and thin walls. `insert_walls.py` checks the plastic round every heat-set insert hole. |
+| `guide/` | The guide (`build_guide.py` styles and helpers, `build_guide_final.py` all the text) and everything that makes its pictures: `scene_final.py`, `light_scene.py`, `elec_scene.py`, `part_scenes.py`, `insert_map.py` (scenes), `pantilt_fig.py`, `plate_figs.py`, `elec_drawings.py` (figures). `package_images.py` says where each picture lives in the package. |
+| `render/` | The renderer: `render.html` (parts and assembly), `render_ikea.html` (picture-by-picture pages), `render_real.html` (electronics), three.js, and the drivers `shoot.py` / `shoot_real.py`. `views/` holds the camera shots, one JSON file per kind of picture. |
+| `inputs/` | Parts drawn in CAD rather than generated, read in as they are (below). |
+
+## Inputs
+
+| Folder | Contents |
+|---|---|
+| `inputs/rov_project/` | Hull flanges 201 / 203, dome ring 204 and the original rear end cap (STL + STEP, from `rov_br_style_caps.py`), the sled front bulkhead 207 (`camera_mount/`), and the reference parts the assembly loads |
+| `inputs/New_parts/` | Sled rails, deck, rear bulkhead and battery plate (212-215, 305), drawn as CAD solids in the sled frame |
+| `inputs/src_parts/` | Sled rails with the front wire opening cut, as used in the assembly |
+| `inputs/prep/` | The same parts in print orientation with their labels engraved, plus the pan-tilt parts |
+| `inputs/step_supplied/` | True CAD solids for 214, 215, 305 and 306, shipped as STEP files as drawn (the other parts' STEP files are converted from their meshes) |
 
 ## Where to change things
 
 | To change | Edit |
 |---|---|
-| Stations, brackets, belly pan, cowl, side plates, light aim | `rov_v5.py` |
-| Thruster body, duct, prop, tail cone | `thruster.py` |
-| Pylon clamp | `pylon.py` |
-| Light heads | `lights.py` |
-| Pod flanges and caps, sled bulkhead | `rov_parts.py` |
-| Camera pan-tilt | `pantilt_fit.py` (its `check()` runs the fit check against the dome at every angle) |
-| Junction box and lid | `jbox.py` |
-| Part numbers, print notes, labels | `parts_final.py` |
-| Plate layouts in the 3MFs | `plates_*.json`, print settings in `make_3mf.py` |
-| Guide text | `build_guide_final.py` |
+| Stations, brackets, belly pan, cowl, side plates, light aim | `geometry/rov_v5.py` |
+| Thruster body, duct, prop, tail cone | `geometry/thruster.py` |
+| Pylon clamp | `geometry/pylon.py` |
+| Light heads | `geometry/lights.py` |
+| Pod flanges and caps | `geometry/rov_parts.py` |
+| Camera pan-tilt | `geometry/pantilt_fit.py` (its `check()` sweeps the camera through its whole range inside the dome) |
+| Junction box and lid | `geometry/jbox.py` |
+| Part numbers, print notes, labels | `assembly/parts_final.py` |
+| Plate layouts in the 3MFs | `outputs/plates_*.json`; print settings in `outputs/make_3mf.py` |
+| Guide text, shopping list | `guide/build_guide_final.py` |
+| A picture's camera angle | `render/views/*.json` |
 
-## Input files
+## Running one script on its own
 
-Some parts were drawn in CAD rather than generated, and are read in as they are:
+The scripts import each other by name, so put the code folders on the path and run from the build folder, for example:
 
-| Folder | Contents |
-|---|---|
-| `rov_project/` | Hull flanges 201 / 203, dome ring 204 and the original rear end cap (STL + STEP, from `rov_br_style_caps.py`), the sled front bulkhead 207 (`camera_mount/`), and the reference parts the assembly loads |
-| `New_parts/` | Sled rails, deck, rear bulkhead and battery plate (212-215, 305), drawn as CAD solids in the sled frame |
-| `src_parts/` | Sled rails with the front wire opening cut (`rail_notch.py`), as used in the assembly |
-| `prep/` | The same parts in print orientation with their labels engraved, plus the pan-tilt parts |
-
-## Checks
-
-- `rov_v6.py` prints every interference between parts in the assembly. It should say `none`.
-- `print_review.py out_lbl report.json` checks every printed part for bed fit, loose columns, floating islands, overhangs and thin walls.
-- `insert_walls.py` checks the plastic around every heat-set insert hole.
-- `pantilt_fit.check()` sweeps the camera through its pan and tilt range inside the dome.
+```
+cd Source/build
+PYTHONPATH=../geometry:../assembly:../outputs:../checks:../guide python3 ../checks/print_review.py out_lbl report.json
+```
 
 ## License
 

@@ -1,0 +1,192 @@
+{
+ "f_front": {
+  "scene": "asm.json",
+  "dir": [
+   0.85,
+   0.42,
+   1.0
+  ],
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0
+ },
+ "f_side": {
+  "scene": "asm.json",
+  "dir": [
+   1,
+   0.0001,
+   0
+  ],
+  "ortho": true,
+  "hemi": 4.0,
+  "sun": 5.0
+ },
+ "f_top": {
+  "scene": "asm.json",
+  "dir": [
+   0,
+   1,
+   0.0001
+  ],
+  "up": [
+   0,
+   0,
+   -1
+  ],
+  "ortho": true,
+  "hemi": 4.0,
+  "sun": 5.0
+ },
+ "f_exploded": {
+  "scene": "asm.json",
+  "dir": [
+   0.8,
+   0.45,
+   1.0
+  ],
+  "fov": 22,
+  "explode": 1,
+  "hemi": 4.0,
+  "sun": 5.0
+ },
+ "f_cowl": {
+  "scene": "asm.json",
+  "keys": [
+   "cowl_*",
+   "lt_*"
+  ],
+  "dir": [
+   0.8,
+   0.5,
+   1.0
+  ],
+  "fov": 22,
+  "explode": 1,
+  "hemi": 4.0,
+  "sun": 5.0
+ },
+ "f_hull": {
+  "scene": "asm.json",
+  "groups": [
+   "hull",
+   "sled"
+  ],
+  "glass": [
+   "hull"
+  ],
+  "dir": [
+   0.75,
+   0.6,
+   0.3
+  ],
+  "fov": 22,
+  "explode": 1,
+  "explodeGroups": [
+   "hull"
+  ],
+  "hemi": 4.0,
+  "sun": 5.0
+ },
+ "f_pantilt": {
+  "scene": "asm.json",
+  "keys": [
+   "pt_*",
+   "rod",
+   "bh_front",
+   "dome"
+  ],
+  "dir": [
+   1.0,
+   0.6,
+   0.45
+  ],
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "natScale": 0.5
+ },
+ "f_pantilt_top": {
+  "scene": "asm.json",
+  "keys": [
+   "pt_*",
+   "bh_front"
+  ],
+  "dir": [
+   0.9,
+   0.6,
+   0.8
+  ],
+  "fov": 22,
+  "w": 900,
+  "h": 900,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "natScale": 0.5
+ },
+ "f_deck": {
+  "scene": "asm.json",
+  "keys": [
+   "hull",
+   "st_top_*",
+   "jdeck",
+   "jbox",
+   "jlid",
+   "sp13_plugs",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring"
+  ],
+  "dir": [
+   0.8,
+   0.9,
+   -0.9
+  ],
+  "fov": 22,
+  "w": 1600,
+  "h": 1200,
+  "hemi": 4.0,
+  "sun": 5.0
+ },
+ "f_open": {
+  "scene": "asm.json",
+  "drop": [
+   "cowl_*",
+   "hdpe_port"
+  ],
+  "dir": [
+   1.0,
+   0.75,
+   0.55
+  ],
+  "fov": 22,
+  "w": 1600,
+  "h": 1200,
+  "hemi": 4.0,
+  "sun": 5.0
+ },
+ "f_station": {
+  "scene": "asm.json",
+  "keys": [
+   "hull",
+   "pod",
+   "st_*",
+   "jdeck",
+   "jbox",
+   "jlid",
+   "sp13_plugs"
+  ],
+  "explode": 1,
+  "explodeGroups": [
+   "frame"
+  ],
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "dir": [
+   0.8,
+   0.6,
+   1.0
+  ]
+ }
+}

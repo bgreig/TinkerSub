@@ -9,12 +9,12 @@ Part #,Bambu project,Section,File,Qty,Filament,Print notes,Used for,Est. filamen
 608,TinkerSub_KB-1_Frame.3mf,Stations + brackets,STL/6_Stations_and_brackets/608_rov_bracket_corner_b.stl,2,"PETG, black","Plate face down. 5 walls, 40 %. 4x M3 + 2x M5 inserts.",Front-starboard + rear-port thruster bracket,53
 106,TinkerSub_KB-1_Frame.3mf,Thruster pylons,STL/1_Thrusters/106_pylon_clamp.stl,6,"PETG, black","Rear end down, no supports. M4 + M3 inserts.",Clamps each thruster body,90
 701,TinkerSub_KB-1_Frame.3mf,Belly pan,STL/7_Belly_pan/701_rov_belly_pan.stl,1,"PETG, black","Floor down, no supports.",Lead ballast tray under the pod,107
-801,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/801_rov_cowl_rear_port.stl,1,"PETG, yellow",Rear end down. The 3 mm shell prints solid.,"Top cowl, rear, port (v2)",163
-802,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/802_rov_cowl_rear_stbd.stl,1,"PETG, yellow",Rear end down.,"Top cowl, rear, starboard (v2)",163
-803,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/803_rov_cowl_mid_port.stl,1,"PETG, yellow",Seam face down. Tree supports (vertical thruster sleeve).,"Top cowl, middle, port (v2)",196
-804,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/804_rov_cowl_mid_stbd.stl,1,"PETG, yellow",Seam face down. Tree supports.,"Top cowl, middle, starboard (v2)",196
-805,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/805_rov_cowl_front_port.stl,1,"PETG, yellow",Nose down (light sleeve vertical).,"Top cowl, front, port (v2)",184
-806,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/806_rov_cowl_front_stbd.stl,1,"PETG, yellow",Nose down.,"Top cowl, front, starboard (v2)",184
+801,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/801_rov_cowl_rear_port.stl,1,"PETG, yellow",Rear end down. The 3 mm shell prints solid.,"Top cowl, rear, port (v2)",197
+802,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/802_rov_cowl_rear_stbd.stl,1,"PETG, yellow",Rear end down.,"Top cowl, rear, starboard (v2)",197
+803,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/803_rov_cowl_mid_port.stl,1,"PETG, yellow",Seam face down. Tree supports (vertical thruster sleeve).,"Top cowl, middle, port (v2)",231
+804,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/804_rov_cowl_mid_stbd.stl,1,"PETG, yellow",Seam face down. Tree supports.,"Top cowl, middle, starboard (v2)",231
+805,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/805_rov_cowl_front_port.stl,1,"PETG, yellow",Nose down (light sleeve vertical).,"Top cowl, front, port (v2)",218
+806,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/806_rov_cowl_front_stbd.stl,1,"PETG, yellow",Nose down.,"Top cowl, front, starboard (v2)",218
 101,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/101_housing_no_foot.stl,6,"PETG, black","Threaded rear end down, brim, 5 walls.",Thruster body + Kort duct,410
 102,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/102_tail_cone_comp.stl,6,"PETG, black","Tip down, brim. Tap the tip M12 x 1.5.",Tail cone with oil compensator,79
 103,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/103_prop_hub_RH.stl,3,"PETG, black","Back face down, tree supports under the blades.",Right-hand prop,81
@@ -26,11 +26,11 @@ Part #,Bambu project,Section,File,Qty,Filament,Print notes,Used for,Est. filamen
 203,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/203_br_flange_front_dome.stl,1,"PETG, black",Ring face down. SOLID: 100 % infill (holds water out).,Dome flange,107
 204,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/204_dome_retaining_ring.stl,1,"PETG, black",Flat.,Dome clamp ring,30
 207,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/207_sled_bulkhead_front.stl,1,"PETG, black",Flat.,Sled front bulkhead,27
-212,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/212_sled_rail_port.stl,1,"PETG, black","Flat outer face down, no supports.","Sled side rail, port (12 V side)",35
-213,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/213_sled_rail_stbd.stl,1,"PETG, black","Flat outer face down, no supports.","Sled side rail, starboard (logic side)",35
+212,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/212_sled_rail_port.stl,1,"PETG, black","Flat outer face down, no supports.","Sled side rail, port (12 V side)",34
+213,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/213_sled_rail_stbd.stl,1,"PETG, black","Flat outer face down, no supports.","Sled side rail, starboard (logic side)",34
 214,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/214_sled_deck.stl,1,"PETG, black","Flat. 4 walls, 40 %.",Sled deck: boards on both faces,43
 215,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/215_sled_bulkhead_rear_v2.stl,1,"PETG, black","Front face down, pockets up.",Sled rear bulkhead: 12 V bus + LED drivers,39
-216,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/216_pantilt_base.stl,1,"PETG, black","Plate face down, no supports. 5 walls.","Pan-tilt base v2: on the sled rods, carries the pan servo",24
+216,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/216_pantilt_base.stl,1,"PETG, black","Plate face down, no supports. 5 walls.","Pan-tilt base v2: on the sled rods, carries the pan servo",25
 217,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/217_pantilt_yoke.stl,1,"PETG, black","Base down, no supports. 5 walls, 40 % infill.","Pan-tilt yoke v2: on the pan horn, tilt servo in a closed pocket",6
 218,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/218_pantilt_cradle.stl,1,"PETG, black","On its side, axle up. Tree supports ON (under the port cheek). 100 %.",Pan-tilt camera cradle,1
 219,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/219_pantilt_lever.stl,1,"PETG, black",Flat. 100 %.,Tilt lever on the cradle axle,0

@@ -47,7 +47,7 @@ Open **[TinkerSub_KB-1_Assembly_Guide.pdf](TinkerSub_KB-1_Assembly_Guide.pdf)**.
 | `STL/` | Every printed part in print orientation (mm), in build order |
 | `CAD/` | Side-plate DXFs and cutting templates, STEP files for most parts (Fusion 360, FreeCAD, Onshape...) and the whole ROV as a mesh (`CAD/STEP/TinkerSub_KB-1_assembly_mesh.3mf`). The full assembly STEP is over GitHub's 100 MB file limit, so it's in the [Releases](../../releases) downloads as `TinkerSub_KB-1_assembly_step.zip` |
 | `Firmware/` | Pico firmware, the Pi bridge, the topside program and tests (see `Firmware/README.md`) |
-| `Source/` | The Python generators for every part, the 3MFs, the templates, the STEP files, the renders and the guide, with their input files. See `Source/README.md` |
+| `Source/` | The Python generators for every part, the 3MFs, the templates, the STEP files, the renders and the guide, with their input files. `python3 Source/build.py all` rebuilds everything; see `Source/README.md` |
 | `docs/` | [Battery pack build](docs/Battery_Pack_Build.md): cell matching, welding, BMS wiring, first charge |
 | `Images/` | Renders, assembly pictures, part pictures, diagrams and the electronics drawings |
 | `BOM_hardware.csv`, `BOM_printed_parts.csv`, `Pipe_cut_list.csv`, `Wire_list.csv` | Everything to buy, print, cut and wire |
@@ -68,7 +68,7 @@ KB-1 is being built for the first time now. The design has been checked in CAD f
 
 ## Changing it
 
-That's the point. Every part is generated from the Python in `Source/` (manifold3d, trimesh): change a number, re-run, and the STL, 3MF and STEP files follow. `Source/README.md` says which file makes which part. Most parts also have a STEP file in `CAD/STEP/parts/` for editing in your CAD program.
+That's the point. Every part is generated from the Python in `Source/` (manifold3d, trimesh): change a number, run `python3 Source/build.py all`, and the STL, 3MF and STEP files and the guide follow. `Source/README.md` says which file makes which part. Most parts also have a STEP file in `CAD/STEP/parts/` for editing in your CAD program.
 
 Questions, problems and ideas: open an [issue](https://github.com/bgreig/TinkerSub/issues/new/choose). Builds, sourcing tips and modifications: the [wiki](https://github.com/bgreig/TinkerSub/wiki). To change the files, see [CONTRIBUTING.md](CONTRIBUTING.md).
 

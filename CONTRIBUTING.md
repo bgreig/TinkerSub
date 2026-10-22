@@ -20,7 +20,7 @@ Add it to the [wiki](https://github.com/bgreig/TinkerSub/wiki): the Build log fo
 
 1. Fork the repository and make a branch.
 2. Change the generator in `Source/` (see `Source/README.md` for which file makes which part), not the STL by hand. Exported STLs and STEPs drift from the source and get overwritten on the next build.
-3. Re-run the steps that your change affects, and the checks: `rov_v6.py` must report no interferences, and `print_review.py` should show nothing new for your part.
+3. Rebuild with `python3 Source/build.py all`, read the list of changed files it prints, then `python3 Source/build.py install`. The `parts` step must report `v6 interferences: none`, and `checks/print_review.py` should show nothing new for your part.
 4. Open a pull request that says what you changed, why, and whether you've printed or built it. Say so if you haven't.
 
 Firmware changes: run the host tests in `Firmware/test` before sending them (see `Firmware/README.md`).
