@@ -1,0 +1,62 @@
+{
+ "f_light_ex": {
+  "scene": "f_light.json",
+  "explode": 1,
+  "dir": [
+   -1,
+   0.45,
+   0.9
+  ],
+  "fov": 20,
+  "hemi": 4.0,
+  "sun": 5.0
+ },
+ "f_light_as": {
+  "scene": "f_light.json",
+  "explode": 0,
+  "dir": [
+   0.9,
+   0.5,
+   -1.0
+  ],
+  "fov": 20,
+  "hemi": 4.0,
+  "sun": 5.0
+ },
+ "f_lightsleeve": {
+  "scene": "f_lightsleeve.json",
+  "explode": 1,
+  "dir": [
+   1.0,
+   0.7,
+   0.8
+  ],
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "glass": [
+   "cowl_front_port"
+  ]
+ },
+ "f_lightmount": {
+  "scene": "f_lightmount.json",
+  "glass": [
+   "cowl_front_port",
+   "cowl_front_stbd",
+   "cowl_mid_port",
+   "cowl_mid_stbd"
+  ],
+  "dir": [
+   0.5,
+   1.3,
+   0.7
+  ],
+  "fov": 24,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "drop": [
+   "st_top_port",
+   "st_top_stbd"
+  ]
+ }
+}

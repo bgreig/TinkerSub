@@ -75,8 +75,8 @@ HW = [
  ("Battery pod", "4 / 12+12 / 1", "O-ring 74 x 2.5; M5 x 16 + M5 inserts; M16 gland", "Both pod caps (2 O-rings, 6 bolts each); gland in the rear cap", "$16", "Amazon"),
  ("Battery pod", "-", "2-part marine epoxy (e.g. JB Weld Marine / West System)", "Bonds both printed flanges onto the pipe", "$10", "Hardware store"),
  ("Battery pod", "24 + 1", "18650 cells + 3S BMS, 40 A, balancing", "3S8P pack", "$12 (BMS)", "Amazon"),
- ("Battery pod", "4 + 16 / 1", "M4 threaded rod ~215 mm + nuts; pure nickel strip 8 x 0.2 mm (~3 m)", "Pack tie rods; cell links (pure nickel, not nickel-plated steel)", "$14", "Amazon"),
- ("Lights (x2)", "2 (+1)", "Cree XHP50.2 6 V, 5000 K, on 20 mm copper DTP star", "About 500-600 lm each at 700 mA", "$8-12 each", "Amazon / Satisled / KaiDomain"),
+ ("Battery pod", "4 + 16 / 1", "M4 threaded rod ~225 mm + nuts; pure nickel strip 8 x 0.2 mm (~3 m)", "Pack tie rods; cell links (pure nickel, not nickel-plated steel)", "$14", "Amazon"),
+ ("Lights (x2)", "2 (+1)", "Cree XHP50.2 6 V (not 12 V), 5000-6500 K, bare on a 20 mm copper DTP star", "About 500-600 lm each at 700 mA", "$8-12 each", "Amazon / Satisled / KaiDomain"),
  ("Lights (x2)", "2", "Mean Well LDD-700HW constant-current driver", "9-56 V in, PWM dim; inside the hull", "$8-10 each", "Amazon / Jameco / Digi-Key"),
  ("Lights (x2)", "2", "Glass lens 28 x 3 mm, AR coated", "Window", "$8 (pack)", "Amazon"),
  ("Lights (x2)", "1", "6061 round bar 1-3/4\" x 6\"", "Two 5 mm heat-sink discs", "$12", "Amazon"),
@@ -130,6 +130,17 @@ HW += [("Electronics", q, p, f"{r}: {n}", c, src) for r, q, p, n, c, src in ELEC
 CUTS = [("4\" Sch40 hull", 1, 406), ("3\" Sch40 battery pod", 1, 300)]
 
 # ------------------------------------------------------------------ package
+# everything in Source/: a clean copy rebuilds every printed part (checked 2026-10-22)
+SOURCE_PY = ["thruster.py", "pylon.py", "ring.py", "bracket.py", "mount.py", "rov_parts.py", "lights.py", "pvc.py", "frame_clamp.py", "wiring.py",
+             "rov_assembly.py", "rov_v5.py", "rov_v6.py", "export_v4.py", "export_v5.py", "export_v6.py", "pantilt_fit.py", "pantilt_fig.py",
+             "rail_notch.py", "parts_final.py", "label_parts.py", "engrave.py", "jbox.py", "make_3mf.py", "plate_preview.py", "reprint_parts.py",
+             "plate_templates_final.py", "plate_stl_final.py", "step_export.py", "make_step.py", "viewer_and_mesh.py", "insert_map.py",
+             "insert_walls.py", "print_review.py", "scene_final.py", "light_scene.py", "elec_scene.py", "elec_drawings.py",
+             "prep_guide_inputs.py", "build_guide.py", "build_guide_final.py"]
+SOURCE_DATA = ["ps.json", "plates_core.json", "plates_frame.json", "plates_reprint.json"]
+SOURCE_INPUTS = ["rov_project/" + f for f in ("br_flange_rear.stl", "br_flange_rear.step", "br_flange_front_dome.stl", "br_flange_front_dome.step",
+                 "dome_retaining_ring.stl", "dome_retaining_ring.step", "br_endcap_rear.stl", "br_endcap_rear.step", "rov_br_style_caps.py",
+                 "ETRAY4-ROV-TRAY-R2.stl", "skid_bracket_body_x2.stl", "camera_mount/m03r7-001-00a.stl")]
 def build_package():
     if os.path.exists(PKG): shutil.rmtree(PKG)
     for d in sorted(set(SECTION_DIR.values())): os.makedirs(os.path.join(PKG, "STL", d), exist_ok=True)
@@ -162,10 +173,17 @@ def build_package():
         shutil.copy(os.path.join(OUT, f"ROV_{n}_plates.png"), os.path.join(PKG, "Images/Diagrams", f"{FP}_{n}_plates.png"))
     for f in glob.glob(os.path.join(OUT, "ROV_Reprint_*.3mf")):                  # reprint projects for builders with earlier prints
         shutil.copy(f, os.path.join(PKG, os.path.basename(f).replace("ROV_", FP + "_")))
-    for f in ["thruster.py", "pylon.py", "ring.py", "bracket.py", "rov_parts.py", "lights.py", "pvc.py", "rov_assembly.py", "rov_v5.py", "rov_v6.py",
-              "parts_final.py", "pantilt_fit.py", "pantilt_fig.py", "step_export.py", "make_step.py", "plate_templates_final.py", "plate_stl_final.py", "make_3mf.py", "plate_preview.py", "build_guide.py", "build_guide_final.py",
-              "elec_scene.py", "elec_drawings.py", "jbox.py", "engrave.py", "light_scene.py", "rail_notch.py"]:
+    for f in SOURCE_PY + SOURCE_DATA:
         shutil.copy(f, os.path.join(PKG, "Source", f))
+    shutil.copy("SOURCE_README.md", os.path.join(PKG, "Source", "README.md"))
+    shutil.copy("SOURCE_requirements.txt", os.path.join(PKG, "Source", "requirements.txt"))
+    shutil.copy("LICENSE-MIT.txt", os.path.join(PKG, "Source", "LICENSE"))
+    for d in ("New_parts", "src_parts", "prep"): shutil.copytree(d, os.path.join(PKG, "Source", d))
+    for f in SOURCE_INPUTS:
+        os.makedirs(os.path.dirname(os.path.join(PKG, "Source", f)), exist_ok=True); shutil.copy(f, os.path.join(PKG, "Source", f))
+    shutil.copytree("render_src", os.path.join(PKG, "Source", "render"))
+    shutil.copytree("Firmware", os.path.join(PKG, "Firmware"))
+    shutil.copytree("repo_files", PKG, dirs_exist_ok=True)                   # LICENSE, LICENSES/, docs/, CONTRIBUTING, CHANGELOG, .github, .gitignore
     with open(os.path.join(PKG, "BOM_printed_parts.csv"), "w", newline="") as fh:
         w = csv.writer(fh); w.writerow(["Part #", "Bambu project", "Section", "File", "Qty", "Filament", "Print notes", "Used for", "Est. filament (g)"])
         for proj, lst in (("TinkerSub_KB-1_Frame.3mf", PRINTED_A), ("TinkerSub_KB-1_Core.3mf", PRINTED_B)):
@@ -316,9 +334,12 @@ def build_pdf(path):
                        "rov_side_plate_templates_letter_portrait.pdf (the same on Letter portrait), rov_side_plate_templates_fullsize_24x18.pdf "
                        "(each plate whole on one 24 x 18 in sheet, for a print shop), rov_side_plate_port / _stbd.dxf "
                        "(for a CNC shop), rov_side_plates_24x24_nest.dxf (sheet layout), plate STLs for viewing. "
-                       "CAD/STEP: TinkerSub_KB-1_assembly.step (the whole ROV as named, coloured components, for Fusion 360 or any CAD app) and a STEP file for every printed part."],
+                       "CAD/STEP: a STEP file for most printed parts and the whole ROV as a mesh (TinkerSub_KB-1_assembly_mesh.3mf). The full assembly STEP (the whole ROV as named, coloured components, for Fusion 360 or any CAD app) is too big for GitHub: it is the TinkerSub_KB-1_assembly_step.zip download on the KB-1 release."],
               ["Images/", "Renders, assembly pictures, part pictures, diagrams and the plate maps of both projects."],
-              ["Source/", "The Python generators for the parts, the frame and this package."]],
+              ["Source/", "The Python generators for every part, the 3MFs, templates, STEP files, renders and this guide, with their input files (Source/README.md)."],
+              ["Firmware/", "Pico firmware (source and ready-to-flash UF2), the Pi Zero bridge, the topside program and their tests."],
+              ["docs/", "Battery_Pack_Build.md: cell matching, welding, BMS wiring, first charge and voltage limits for the 3S8P pack."],
+              ["LICENSE, LICENSES/", "Hardware CERN-OHL-S-2.0, software MIT, documentation CC BY-SA 4.0. CHANGELOG.md lists every change to the files."]],
               [2.55*inch, W_TXT - 2.55*inch]),
           PageBreak()]
 
@@ -497,7 +518,7 @@ def build_pdf(path):
 
     # ---------------- 8 sled
     S += [Paragraph("8  Build the electronics sled and camera pan-tilt", H1), parts_used(["207", "212", "213", "214", "215", "216", "217", "218", "219"]),
-          Paragraph("The sled is your front bulkhead (207) and a new rear bulkhead (215) 234 mm apart on four M3 rods, with two side rails (212, 213) "
+          Paragraph("The sled is a front bulkhead (207) and a new rear bulkhead (215) 234 mm apart on four M3 rods, with two side rails (212, 213) "
                     "and a deck (214) between them. The deck carries the six IBT_2 motor drivers, three on each face, plus the Pi Zero with its "
                     "Ethernet HAT and two small 5 V buck boards on top, and the Pico on its screw-terminal breakout underneath. The rear bulkhead carries the 12 V Wago bus and both LED drivers. 12 V runs down the port side, "
                     "logic down the starboard side. The camera pan-tilt (216-219) sits on the same rods in front of 207, inside the dome. "
@@ -588,7 +609,7 @@ def build_pdf(path):
           Paragraph("9.1  Parts for the sled electronics", H3),
           table(["Ref", "Qty", "Part", "Notes"], [[r, q, p, n] for r, q, p, n, _, _ in ELEC_SECTION],
                 [0.75*inch, 0.45*inch, 2.55*inch, W_TXT - 3.75*inch]),
-          Paragraph("Prices and sources are in the shopping list (section 4). The firmware (Pico UF2, Pi bridge, topside program) is in Documents/ROV/Firmware.", SMALL),
+          Paragraph("Prices and sources are in the shopping list (section 4). The firmware (Pico UF2, Pi bridge, topside program) is in the Firmware folder (github.com/bgreig/TinkerSub).", SMALL),
           PageBreak(),
           Paragraph("9.2  How it fits on the deck", H3),
           Paragraph("The deck (214) carries boards on both faces. Each top board sits directly over its bottom partner on the same four standoffs, "
@@ -619,7 +640,7 @@ def build_pdf(path):
           Paragraph("Each thruster owns one PWM slice at 20 kHz (channel A = RPWM, B = LPWM). The lights dim from GP14 at 500 Hz; the servos run at 50 Hz on slice 0. "
                     "GP26 reads the battery through the 33 k / 10 k divider (12.6 V reads 2.93 V).", SMALL),
           Paragraph("9.7  Wire and test the sled", H3),
-          steps(["Flash the Pico before wiring: hold BOOTSEL, plug it into your computer's USB and copy build/pico_rov.ino.uf2 from Documents/ROV/Firmware onto it. "
+          steps(["Flash the Pico before wiring: hold BOOTSEL, plug it into your computer's USB and copy Firmware/build/pico_rov.ino.uf2 onto it. "
                  "Set up the Pi Zero with Firmware/pi_bridge/SETUP.md (static address 192.168.2.2 on the tether, video server, bridge service).",
                  "Bus (wires 1-2): fit the F1 holder on the battery lead's red core and push it into the top slot of the +12V Wago; the black core goes into the "
                  "top slot of the GND Wago. Leave the 30 A fuse out for now.",
@@ -727,7 +748,7 @@ def build_pdf(path):
                  "Epoxy a flange onto each end with marine epoxy, pushed on until the pipe hits the flange's stop ledge. "
                  "Line up the bolt holes of the two flanges. Let it cure fully.",
                  "Front: grease two 74 x 2.5 O-rings onto the blank cap's plug (303, marked FRONT) and bolt it on with 6 M5 x 16.",
-                 "Build the pack by the ROV Battery Pack Build guide (linked below): test and match the cells, fish-paper ring on every + end, "
+                 "Build the pack by docs/Battery_Pack_Build.md (in the repository and the package): test and match the cells, fish-paper ring on every + end, "
                  "six plates (305) grooved faces out, all 24 cells + toward the rear, 8 mm pure nickel in the grooves with the centre-to-edge run doubled, "
                  "series links folded across the 3 mm gaps, four M4 rods with a 3 mm spacer (306) on each rod in both gaps. Every plate goes on with its tab notch at the top. "
                  "The pack is about 213 mm long and reads about 11.1 V.",
@@ -742,7 +763,7 @@ def build_pdf(path):
                  "Put a block of foam against the front cap, slide the pack in from the rear, grease the rear cap's two 74 x 2.5 O-rings "
                  "and bolt it on with 6 M5 x 16, then tighten the gland on the lead. The pack can also come out the front if you ever need it."]),
           Paragraph("Pack details, cell matching, welding, BMS wiring, first charge and voltage limits: "
-                    "<a href='https://claude.ai/code/artifact/c4ff37a2-5d18-4682-8ed9-b527616b91c5'>ROV Battery Pack Build</a> (live doc).", NOTE),
+                    "docs/Battery_Pack_Build.md, in the repository (github.com/bgreig/TinkerSub) and the build package.", NOTE),
           Paragraph("Charging: open the rear cap, or fit an inline waterproof connector on the battery lead and charge through it. "
                     "Always charge with the BMS in circuit, and never charge a wet pack.", NOTE),
           checklist(["Pack reads 11-12.6 V at the lead, BMS balance leads correct, both caps on, vacuum holds (section 18.1)."]),

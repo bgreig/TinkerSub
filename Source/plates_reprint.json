@@ -1,0 +1,55 @@
+[
+ [
+  "Hull flanges + rear cap - SOLID",
+  [
+   "201",
+   "203",
+   "202"
+  ]
+ ],
+ [
+  "Battery pod flanges + caps - SOLID",
+  [
+   "301",
+   "302",
+   "303"
+  ]
+ ],
+ [
+  "Camera pan-tilt",
+  [
+   "216",
+   "217",
+   "218",
+   "219"
+  ]
+ ],
+ [
+  "Light heads",
+  [
+   "401",
+   "402"
+  ]
+ ],
+ [
+  "Top cowl rear - YELLOW",
+  [
+   "801",
+   "802"
+  ]
+ ],
+ [
+  "Top cowl middle - YELLOW",
+  [
+   "803",
+   "804"
+  ]
+ ],
+ [
+  "Top cowl front - YELLOW",
+  [
+   "805",
+   "806"
+  ]
+ ]
+]

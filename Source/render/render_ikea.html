@@ -1,0 +1,117 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:#dfe4e8}canvas{display:block}</style></head>
+<body><script type="module">
+import * as THREE from "./three.module.min.js";
+THREE.ColorManagement.enabled = false;   // match the original renders: no colour management, bright flat lighting
+// One render per page load. window.CFG (set by the driver) picks the scene, parts, camera and explode amount.
+const C = window.CFG;
+const W = C.w, H = C.h;
+const renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true});
+renderer.setPixelRatio(1); renderer.setSize(W, H);
+renderer.setClearColor(0xdfe4e8, 1);
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+renderer.toneMapping = THREE.NoToneMapping;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+
+function b64(s, T) { const b = atob(s); const u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return new T(u.buffer); }
+const d = await (await fetch(C.scene)).json();
+const geos = {};
+function geo(k) {
+  if (!geos[k]) {
+    const m = d.meshes[k], g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(b64(m.v, Float32Array), 3));
+    g.setIndex(new THREE.BufferAttribute(b64(m.i, Uint32Array), 1));
+    const ng = g.toNonIndexed(); ng.computeVertexNormals(); geos[k] = ng;
+  }
+  return geos[k];
+}
+const GLASS = new RegExp("^(" + ["dome", "lt_window"].concat(C.glass || []).join("|") + ")$");
+const root = new THREE.Group(); scene.add(root);
+// selectors: "key", "key*", "#index", "g:group"
+function hit(p, k, i, g) { if (p[0] === "#") return i === +p.slice(1); if (p.startsWith("g:")) return g === p.slice(2);
+  return k === p || (p.endsWith("*") && k.startsWith(p.slice(0, -1))); }
+const anyHit = (L, k, i, g) => (L || []).some(p => hit(p, k, i, g));
+const moveBoxes = (C.moves || []).map(() => [new THREE.Box3(), new THREE.Box3()]);
+let idx = -1;
+for (const it of d.instances) {
+  const k = it.k; idx++;
+  if (C.keys && !anyHit(C.keys, k, idx, it.g)) continue;
+  if (C.groups && !C.groups.includes(it.g)) continue;
+  if (C.drop && C.drop.some(p => k === p || (p.endsWith("*") && k.startsWith(p.slice(0, -1))))) continue;
+  let col = d.meshes[k].color;
+  const ghost = anyHit(C.ghost, k, idx, it.g);
+  if (ghost) col = C.ghostColor ?? 0xc3c9cf;
+  if (C.natScale && col !== 0xf2c200 && col !== 0x26292d && col !== 0x232629) {      // tone down light bought parts (rods, servos)
+    const f = C.natScale; col = (Math.round(((col >> 16) & 255) * f) << 16) | (Math.round(((col >> 8) & 255) * f) << 8) | Math.round((col & 255) * f);
+  }
+  const glass = GLASS.test(k) || anyHit(C.see, k, idx, it.g);
+  const mat = new THREE.MeshStandardMaterial({color: col, roughness: 0.75, metalness: 0.0,
+    transparent: glass, opacity: glass ? 0.3 : 1, side: THREE.DoubleSide, flatShading: false});
+  const mesh = new THREE.Mesh(geo(k), mat);
+  const M = new THREE.Matrix4().fromArray(it.m);
+  mesh.applyMatrix4(M);
+  if (C.explode && it.ex && (!C.explodeGroups || C.explodeGroups.includes(it.g))) mesh.position.add(new THREE.Vector3(...it.ex).multiplyScalar(C.explode));
+  mesh.castShadow = !glass; mesh.receiveShadow = true;
+  (C.moves || []).forEach((mv, j) => {
+    if (!anyHit(mv.s, k, idx, it.g)) return;
+    mesh.updateMatrixWorld(true); moveBoxes[j][0].union(new THREE.Box3().setFromObject(mesh));
+    mesh.position.add(new THREE.Vector3(...mv.d)); mesh.updateMatrixWorld(true);
+    moveBoxes[j][1].union(new THREE.Box3().setFromObject(mesh));
+  });
+  root.add(mesh);
+}
+{ // IKEA-style dashed travel lines: from where a moved group sits now back to where it goes
+  const bb = new THREE.Box3().setFromObject(root); const R = bb.getSize(new THREE.Vector3()).length() / 2;
+  const dashMat = new THREE.MeshBasicMaterial({color: 0x202326});
+  (C.moves || []).forEach((mv, j) => {
+    if (mv.line === false || moveBoxes[j][0].isEmpty()) return;
+    const a0 = moveBoxes[j][0].getCenter(new THREE.Vector3()), a1 = moveBoxes[j][1].getCenter(new THREE.Vector3());
+    let p0 = mv.from ? new THREE.Vector3(...mv.from) : a0;          // optional anchor point in final position
+    const p1 = p0.clone().add(new THREE.Vector3(...mv.d));
+    const dir = p0.clone().sub(p1); const L = dir.length(); dir.normalize();
+    const dash = R * 0.035, gap = R * 0.025, rr = R * (mv.r ?? 0.0045);
+    for (let t = 0; t < L - 1e-6; t += dash + gap) {
+      const t1 = Math.min(t + dash, L);
+      const cyl = new THREE.Mesh(new THREE.CylinderGeometry(rr, rr, t1 - t, 8), dashMat);
+      cyl.position.copy(p1.clone().addScaledVector(dir, (t + t1) / 2));
+      cyl.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); root.add(cyl);
+    }
+    const cone = new THREE.Mesh(new THREE.ConeGeometry(rr * 3.2, rr * 9, 16), dashMat);   // arrow head at the destination end
+    cone.position.copy(p1.clone().addScaledVector(dir, L * (mv.head ?? 0.6))); cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); root.add(cone);
+  });
+}
+if (C.rot) root.rotation.set(...C.rot.map(a => a * Math.PI / 180));
+root.updateMatrixWorld(true);
+const box = new THREE.Box3().setFromObject(root);
+const ctr = box.getCenter(new THREE.Vector3()), size = box.getSize(new THREE.Vector3());
+const rad = size.length() / 2;
+
+// ground (shadow catcher) just under the model
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(rad * 20, rad * 20), new THREE.ShadowMaterial({opacity: C.shadow ?? 0.18}));
+ground.rotation.x = -Math.PI / 2; ground.position.y = box.min.y - 0.5; ground.receiveShadow = true; scene.add(ground);
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0xc8ccd0, C.hemi ?? 4.2));
+const sun = new THREE.DirectionalLight(0xffffff, C.sun ?? 4.6);
+const ld = new THREE.Vector3(...(C.light || [0.45, 1.0, -0.15])).normalize();
+sun.position.copy(ctr).addScaledVector(ld, rad * 4); sun.target.position.copy(ctr); scene.add(sun.target);
+sun.castShadow = true; sun.shadow.mapSize.set(4096, 4096);
+const sc = sun.shadow.camera; sc.left = -rad * 1.6; sc.right = rad * 1.6; sc.top = rad * 1.6; sc.bottom = -rad * 1.6; sc.near = rad; sc.far = rad * 8;
+sun.shadow.radius = 4; sun.shadow.bias = -0.0005; sun.shadow.normalBias = 0.6;
+scene.add(sun);
+const fill = new THREE.DirectionalLight(0xffffff, C.fill ?? 0.8); fill.position.copy(ctr).addScaledVector(new THREE.Vector3(-0.6, 0.3, -0.7), rad * 4); scene.add(fill);
+
+const dir = new THREE.Vector3(...C.dir).normalize();
+let cam;
+if (C.ortho) {
+  const a = W / H; cam = new THREE.OrthographicCamera(-rad * a, rad * a, rad, -rad, 0.1, rad * 20);
+} else cam = new THREE.PerspectiveCamera(C.fov || 22, W / H, 1, rad * 40);
+cam.up.set(...(C.up || [0, 1, 0]));
+cam.position.copy(ctr).addScaledVector(dir, rad * (C.dist || 5));
+cam.lookAt(ctr);
+if (C.campos) { cam.position.set(...C.campos); cam.lookAt(new THREE.Vector3(...C.look)); }   // absolute camera (e.g. the ROV camera's own view)
+cam.updateMatrixWorld(); cam.updateProjectionMatrix();
+renderer.render(scene, cam);
+window.DONE = true;
+</script></body></html>

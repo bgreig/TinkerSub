@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ROV Pi Zero bridge (Stage 1).
+TinkerSub KB-1 Pi Zero bridge.
 
 Topside --UDP 5005--> this bridge --UART 115200--> Pico
 Topside <--UDP 5006-- this bridge <--UART-------- Pico (telemetry)

@@ -1,0 +1,795 @@
+{
+ "ik_sled": {
+  "page": "render_ikea.html",
+  "scene": "asm.json",
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "ghostColor": 7568002,
+  "keys": [
+   "rod",
+   "sl_*",
+   "bh_front"
+  ],
+  "dir": [
+   0.9,
+   0.55,
+   0.75
+  ],
+  "moves": [
+   {
+    "s": [
+     "sl_rail_p"
+    ],
+    "d": [
+     70,
+     0,
+     0
+    ]
+   },
+   {
+    "s": [
+     "sl_rail_s"
+    ],
+    "d": [
+     -70,
+     0,
+     0
+    ]
+   },
+   {
+    "s": [
+     "sl_bh"
+    ],
+    "d": [
+     0,
+     0,
+     -110
+    ]
+   },
+   {
+    "s": [
+     "bh_front"
+    ],
+    "d": [
+     0,
+     0,
+     110
+    ]
+   },
+   {
+    "s": [
+     "rod"
+    ],
+    "d": [
+     0,
+     0,
+     -300
+    ],
+    "line": false
+   }
+  ]
+ },
+ "ik_pantilt": {
+  "page": "render_ikea.html",
+  "scene": "asm.json",
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "ghostColor": 7568002,
+  "keys": [
+   "rod",
+   "sl_*",
+   "bh_front",
+   "pt_*"
+  ],
+  "ghost": [
+   "rod",
+   "sl_*",
+   "bh_front"
+  ],
+  "dir": [
+   0.9,
+   0.5,
+   0.9
+  ],
+  "moves": [
+   {
+    "s": [
+     "pt_*"
+    ],
+    "d": [
+     0,
+     0,
+     110
+    ]
+   }
+  ]
+ },
+ "ik_hull": {
+  "page": "render_ikea.html",
+  "scene": "asm.json",
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "ghostColor": 7568002,
+  "keys": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome"
+  ],
+  "dir": [
+   0.9,
+   0.5,
+   0.75
+  ],
+  "moves": [
+   {
+    "s": [
+     "fl_front"
+    ],
+    "d": [
+     0,
+     0,
+     90
+    ]
+   },
+   {
+    "s": [
+     "dome",
+     "dome_ring"
+    ],
+    "d": [
+     0,
+     0,
+     190
+    ]
+   },
+   {
+    "s": [
+     "fl_rear"
+    ],
+    "d": [
+     0,
+     0,
+     -90
+    ]
+   },
+   {
+    "s": [
+     "cap_rear"
+    ],
+    "d": [
+     0,
+     0,
+     -170
+    ]
+   }
+  ]
+ },
+ "ik_pod": {
+  "page": "render_ikea.html",
+  "scene": "asm.json",
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "ghostColor": 7568002,
+  "keys": [
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "cell",
+   "cell_plate"
+  ],
+  "see": [
+   "pod"
+  ],
+  "dir": [
+   0.9,
+   0.5,
+   0.75
+  ],
+  "moves": [
+   {
+    "s": [
+     "cell",
+     "cell_plate"
+    ],
+    "d": [
+     0,
+     0,
+     -330
+    ]
+   },
+   {
+    "s": [
+     "pod_cap"
+    ],
+    "d": [
+     0,
+     0,
+     -420
+    ]
+   },
+   {
+    "s": [
+     "pod_cap_front"
+    ],
+    "d": [
+     0,
+     0,
+     80
+    ]
+   }
+  ]
+ },
+ "ik_stations": {
+  "page": "render_ikea.html",
+  "scene": "asm.json",
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "ghostColor": 7568002,
+  "keys": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*"
+  ],
+  "ghost": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front"
+  ],
+  "dir": [
+   0.9,
+   0.45,
+   0.8
+  ],
+  "moves": [
+   {
+    "s": [
+     "#47"
+    ],
+    "d": [
+     50,
+     110,
+     0
+    ]
+   },
+   {
+    "s": [
+     "#48"
+    ],
+    "d": [
+     -50,
+     110,
+     0
+    ]
+   },
+   {
+    "s": [
+     "#52"
+    ],
+    "d": [
+     50,
+     110,
+     0
+    ]
+   },
+   {
+    "s": [
+     "#53"
+    ],
+    "d": [
+     -50,
+     110,
+     0
+    ]
+   },
+   {
+    "s": [
+     "#50"
+    ],
+    "d": [
+     50,
+     -90,
+     0
+    ]
+   },
+   {
+    "s": [
+     "#51"
+    ],
+    "d": [
+     -50,
+     -90,
+     0
+    ]
+   },
+   {
+    "s": [
+     "#55"
+    ],
+    "d": [
+     50,
+     -90,
+     0
+    ]
+   },
+   {
+    "s": [
+     "#56"
+    ],
+    "d": [
+     -50,
+     -90,
+     0
+    ]
+   }
+  ]
+ },
+ "ik_plates": {
+  "page": "render_ikea.html",
+  "scene": "asm.json",
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "ghostColor": 7568002,
+  "keys": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*",
+   "brk_*",
+   "g:thrusters",
+   "hdpe_*"
+  ],
+  "ghost": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*"
+  ],
+  "dir": [
+   1.0,
+   0.45,
+   0.6
+  ],
+  "moves": [
+   {
+    "s": [
+     "#13",
+     "#14",
+     "#15",
+     "#16",
+     "#17",
+     "#23",
+     "#24",
+     "#25",
+     "#26",
+     "#27",
+     "#33",
+     "#34",
+     "#35",
+     "#36",
+     "#37",
+     "#43",
+     "#45",
+     "hdpe_port"
+    ],
+    "d": [
+     170,
+     0,
+     0
+    ]
+   },
+   {
+    "s": [
+     "#18",
+     "#19",
+     "#20",
+     "#21",
+     "#22",
+     "#28",
+     "#29",
+     "#30",
+     "#31",
+     "#32",
+     "#38",
+     "#39",
+     "#40",
+     "#41",
+     "#42",
+     "#44",
+     "#46",
+     "hdpe_stbd"
+    ],
+    "d": [
+     -170,
+     0,
+     0
+    ]
+   }
+  ]
+ },
+ "ik_belly": {
+  "page": "render_ikea.html",
+  "scene": "asm.json",
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "ghostColor": 7568002,
+  "keys": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*",
+   "brk_*",
+   "g:thrusters",
+   "hdpe_*",
+   "belly"
+  ],
+  "ghost": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*",
+   "brk_*",
+   "g:thrusters",
+   "hdpe_*"
+  ],
+  "see": [
+   "hdpe_*"
+  ],
+  "dir": [
+   0.9,
+   0.3,
+   0.8
+  ],
+  "moves": [
+   {
+    "s": [
+     "belly"
+    ],
+    "d": [
+     0,
+     -110,
+     0
+    ]
+   }
+  ]
+ },
+ "ik_jbox": {
+  "page": "render_ikea.html",
+  "scene": "asm.json",
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "ghostColor": 7568002,
+  "keys": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*",
+   "brk_*",
+   "g:thrusters",
+   "hdpe_*",
+   "jdeck",
+   "jbox",
+   "jlid",
+   "sp13_plugs"
+  ],
+  "ghost": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*",
+   "brk_*",
+   "g:thrusters",
+   "hdpe_*"
+  ],
+  "dir": [
+   0.8,
+   0.8,
+   -0.7
+  ],
+  "moves": [
+   {
+    "s": [
+     "jdeck"
+    ],
+    "d": [
+     0,
+     50,
+     0
+    ]
+   },
+   {
+    "s": [
+     "jbox",
+     "sp13_plugs"
+    ],
+    "d": [
+     0,
+     120,
+     0
+    ]
+   },
+   {
+    "s": [
+     "jlid"
+    ],
+    "d": [
+     0,
+     200,
+     0
+    ]
+   }
+  ]
+ },
+ "ik_sledin": {
+  "page": "render_ikea.html",
+  "scene": "asm.json",
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "ghostColor": 7568002,
+  "keys": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*",
+   "brk_*",
+   "g:thrusters",
+   "hdpe_*",
+   "jdeck",
+   "jbox",
+   "jlid",
+   "sp13_plugs",
+   "belly",
+   "g:sled"
+  ],
+  "ghost": [
+   "hull",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*",
+   "brk_*",
+   "g:thrusters",
+   "hdpe_*",
+   "jdeck",
+   "jbox",
+   "jlid",
+   "sp13_plugs",
+   "belly"
+  ],
+  "see": [
+   "hull"
+  ],
+  "dir": [
+   0.9,
+   0.5,
+   -0.9
+  ],
+  "moves": [
+   {
+    "s": [
+     "g:sled"
+    ],
+    "d": [
+     0,
+     0,
+     -470
+    ]
+   },
+   {
+    "s": [
+     "fl_rear"
+    ],
+    "d": [
+     0,
+     0,
+     -640
+    ]
+   },
+   {
+    "s": [
+     "cap_rear"
+    ],
+    "d": [
+     0,
+     0,
+     -720
+    ]
+   }
+  ]
+ },
+ "ik_cowl": {
+  "page": "render_ikea.html",
+  "scene": "asm.json",
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "ghostColor": 7568002,
+  "keys": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*",
+   "brk_*",
+   "g:thrusters",
+   "hdpe_*",
+   "jdeck",
+   "jbox",
+   "jlid",
+   "sp13_plugs",
+   "belly",
+   "g:sled",
+   "cowl_*",
+   "lt_*"
+  ],
+  "ghost": [
+   "hull",
+   "fl_rear",
+   "cap_rear",
+   "fl_front",
+   "dome_ring",
+   "dome",
+   "pod",
+   "pod_fl",
+   "pod_cap",
+   "pod_fl_front",
+   "pod_cap_front",
+   "st_*",
+   "brk_*",
+   "g:thrusters",
+   "hdpe_*",
+   "jdeck",
+   "jbox",
+   "jlid",
+   "sp13_plugs",
+   "belly",
+   "g:sled"
+  ],
+  "dir": [
+   0.85,
+   0.6,
+   1.0
+  ],
+  "moves": [
+   {
+    "s": [
+     "cowl_*",
+     "lt_*"
+    ],
+    "d": [
+     0,
+     170,
+     0
+    ]
+   },
+   {
+    "s": [
+     "#65",
+     "#66",
+     "#67",
+     "#68",
+     "#69",
+     "#70"
+    ],
+    "d": [
+     0,
+     -28.5,
+     106.3
+    ]
+   },
+   {
+    "s": [
+     "#71",
+     "#72",
+     "#73",
+     "#74",
+     "#75",
+     "#76"
+    ],
+    "d": [
+     0,
+     -28.5,
+     106.3
+    ]
+   }
+  ]
+ }
+}

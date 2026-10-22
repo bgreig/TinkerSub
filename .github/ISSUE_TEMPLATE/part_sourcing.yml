@@ -1,0 +1,18 @@
+name: Part sourcing
+description: A part is hard to find, discontinued, or you found a better source
+labels: ["sourcing"]
+body:
+  - type: input
+    id: part
+    attributes:
+      label: Part
+      description: As named in BOM_hardware.csv
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What you found
+      description: Where you looked, links, prices, and whether you've used it in a build
+    validations:
+      required: true

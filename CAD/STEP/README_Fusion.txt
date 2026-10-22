@@ -22,12 +22,11 @@ TinkerSub_KB-1_assembly_mesh.3mf
     fit around a part you are editing.
 
 Parts with no STEP file
-    101 housing, 102 tail cone (fine threads), 103 / 104 props, 105 nose cone (curved blades and cones), and your own
-    ROV Project parts 201, 203, 207 (flanges, front bulkhead): converted to STEP they would be 50-250 MB each. Use your
-    original Fusion files for your own parts. For the thruster parts: Insert > Insert Mesh with the STL, then
+    101 housing, 102 tail cone (fine threads), 103 / 104 props and 105 nose cone (curved blades and cones), and the
+    hand-drawn parts 201, 203 and 207 (hull flanges, sled front bulkhead): converted from mesh to STEP they would be
+    50-250 MB each, so their STLs are the reference. To edit one in Fusion: Insert > Insert Mesh with the STL, then
     Mesh > Modify > Convert Mesh, method "Prismatic" (paid Fusion plans; turns flats, cylinders and holes into real faces).
-    212-215 (sled), 305 and 306 (battery) are true CAD solids from the electronics chat, drawn in the sled / plate frame
-    rather than print orientation.
+    212-215 (sled), 305 and 306 (battery) are true CAD solids, drawn in the sled / plate frame rather than print orientation.
 
 Part numbers
     Every file starts with the part's three-digit number (601_rov_station_top_port.step), the same number that is

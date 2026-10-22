@@ -1,6 +1,6 @@
 """
 STEP files for Fusion 360 / any CAD app.
-  out_final/step/ROV_assembly.step       complete ROV: every part as a named, coloured component in place, grouped by
+  out_final/step/TinkerSub_KB-1_assembly.step   complete ROV: every part as a named, coloured component in place, grouped by
                                          subsystem (Z up, front of the ROV toward -Y, mm)
   out_final/step/parts/<stem>.step       every printed part on its own, in print orientation (same as the STLs)
 Parts are converted from their meshes: flat faces are merged into single faces; curved faces stay faceted.
@@ -51,7 +51,7 @@ def write_assembly(asm_json, path, keymap):
     app = XCAFApp_Application.GetApplication_s(); doc = TDocStd_Document(TCollection_ExtendedString("MDTV-XCAF"))
     app.InitDocument(doc)
     st = XCAFDoc_DocumentTool.ShapeTool_s(doc.Main()); ct = XCAFDoc_DocumentTool.ColorTool_s(doc.Main())
-    root = st.NewShape(); name(root, "ROV")
+    root = st.NewShape(); name(root, "TinkerSub KB-1")
     GN = {"thrusters": "Thrusters", "frame": "Frame and side plates", "cowl": "Top cowl (yellow)", "hull": "Hull",
           "sled": "Electronics sled", "battery": "Battery pod", "lights": "Lights", "junction": "Junction boxes"}
     groups, parts = {}, {}
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     what = sys.argv[1] if len(sys.argv) > 1 else "all"
     t0 = time.time()
     if what in ("all", "asm"):
-        write_assembly(sys.argv[2] if len(sys.argv) > 2 else "rov_viewer_v6/assembly.json", f"{OUTD}/ROV_assembly.step", KEYMAP)
+        write_assembly(sys.argv[2] if len(sys.argv) > 2 else "rov_viewer_v6/assembly.json", f"{OUTD}/TinkerSub_KB-1_assembly.step", KEYMAP)
         print("assembly", round(time.time() - t0), "s", flush=True)
     if what in ("all", "parts"):
         for sec, stem, src, *_ in PF.PRINTED:

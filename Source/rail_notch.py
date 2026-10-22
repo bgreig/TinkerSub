@@ -6,7 +6,7 @@ only 1.5 mm to spare, so every wire has to come in through a rail window. The lo
 left the first ~15 mm of terminals (USB end: Pico pins 1-5 and 36-40) facing solid rail. This cuts the lower window of
 both rails forward to z 3.5 (rounded corners, r 3), between y -25.5 and -5.5 like the existing windows.
 
-Sources: the supplied rail STLs (sled frame, /mnt/user-data/uploads/ROV/New_parts/21x_*.stl) and their print-orientation
+Sources: the supplied rail STLs (sled frame, New_parts/21x_*.stl) and their print-orientation
 copies (prep/sled_rail_*.stl, which also carry the engraved labels). Print frame: port rail z_sled = 117 - x,
 starboard rail z_sled = 117 + x; y is the same in both frames; x/z thickness 0..5.2.
 Writes  src_parts/21x_*.stl (sled frame, read by rov_v6.py) and prep/sled_rail_*.stl (print frame, labelled).

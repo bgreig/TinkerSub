@@ -1,0 +1,1 @@
+{"pf_805_rov_cowl_front_port": {"scene": "parts_cowl.json", "keys": ["805"], "dir": [0.75, 0.55, 1.0], "fov": 22, "w": 900, "h": 900, "hemi": 4.0, "sun": 5.0}, "pf_806_rov_cowl_front_stbd": {"scene": "parts_cowl.json", "keys": ["806"], "dir": [-0.75, 0.55, 1.0], "fov": 22, "w": 900, "h": 900, "hemi": 4.0, "sun": 5.0}}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ROV topside control (Stage 1): game controller -> UDP commands at 50 Hz, telemetry HUD.
+TinkerSub KB-1 topside control: game controller -> UDP commands at 50 Hz, telemetry HUD.
 
 Run:   python3 rov_topside.py --rov 192.168.2.2
 Video: open http://192.168.2.2:8889/cam in a browser (WebRTC, lowest latency),

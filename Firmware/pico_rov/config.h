@@ -18,7 +18,7 @@ constexpr uint8_t PIN_VBAT   = 26;   // ADC0 through 33 k / 10 k divider from +1
 
 // ---------------- thrusters ----------------
 // Prop handedness / wiring polarity: +1 or -1 per thruster. Set on the bench so a + command
-// pushes thrust toward the nose cone (mechanical handoff mixing convention). 3 RH + 3 LH props.
+// pushes thrust toward the nose cone (build guide section 14 mixing convention). 3 RH + 3 LH props.
 constexpr int8_t THRUSTER_DIR[6] = {+1, +1, +1, +1, +1, +1};   // SET ON THE BENCH (flip the LH-prop units)
 constexpr float THRUSTER_PWM_HZ = 20000.0f;     // IBT_2 / BTS7960 limit is 25 kHz
 constexpr float DEADBAND        = 0.03f;        // |duty| below this -> 0 (stops buzzing)

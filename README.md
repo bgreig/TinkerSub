@@ -45,11 +45,13 @@ Open **[TinkerSub_KB-1_Assembly_Guide.pdf](TinkerSub_KB-1_Assembly_Guide.pdf)**.
 | `TinkerSub_KB-1_Frame.3mf` | Bambu Studio project: stations, brackets, pylons, belly pan and the yellow cowl |
 | `TinkerSub_KB-1_Reprint_2026-10-20.3mf` | Only the parts changed on 2026-10-20, for anyone who printed earlier |
 | `STL/` | Every printed part in print orientation (mm), in build order |
-| `CAD/` | Side-plate DXFs and cutting templates, STEP files for every part (Fusion 360, FreeCAD, Onshape...) and the whole ROV as a mesh (`CAD/STEP/TinkerSub_KB-1_assembly_mesh.3mf`). The full assembly STEP is over GitHub's 100 MB file limit, so it's in the [Releases](../../releases) downloads as `TinkerSub_KB-1_assembly_step.zip` |
+| `CAD/` | Side-plate DXFs and cutting templates, STEP files for most parts (Fusion 360, FreeCAD, Onshape...) and the whole ROV as a mesh (`CAD/STEP/TinkerSub_KB-1_assembly_mesh.3mf`). The full assembly STEP is over GitHub's 100 MB file limit, so it's in the [Releases](../../releases) downloads as `TinkerSub_KB-1_assembly_step.zip` |
 | `Firmware/` | Pico firmware, the Pi bridge, the topside program and tests (see `Firmware/README.md`) |
-| `Source/` | The Python generators for the parts, the frame, the renders and the guide |
+| `Source/` | The Python generators for every part, the 3MFs, the templates, the STEP files, the renders and the guide, with their input files. See `Source/README.md` |
+| `docs/` | [Battery pack build](docs/Battery_Pack_Build.md): cell matching, welding, BMS wiring, first charge |
 | `Images/` | Renders, assembly pictures, part pictures, diagrams and the electronics drawings |
 | `BOM_hardware.csv`, `BOM_printed_parts.csv`, `Pipe_cut_list.csv`, `Wire_list.csv` | Everything to buy, print, cut and wire |
+| `CHANGELOG.md` | What changed in the files, and when: check it if you printed parts earlier |
 
 Every printed part has a three-digit number debossed into it, and its file name starts with that number. The first digit is the subsystem: 1 thrusters, 2 hull and sled, 3 battery pod, 4 lights, 5 junction box, 6 stations and brackets, 7 belly pan, 8 cowl, 9 side plates.
 
@@ -59,19 +61,23 @@ KB-1 is being built for the first time now. The design has been checked in CAD f
 
 ## Safety
 
-- The battery is a home-built lithium-ion pack. Build it with a BMS and fuses as the guide shows, never charge it wet, and charge it where a fire would do no harm.
+- The battery is a home-built lithium-ion pack. Build it with a BMS and fuses as [docs/Battery_Pack_Build.md](docs/Battery_Pack_Build.md) shows, never charge it wet, and charge it where a fire would do no harm.
 - Leak-test every sealed enclosure empty (vacuum, then a dunk) before electronics or the battery go in.
 - The Pico's GPIO is 3.3 V only. Keep the 12 V wiring separate from the logic, as in the wiring diagram.
 - Lift the ROV by the lower corner windows of the side plates, never by the cowl, a thruster or the dome.
 
 ## Changing it
 
-That's the point. The parts are generated from the Python in `Source/` (manifold3d, trimesh), and every part has a STEP file in `CAD/STEP/parts/` for editing in your CAD program. If you improve something, open an issue or a pull request with what you changed and why, and photos if you built it.
+That's the point. Every part is generated from the Python in `Source/` (manifold3d, trimesh): change a number, re-run, and the STL, 3MF and STEP files follow. `Source/README.md` says which file makes which part. Most parts also have a STEP file in `CAD/STEP/parts/` for editing in your CAD program.
+
+Questions, problems and ideas: open an [issue](https://github.com/bgreig/TinkerSub/issues/new/choose). Builds, sourcing tips and modifications: the [wiki](https://github.com/bgreig/TinkerSub/wiki). To change the files, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-- Hardware (CAD, STL, 3MF, drawings): [CERN-OHL-S-2.0](https://ohwr.org/cern_ohl_s_v2.txt)
-- Software (firmware, topside, generators): [MIT](https://opensource.org/license/mit)
-- Documentation and images: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+- Hardware (CAD, STL, 3MF, drawings): [CERN-OHL-S-2.0](LICENSE)
+- Software (firmware, topside, generators): [MIT](LICENSES/MIT.txt)
+- Documentation and images: [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt)
+
+Source location (CERN-OHL-S section 4): https://github.com/bgreig/TinkerSub
 
 Designed by Brian Greig.

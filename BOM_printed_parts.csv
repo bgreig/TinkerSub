@@ -21,11 +21,11 @@ Part #,Bambu project,Section,File,Qty,Filament,Print notes,Used for,Est. filamen
 104,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/104_prop_hub_LH.stl,3,"PETG, black","Back face down, tree supports under the blades.",Left-hand prop,81
 105,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/105_nose_cone.stl,6,"PETG, black",Base down.,Prop spinner,15
 107,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/107_coupler_gauge.stl,1,"PETG, black","Tool only, any material.",Sets the coupler height,3
-201,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/201_br_flange_rear.stl,1,"PETG, black",Ring face down. SOLID: 100 % infill (holds water out).,Hull rear flange (your design),86
+201,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/201_br_flange_rear.stl,1,"PETG, black",Ring face down. SOLID: 100 % infill (holds water out).,Hull rear flange,86
 202,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/202_rov_endcap_rear_5hole.stl,1,"PETG, black",Flat. SOLID: 100 % infill (holds water out).,Hull rear cap: 4 glands + vent,67
-203,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/203_br_flange_front_dome.stl,1,"PETG, black",Ring face down. SOLID: 100 % infill (holds water out).,Dome flange (your design),107
-204,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/204_dome_retaining_ring.stl,1,"PETG, black",Flat.,Dome clamp ring (your design),30
-207,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/207_m03r7-001-00a.stl,1,"PETG, black",As supplied.,Sled front bulkhead (your design),27
+203,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/203_br_flange_front_dome.stl,1,"PETG, black",Ring face down. SOLID: 100 % infill (holds water out).,Dome flange,107
+204,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/204_dome_retaining_ring.stl,1,"PETG, black",Flat.,Dome clamp ring,30
+207,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/207_sled_bulkhead_front.stl,1,"PETG, black",Flat.,Sled front bulkhead,27
 212,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/212_sled_rail_port.stl,1,"PETG, black","Flat outer face down, no supports.","Sled side rail, port (12 V side)",35
 213,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/213_sled_rail_stbd.stl,1,"PETG, black","Flat outer face down, no supports.","Sled side rail, starboard (logic side)",35
 214,TinkerSub_KB-1_Core.3mf,Hull + sled,STL/2_Hull_and_sled/214_sled_deck.stl,1,"PETG, black","Flat. 4 walls, 40 %.",Sled deck: boards on both faces,43

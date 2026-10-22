@@ -1,4 +1,4 @@
-// ROV Stage 1 firmware for the Raspberry Pi Pico (RP2040), Arduino-Pico core (Earle Philhower).
+// TinkerSub KB-1 firmware for the Raspberry Pi Pico (RP2040), Arduino-Pico core (Earle Philhower).
 // Board: "Raspberry Pi Pico". Library: none beyond the core.
 //
 // The Pico's GPIO is 3.3 V ONLY. Nothing here ever touches 12 V: the IBT_2 logic runs from the

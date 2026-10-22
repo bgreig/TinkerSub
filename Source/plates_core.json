@@ -1,0 +1,77 @@
+[
+ [
+  "Thruster housings + tail cones",
+  [
+   "101",
+   "102",
+   "107"
+  ]
+ ],
+ [
+  "Props right-hand + nose cones",
+  [
+   "103",
+   "105*3"
+  ]
+ ],
+ [
+  "Props left-hand + nose cones",
+  [
+   "104",
+   "105*3"
+  ]
+ ],
+ [
+  "Hull rear flange, cap + sled bulkheads",
+  [
+   "201",
+   "202",
+   "207",
+   "215"
+  ]
+ ],
+ [
+  "Dome flange + camera pan-tilt",
+  [
+   "203",
+   "216",
+   "217",
+   "218",
+   "219"
+  ]
+ ],
+ [
+  "Dome ring, lights + junction box",
+  [
+   "204",
+   "401",
+   "402",
+   "403",
+   "501",
+   "503"
+  ]
+ ],
+ [
+  "Sled rails + deck",
+  [
+   "212",
+   "213",
+   "214"
+  ]
+ ],
+ [
+  "Battery pod",
+  [
+   "301",
+   "302",
+   "303"
+  ]
+ ],
+ [
+  "Battery pack plates + spacers",
+  [
+   "305",
+   "306"
+  ]
+ ]
+]

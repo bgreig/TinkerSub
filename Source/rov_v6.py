@@ -51,7 +51,7 @@ def _mf(path):
     t = _tm.load(path)
     return Manifold(_Mesh(vert_properties=np.asarray(t.vertices, np.float32), tri_verts=np.asarray(t.faces, np.uint32)))
 import os
-_NP = "/mnt/user-data/uploads/ROV/New_parts/"
+_NP = os.environ.get("ROV_NEW_PARTS", "New_parts/")      # sled + battery plate STLs (drawn as CAD solids)
 SLED_M = np.array([[-1, 0, 0, 0], [0, 1, 0, 0], [0, 0, -1, 145.0], [0, 0, 0, 1]], float)   # sled frame (X stbd, Z aft) -> hull
 for k in ("tray", "bh_rear", "cam_mount", "picam"): parts.pop(k, None); STATUS.pop(k, None)
 inst = [i for i in inst if i[0] not in ("tray", "bh_rear", "cam_mount", "picam")]

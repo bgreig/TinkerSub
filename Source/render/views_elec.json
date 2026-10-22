@@ -1,0 +1,764 @@
+{
+ "e_layout_top": {
+  "scene": "elec_scene.json",
+  "w": 2400,
+  "h": 1500,
+  "drop": [
+   "hull",
+   "dome",
+   "fl_*",
+   "cap_rear",
+   "dome_ring",
+   "pt*",
+   "glands",
+   "bh_207",
+   "feed_*",
+   "jump_*",
+   "bat_*",
+   "aux_*",
+   "motor_*",
+   "dupont*",
+   "d1*",
+   "dim_w",
+   "lights_*",
+   "cat6",
+   "usb_w",
+   "ribbon",
+   "servo_w",
+   "f1",
+   "f2",
+   "c2",
+   "harness_tie",
+   "rj_coupler",
+   "solder_sleeve",
+   "cpt_out",
+   "c1_w",
+   "splice",
+   "servo_w",
+   "d1_w",
+   "c1",
+   "mini_buck_hs"
+  ],
+  "dir": [
+   0.25,
+   1,
+   -0.2
+  ],
+  "up": [
+   1,
+   0,
+   0
+  ],
+  "fov": 16,
+  "dist": 3.9,
+  "labels": [
+   [
+    [
+     15.5,
+     40,
+     40
+    ],
+    [
+     0,
+     -230
+    ],
+    "Pi Zero 2W + ETH/USB HUB HAT on M2.5 x 8 standoffs, header to starboard"
+   ],
+   [
+    [
+     -1.5,
+     27.5,
+     47.5
+    ],
+    [
+     0,
+     230
+    ],
+    "HAT's RJ45 and USB ports face the hull centreline: the Cat6 plugs in here with a 90-degree plug"
+   ],
+   [
+    [
+     -18.5,
+     4.1,
+     19
+    ],
+    [
+     0,
+     230
+    ],
+    "Two mini 5 V buck boards, heat-shrunk, on foam tape: U9A (front) for the Pi and Pico, U9B for the servos"
+   ],
+   [
+    [
+     3.2,
+     16,
+     101
+    ],
+    "C",
+    "T1"
+   ],
+   [
+    [
+     3.2,
+     16,
+     153
+    ],
+    "C",
+    "T2"
+   ],
+   [
+    [
+     3.2,
+     16,
+     205
+    ],
+    "C",
+    "T3"
+   ],
+   [
+    [
+     -20,
+     22,
+     153
+    ],
+    [
+     0,
+     230
+    ],
+    "Screw terminals B+ B- M+ M- face port"
+   ],
+   [
+    [
+     22,
+     19,
+     101
+    ],
+    [
+     0,
+     -230
+    ],
+    "8-pin logic header faces starboard"
+   ],
+   [
+    [
+     -10,
+     20,
+     246
+    ],
+    [
+     140,
+     -220
+    ],
+    "Rear bulkhead 215: 12 V Wago bus and both LED drivers on its rear face"
+   ]
+  ]
+ },
+ "e_layout_bot": {
+  "scene": "elec_scene.json",
+  "w": 2400,
+  "h": 1500,
+  "drop": [
+   "hull",
+   "dome",
+   "fl_*",
+   "cap_rear",
+   "dome_ring",
+   "pt*",
+   "glands",
+   "bh_207",
+   "feed_*",
+   "jump_*",
+   "bat_*",
+   "aux_*",
+   "motor_*",
+   "dupont*",
+   "d1*",
+   "dim_w",
+   "lights_*",
+   "cat6",
+   "usb_w",
+   "ribbon",
+   "servo_w",
+   "f1",
+   "f2",
+   "c2",
+   "harness_tie",
+   "cpt_out",
+   "c1_w",
+   "splice",
+   "servo_w",
+   "d1_w",
+   "c1",
+   "mini_buck_hs"
+  ],
+  "dir": [
+   -0.25,
+   -1,
+   -0.2
+  ],
+  "up": [
+   -1,
+   0,
+   0
+  ],
+  "fov": 16,
+  "dist": 3.9,
+  "ground": false,
+  "light": [
+   -0.3,
+   -1,
+   0.4
+  ],
+  "labels": [
+   [
+    [
+     0,
+     -12.4,
+     30
+    ],
+    [
+     0,
+     230
+    ],
+    "Pico on its screw-terminal breakout, 10 mm standoffs, centred between the rails: USB to the front, pins 1-20 on the starboard terminals"
+   ],
+   [
+    [
+     20,
+     -26,
+     56
+    ],
+    [
+     -40,
+     -230
+    ],
+    "Terminals face the rails: every wire comes in through the rail windows (front ends opened up)"
+   ],
+   [
+    [
+     -7,
+     -26.5,
+     36
+    ],
+    [
+     60,
+     -230
+    ],
+    "Pico plugged into the breakout from below"
+   ],
+   [
+    [
+     3.2,
+     -16,
+     101
+    ],
+    "C",
+    "T4"
+   ],
+   [
+    [
+     3.2,
+     -16,
+     153
+    ],
+    "C",
+    "T5"
+   ],
+   [
+    [
+     3.2,
+     -16,
+     205
+    ],
+    "C",
+    "T6"
+   ],
+   [
+    [
+     -20,
+     -22,
+     205
+    ],
+    [
+     0,
+     -230
+    ],
+    "Terminals face port on this face too"
+   ]
+  ]
+ },
+ "e_stack": {
+  "scene": "elec_scene.json",
+  "w": 2400,
+  "h": 1500,
+  "drop": [
+   "hull",
+   "dome",
+   "fl_*",
+   "cap_rear",
+   "dome_ring",
+   "pt*",
+   "glands",
+   "bh_207",
+   "rail_212",
+   "rods",
+   "usbeth*",
+   "pizero",
+   "c1",
+   "ziptie",
+   "harness_tie",
+   "feed_*",
+   "bat_*",
+   "aux_*",
+   "motor_*",
+   "dupont*",
+   "d1*",
+   "dim_w",
+   "lights_*",
+   "cat6",
+   "usb_w",
+   "ribbon",
+   "servo_w",
+   "f1",
+   "f2",
+   "c2"
+  ],
+  "dir": [
+   -1,
+   0.18,
+   0.38
+  ],
+  "fov": 14,
+  "rad": 95,
+  "dist": 6.0,
+  "target": [
+   0,
+   0,
+   150
+  ],
+  "labels": [
+   [
+    [
+     -21,
+     11.5,
+     132
+    ],
+    [
+     -160,
+     -200
+    ],
+    "Top board (T2) on M3 x 6 screws"
+   ],
+   [
+    [
+     -17.8,
+     5.5,
+     174
+    ],
+    [
+     120,
+     -260
+    ],
+    "M3 x 8 male-female standoff through the deck slot"
+   ],
+   [
+    [
+     -12,
+     1.5,
+     190
+    ],
+    [
+     260,
+     -60
+    ],
+    "Deck 214, 3 mm"
+   ],
+   [
+    [
+     -17.8,
+     -5.5,
+     174
+    ],
+    [
+     160,
+     200
+    ],
+    "M3 x 8 female-female standoff below"
+   ],
+   [
+    [
+     -21,
+     -11.5,
+     132
+    ],
+    [
+     -160,
+     200
+    ],
+    "Bottom board (T5): same standoffs, terminals to port"
+   ],
+   [
+    [
+     -26.5,
+     0,
+     157
+    ],
+    [
+     -240,
+     40
+    ],
+    "16 AWG B+ / B- jumpers through the deck's port slot"
+   ]
+  ]
+ },
+ "e_rear": {
+  "scene": "elec_scene.json",
+  "w": 2400,
+  "h": 1500,
+  "drop": [
+   "hull",
+   "dome",
+   "fl_front",
+   "dome_ring",
+   "pt*",
+   "bh_207",
+   "ribbon",
+   "servo_w",
+   "fl_rear"
+  ],
+  "ghost": [
+   "cap_rear"
+  ],
+  "ghostOpacity": 0.15,
+  "dir": [
+   -0.55,
+   0.4,
+   1.0
+  ],
+  "fov": 18,
+  "rad": 90,
+  "dist": 6.2,
+  "target": [
+   0,
+   0,
+   275
+  ],
+  "labels": [
+   [
+    [
+     -12,
+     18,
+     250
+    ],
+    [
+     -260,
+     -120
+    ],
+    "+12V Wago 221-415: F1 in, three pair feeds, aux out"
+   ],
+   [
+    [
+     -12,
+     -18,
+     250
+    ],
+    [
+     -260,
+     60
+    ],
+    "GND Wago 221-415: battery -, three pair returns, aux -"
+   ],
+   [
+    [
+     -31,
+     -23,
+     285
+    ],
+    [
+     -200,
+     160
+    ],
+    "F1 30 A inline fuse holder"
+   ],
+   [
+    [
+     -8,
+     -2,
+     262
+    ],
+    [
+     -120,
+     220
+    ],
+    "F2 3 A: LED drivers and the 5 V converter"
+   ],
+   [
+    [
+     12,
+     18,
+     254
+    ],
+    [
+     160,
+     -220
+    ],
+    "LDD 1 (LDD-700HW)"
+   ],
+   [
+    [
+     12,
+     -18,
+     254
+    ],
+    [
+     240,
+     40
+    ],
+    "LDD 2 (LDD-700HW)"
+   ],
+   [
+    [
+     -18.4,
+     18.4,
+     330
+    ],
+    [
+     0,
+     -260
+    ],
+    "MOTORS gland: 12-core, six pairs"
+   ],
+   [
+    [
+     18.4,
+     18.4,
+     330
+    ],
+    [
+     200,
+     -160
+    ],
+    "LIGHTS gland: 4-core, two separate pairs"
+   ],
+   [
+    [
+     18.4,
+     -18.4,
+     343
+    ],
+    [
+     220,
+     120
+    ],
+    "BATTERY gland: 12 AWG twin lead"
+   ],
+   [
+    [
+     -18.4,
+     -18.4,
+     340
+    ],
+    [
+     60,
+     240
+    ],
+    "TETHER gland: Cat6"
+   ]
+  ]
+ },
+ "e_wire_port": {
+  "scene": "elec_scene.json",
+  "w": 2400,
+  "h": 1500,
+  "drop": [
+   "hull",
+   "dome",
+   "fl_front",
+   "dome_ring",
+   "pt*",
+   "bh_207",
+   "ribbon",
+   "servo_w",
+   "fl_rear"
+  ],
+  "ghost": [
+   "cap_rear"
+  ],
+  "dir": [
+   -1,
+   0.45,
+   0.15
+  ],
+  "fov": 18,
+  "dist": 3.5,
+  "labels": [
+   [
+    [
+     -42,
+     17,
+     170
+    ],
+    [
+     0,
+     -230
+    ],
+    "14 AWG +12 V / GND feed to each top board, outside the port rail"
+   ],
+   [
+    [
+     -45,
+     21.2,
+     131
+    ],
+    [
+     -120,
+     -230
+    ],
+    "Motor cores M+ / M- through the upper rail window (T1-T3)"
+   ],
+   [
+    [
+     -45,
+     -20.8,
+     131
+    ],
+    [
+     -60,
+     230
+    ],
+    "Motor cores to T4-T6 through the lower window"
+   ],
+   [
+    [
+     -40,
+     13,
+     60
+    ],
+    [
+     -200,
+     200
+    ],
+    "12 V feed via F2 up to both mini 5 V bucks, C1 across it in the trough"
+   ],
+   [
+    [
+     -44,
+     20,
+     188
+    ],
+    [
+     120,
+     -230
+    ],
+    "Harness tied to the rail"
+   ]
+  ]
+ },
+ "e_wire_stbd": {
+  "scene": "elec_scene.json",
+  "w": 2400,
+  "h": 1500,
+  "drop": [
+   "hull",
+   "dome",
+   "fl_front",
+   "dome_ring",
+   "pt*",
+   "bh_207",
+   "ribbon",
+   "servo_w",
+   "fl_rear"
+  ],
+  "ghost": [
+   "cap_rear"
+  ],
+  "dir": [
+   1,
+   0.3,
+   -0.1
+  ],
+  "fov": 18,
+  "dist": 3.5,
+  "labels": [
+   [
+    [
+     42,
+     20,
+     150
+    ],
+    [
+     0,
+     -230
+    ],
+    "Dupont at each IBT_2 header (RPWM, LPWM, R_EN + L_EN, VCC, GND), bare ends into the Pico terminals"
+   ],
+   [
+    [
+     42,
+     -18,
+     150
+    ],
+    [
+     0,
+     220
+    ],
+    "Bundles from T4-T6 through the lower window"
+   ],
+   [
+    [
+     33,
+     -18,
+     40
+    ],
+    [
+     120,
+     220
+    ],
+    "Into the Pico breakout terminals through the lower rail window: one PWM pair per thruster, ARM on GP15"
+   ],
+   [
+    [
+     44,
+     -28,
+     200
+    ],
+    [
+     -120,
+     220
+    ],
+    "DIM (GP14) aft to both LDDs"
+   ],
+   [
+    [
+     -4,
+     43.5,
+     118
+    ],
+    [
+     -80,
+     -230
+    ],
+    "Cat6 over the boards, inline coupler, then a short 90-degree patch lead to the HAT"
+   ]
+  ]
+ },
+ "e_hull": {
+  "scene": "elec_scene.json",
+  "w": 2400,
+  "h": 1500,
+  "ghost": [
+   "hull",
+   "dome"
+  ],
+  "drop": [
+   "cap_rear"
+  ],
+  "dir": [
+   -0.9,
+   0.55,
+   0.5
+  ],
+  "fov": 20,
+  "dist": 3.7
+ }
+}

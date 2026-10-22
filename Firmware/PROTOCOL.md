@@ -1,4 +1,4 @@
-# ROV link protocol (Stage 1)
+# TinkerSub KB-1 link protocol
 
 ASCII lines in the NMEA style: `$<body>*HH\n`. `HH` is the XOR of every byte between `$` and `*`, written as two hex digits. Any line that fails the checksum, or has the wrong number of fields, is dropped.
 

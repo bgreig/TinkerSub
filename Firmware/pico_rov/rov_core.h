@@ -12,7 +12,7 @@ namespace rov {
 
 constexpr int NT = 6;
 
-// Mixing table (mechanical handoff): columns surge, sway, heave, yaw. T1 FP, T2 FS, T3 RP, T4 RS, T5 VP, T6 VS.
+// Mixing table (build guide section 14): columns surge, sway, heave, yaw. T1 FP, T2 FS, T3 RP, T4 RS, T5 VP, T6 VS.
 constexpr float MIX[NT][4] = {
     {-0.71f, -0.71f, 0.0f, +1.0f},
     {-0.71f, +0.71f, 0.0f, -1.0f},

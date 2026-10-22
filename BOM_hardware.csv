@@ -44,8 +44,8 @@ Battery pod,1,"3"" Sch40 PVC pipe, 300 mm",Battery pod,$12,Hardware store
 Battery pod,4 / 12+12 / 1,O-ring 74 x 2.5; M5 x 16 + M5 inserts; M16 gland,"Both pod caps (2 O-rings, 6 bolts each); gland in the rear cap",$16,Amazon
 Battery pod,-,2-part marine epoxy (e.g. JB Weld Marine / West System),Bonds both printed flanges onto the pipe,$10,Hardware store
 Battery pod,24 + 1,"18650 cells + 3S BMS, 40 A, balancing",3S8P pack,$12 (BMS),Amazon
-Battery pod,4 + 16 / 1,M4 threaded rod ~215 mm + nuts; pure nickel strip 8 x 0.2 mm (~3 m),"Pack tie rods; cell links (pure nickel, not nickel-plated steel)",$14,Amazon
-Lights (x2),2 (+1),"Cree XHP50.2 6 V, 5000 K, on 20 mm copper DTP star",About 500-600 lm each at 700 mA,$8-12 each,Amazon / Satisled / KaiDomain
+Battery pod,4 + 16 / 1,M4 threaded rod ~225 mm + nuts; pure nickel strip 8 x 0.2 mm (~3 m),"Pack tie rods; cell links (pure nickel, not nickel-plated steel)",$14,Amazon
+Lights (x2),2 (+1),"Cree XHP50.2 6 V (not 12 V), 5000-6500 K, bare on a 20 mm copper DTP star",About 500-600 lm each at 700 mA,$8-12 each,Amazon / Satisled / KaiDomain
 Lights (x2),2,Mean Well LDD-700HW constant-current driver,"9-56 V in, PWM dim; inside the hull",$8-10 each,Amazon / Jameco / Digi-Key
 Lights (x2),2,"Glass lens 28 x 3 mm, AR coated",Window,$8 (pack),Amazon
 Lights (x2),1,"6061 round bar 1-3/4"" x 6""",Two 5 mm heat-sink discs,$12,Amazon

@@ -1,0 +1,33 @@
+name: Build problem
+description: Something doesn't fit, print or work as the guide says
+labels: ["build"]
+body:
+  - type: input
+    id: part
+    attributes:
+      label: Part number(s)
+      description: The three digits debossed on the part, e.g. 604
+    validations:
+      required: false
+  - type: input
+    id: section
+    attributes:
+      label: Guide section or step
+      placeholder: e.g. 13, step 3
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you expected, what you got, and any measurements
+    validations:
+      required: true
+  - type: textarea
+    id: printer
+    attributes:
+      label: Printer, filament and settings
+      description: Only if it's a printed part
+  - type: textarea
+    id: photos
+    attributes:
+      label: Photos
+      description: Drag images here. They help more than anything else.

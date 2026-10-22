@@ -1,0 +1,17 @@
+# TinkerSub KB-1 source: tested versions (Python 3.13)
+manifold3d==3.5.4
+trimesh==5.1.1
+numpy==2.5.3
+scipy==1.18.1
+shapely==2.2.0
+rtree==1.4.1
+networkx==3.6.1
+fast-simplification==0.2.0
+ezdxf==1.4.5
+reportlab==5.0.1
+pypdf==5.9.0
+pymupdf==1.28.2
+pillow==12.3.0
+matplotlib==3.11.2
+cadquery-ocp==8.0.1.1.0      # STEP export (make_step.py, step_export.py)
+playwright==1.56.0           # renders (render/shoot.py); then: playwright install chromium

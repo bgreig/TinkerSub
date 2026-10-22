@@ -39,11 +39,11 @@ PRINTED_B = [   # ROV_Core.3mf
  P("Thrusters", "prop_hub_LH", "out/prop_hub_LH", 3, BK, "Back face down, tree supports under the blades.", "Left-hand prop"),
  P("Thrusters", "nose_cone", "out/nose_cone", 6, BK, "Base down.", "Prop spinner"),
  P("Thrusters", "coupler_gauge", "out/coupler_gauge", 1, BK, "Tool only, any material.", "Sets the coupler height"),
- P("Hull + sled", "br_flange_rear", "rov_project/br_flange_rear", 1, BK, "Ring face down. SOLID: 100 % infill (holds water out).", "Hull rear flange (your design)"),
+ P("Hull + sled", "br_flange_rear", "rov_project/br_flange_rear", 1, BK, "Ring face down. SOLID: 100 % infill (holds water out).", "Hull rear flange"),
  P("Hull + sled", "rov_endcap_rear_5hole", "out/rov_endcap_rear_5hole", 1, BK, "Flat. SOLID: 100 % infill (holds water out).", "Hull rear cap: 4 glands + vent"),
- P("Hull + sled", "br_flange_front_dome", "rov_project/br_flange_front_dome", 1, BK, "Ring face down. SOLID: 100 % infill (holds water out).", "Dome flange (your design)"),
- P("Hull + sled", "dome_retaining_ring", "rov_project/dome_retaining_ring", 1, BK, "Flat.", "Dome clamp ring (your design)"),
- P("Hull + sled", "m03r7-001-00a", f"{CAM}/m03r7-001-00a", 1, BK, "As supplied.", "Sled front bulkhead (your design)"),
+ P("Hull + sled", "br_flange_front_dome", "rov_project/br_flange_front_dome", 1, BK, "Ring face down. SOLID: 100 % infill (holds water out).", "Dome flange"),
+ P("Hull + sled", "dome_retaining_ring", "rov_project/dome_retaining_ring", 1, BK, "Flat.", "Dome clamp ring"),
+ P("Hull + sled", "sled_bulkhead_front", f"{CAM}/m03r7-001-00a", 1, BK, "Flat.", "Sled front bulkhead"),
  P("Hull + sled", "sled_rail_port", "prep/sled_rail_port", 1, BK, "Flat outer face down, no supports.", "Sled side rail, port (12 V side)"),
  P("Hull + sled", "sled_rail_stbd", "prep/sled_rail_stbd", 1, BK, "Flat outer face down, no supports.", "Sled side rail, starboard (logic side)"),
  P("Hull + sled", "sled_deck", "prep/sled_deck", 1, BK, "Flat. 4 walls, 40 %.", "Sled deck: boards on both faces"),
@@ -70,7 +70,7 @@ SRC = _SRC
 
 if __name__ == "__main__":
     os.makedirs(OUTF, exist_ok=True)
-    vols = json.load(open(sys.argv[1])) if len(sys.argv) > 1 else {}
+    vols = json.load(open(sys.argv[1])) if len(sys.argv) > 1 and os.path.exists(sys.argv[1]) else {}
     for stem, src in SRC.items():
         shutil.copy(src + ".stl", f"{OUTF}/{stem}.stl")
         t = trimesh.load(f"{OUTF}/{stem}.stl"); vols[stem] = [t.volume/1000, list(map(float, t.extents))]
@@ -83,7 +83,7 @@ if __name__ == "__main__":
 PN = {"housing_no_foot": "101", "tail_cone_comp": "102", "prop_hub_RH": "103", "prop_hub_LH": "104", "nose_cone": "105",
       "pylon_clamp": "106", "coupler_gauge": "107",
       "br_flange_rear": "201", "rov_endcap_rear_5hole": "202", "br_flange_front_dome": "203", "dome_retaining_ring": "204",
-      "ETRAY4-ROV-TRAY-R2": "205", "rov_sled_bulkhead_rear": "206", "m03r7-001-00a": "207", "m03r7-002-00a": "208",
+      "ETRAY4-ROV-TRAY-R2": "205", "rov_sled_bulkhead_rear": "206", "m03r7-001-00a": "207", "sled_bulkhead_front": "207", "m03r7-002-00a": "208",
       "m03r7-003-00a": "209", "m03r7-004-00a": "210", "m03r7-005-00a": "211",
       "rov_pod_flange_3in": "301", "rov_pod_endcap_3in_rear": "302", "rov_pod_endcap_3in_front": "303", "rov_cell_plate_8": "304",
       "rov_light_rear_body": "401", "rov_light_front_ring": "402", "rov_light_spacer": "403",
@@ -129,7 +129,7 @@ LABELS.update({"pantilt_base": [L("TOP", (0, 40), 5), L("PAN SERVO", (0, -20), 4
                "pantilt_yoke": [L("TILT", None, 4)]})
 PN_LABEL["pantilt_lever"] = L("219", None, 2.5, "top", 1.4, margin=0.4)
 
-PRE_LABELED = {"sled_rail_port", "sled_rail_stbd", "sled_deck", "sled_bulkhead_rear_v2", "rov_cell_plate_8_v2", "rov_cell_spacer_3mm"}   # engraved by the electronics chat
+PRE_LABELED = {"sled_rail_port", "sled_rail_stbd", "sled_deck", "sled_bulkhead_rear_v2", "rov_cell_plate_8_v2", "rov_cell_spacer_3mm"}   # drawn with their labels already engraved
 
 # ------------------------------------------------------------------ final lists use the labelled files: <PN>_<stem>.stl in out_lbl/
 BASE_A, BASE_B = PRINTED_A, PRINTED_B

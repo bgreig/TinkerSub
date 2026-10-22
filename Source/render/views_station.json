@@ -1,0 +1,50 @@
+{
+ "f_station": {
+  "scene": "asm.json",
+  "keys": [
+   "hull",
+   "pod",
+   "st_*",
+   "jdeck",
+   "jbox",
+   "jlid",
+   "sp13_plugs"
+  ],
+  "explode": 1,
+  "explodeGroups": [
+   "frame"
+  ],
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "dir": [
+   0.8,
+   0.6,
+   1.0
+  ]
+ },
+ "f_station_b": {
+  "scene": "asm.json",
+  "keys": [
+   "hull",
+   "pod",
+   "st_*",
+   "jdeck",
+   "jbox",
+   "jlid",
+   "sp13_plugs"
+  ],
+  "explode": 1,
+  "explodeGroups": [
+   "frame"
+  ],
+  "fov": 22,
+  "hemi": 4.0,
+  "sun": 5.0,
+  "dir": [
+   -0.8,
+   0.6,
+   1.0
+  ]
+ }
+}
