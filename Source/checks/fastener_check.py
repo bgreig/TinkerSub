@@ -390,9 +390,15 @@ def verdicts(joints, FT, guide_text=None):
             table.append([d["name"], n, f"{d['size']} x {d['length']} {d['head']}", d["thread"], f"{lo:.1f}-{hi:.1f}"])
     if guide_text is not None:                         # every screw size the guide names must be one in the table
         ok = {f"{d['size']} x {d['length']}" for d in FT.JOINTS}
-        for m in sorted(set(re.findall(r"\bM\d(?:\.5)? x \d+\b(?![.\d])", guide_text))):
-            if m not in ok and not any(o.startswith(m) or m.startswith(o) for o in FT.OTHER_SPECS):
-                errors.append(f"GUIDE TEXT names '{m}', which is not a screw in assembly/fasteners.py (stale size?)")
+        # a size that is not a joint must be named with the whole OTHER_SPECS phrase ("M3 x 6 screws"), so a stale joint
+        # size can't hide behind a bought-part screw of the same size
+        bad = {}
+        for mo in re.finditer(r"\bM\d(?:\.5)? x \d+\b(?!\.?\d)", guide_text):
+            m = mo.group(0); here = guide_text[mo.start():mo.start() + 40]
+            if m in ok or any(here.startswith(o) for o in FT.OTHER_SPECS): continue
+            bad.setdefault(m, []).append(guide_text[max(0, mo.start() - 40):mo.end() + 20].replace("\n", " "))
+        for m, ctx in sorted(bad.items()):
+            errors.append(f"GUIDE TEXT names '{m}', which is not a screw in assembly/fasteners.py (stale size?): ..." + " | ".join(ctx[:3]) + "...")
     return errors, warnings, table
 
 if __name__ == "__main__":

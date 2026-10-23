@@ -456,19 +456,21 @@ def build_pdf(path):
           Paragraph("7.1  Prepare the parts", H3),
           steps(["Tap the tail cone (102) tip M12 x 1.5 and the two side ports M4. Thread the M12 gland in with a drop of sealant.",
                  "Ream the coupler's 3 mm end to 1/8\" (3.17 mm) so it slides onto the motor shaft with a light push fit.",
-                 "Thread the M5 x 20 set screw halfway into the coupler's 5 mm end and lock it with the coupler's own grub screw. "
-                 "Spin the M5 jam nut down onto it, flat side toward the coupler.",
                  "Press the two M4 heat-set inserts into the pylon clamp's pinch ears, from the side the Appendix B chart shows. Its mounting holes "
                  "take no inserts: the M3 screws go through them into the bracket's inserts."]),
           Paragraph("7.2  Motor, coupler and prop", H3),
           steps(["Lightly grease the motor's nose O-ring. Feed the motor lead out through the rear of the housing (101) and push the motor in from "
                  "the back until the nose seats in the front bore.",
-                 "Slide the coupler onto the shaft. Stand the coupler gauge (107) over it, push the coupler up to the gauge's ceiling and tighten "
-                 "its set screws through the gauge windows. The coupler now sits 1 mm below the housing face, so it can never rub.",
-                 "Tighten the jam nut down against the coupler.",
+                 "Slide the bare coupler onto the shaft, 3 mm end down (no stud in it yet: the stud would hit the gauge's ceiling and set it too low). "
+                 "Stand the coupler gauge (107) flat on the housing's front face over it, push the coupler up until it touches the gauge's ceiling, "
+                 "and tighten the coupler's shaft-end set screw through a gauge window. Lift the gauge off. The coupler now sits 1 mm below the housing "
+                 "face, so it can never rub. No gauge? Set the coupler's top 19.0 mm above the housing face with a caliper's depth rod.",
+                 "Thread the M5 x 20 set screw halfway into the coupler's 5 mm end and lock it with the coupler's own grub screw. "
+                 "Spin the M5 jam nut down onto it, flat side toward the coupler, and tighten it against the coupler. "
+                 "(Stud fitted before the gauge? Loosen the grub screw, back the stud out, set the height, then refit it.)",
                  "Drop the prop hub (103 RH or 104 LH, marked on its back face) over the stud so the jam nut sits in the hub's hex pocket. Spin on the M5 nyloc with the 8 mm nut "
                  "driver through the hub until it just seats; the hub must turn freely with no rub on the duct.",
-                 "Slide the nose cone (105) over the hub and fit the 3 M3 x 8 button screws."], start=5),
+                 "Slide the nose cone (105) over the hub and fit the 3 M3 x 8 button screws."], start=4),
           fig(os.path.join("out", "prop_hex_section.png"), "Section through the prop drive.", max_h=2.1*inch),
           Paragraph("7.3  Tail cone, oil fill and compensator", H3),
           steps(["Stretch a nitrile finger cot over the nipple inside the tail cone (102) and tie it on. It is the compensator bladder: "
@@ -476,11 +478,11 @@ def build_pdf(path):
                  "Pass the motor lead through the tail cone gland, grease the 32 x 2 O-ring on the spigot and thread the tail cone on hand tight.",
                  "Stand the thruster nose down. Fill through one M4 port with a syringe of mineral oil while air leaves the other; "
                  "rock it and spin the prop by hand to free bubbles. Top off, then seal both ports with M4 set screws and sealant.",
-                 "Tighten the gland on the lead. Wait an hour and check for weeping at the thread and the ports."], start=10),
+                 "Tighten the gland on the lead. Wait an hour and check for weeping at the thread and the ports."], start=9),
           fig(os.path.join("out", "compensator_section.png"), "Oil fill and compensator, section through the axis.", max_h=2.1*inch),
           Paragraph("7.4  Pylon clamp", H3),
           steps(["Slide the pylon clamp (106) over the housing body (101) and close it with the 2 M4 x 30 pinch bolts. Leave it loose: "
-                 "its final position is set on the ROV (section 14)."], start=14),
+                 "its final position is set on the ROV (section 14)."], start=13),
           fig(C("f_thr_as.png"), "Finished thruster with its pylon clamp.", max_h=1.9*inch),
           Paragraph("Label each thruster T1-T6 now and note its prop hand: T1/T2, T3/T4 and T5/T6 are each one right-hand + one left-hand. "
                     "Reverse the left-hand units in software so both of a pair push the same way.", NOTE),
@@ -500,7 +502,7 @@ def build_pdf(path):
                  "3.2 mm holes on the 94 mm circle, so all four rods pass at 45 deg.",
                  "Strip the heatsinks off all six IBT_2 boards. The deck slots take any square hole pattern from 38 to 46 mm.",
                  "For each stacked pair, push four M3 x 8 male-female standoffs down through the deck (214) slots and thread an M3 x 8 female-female standoff "
-                 "on each from below. Screw the top board on with M3 x 6, terminals to port. Flip the deck and fit the bottom board the same way. "
+                 "on each from below. Screw the top board on with M3 x 6 screws, terminals to port. Flip the deck and fit the bottom board the same way. "
                  "The deck is labelled T1-T3 on top, T4-T6 underneath.",
                  "Plug the camera ribbon into the Pi's CSI connector first: the HAT sits over it. Then fit the Pi Zero with its ETH/USB HUB HAT on top "
                  "where it is labelled PI ZERO, on M2.5 x 8 standoffs (not 5 mm: the HAT's micro-USB link board hangs 6.5 mm below the Pi), header to starboard, "
@@ -1105,9 +1107,9 @@ IKEA = [
      ["1200 GPH motor", "Brass coupler + M5 x 20 set screw", "M5 jam nut + M5 nyloc", "3 x M3 x 8 button (nose)",
       "M12 x 1.5 gland", "32 x 2 O-ring", "2 x M4 set screw (oil ports)", "2 x M4 x 30 (pylon)", "Nitrile finger cot", "Mineral oil"],
      ["Tap the tail cone (102): M12 x 1.5 at the tip, M4 in both side ports. Thread the gland in with sealant.",
-      "Ream the coupler to 1/8\", fit the M5 x 20 stud and spin the jam nut down onto it.",
-      "Motor into the housing (101) from the back. Coupler on the shaft, set its height with gauge 107, tighten the jam nut.",
-      "Prop hub over the stud (103 right-hand or 104 left-hand), M5 nyloc until it just seats. Nose cone (105) on with 3 M3 x 6.",
+      "Ream the coupler to 1/8\". Motor into the housing (101) from the back.",
+      "Bare coupler on the shaft, pushed up to the ceiling of gauge 107; tighten its set screw. Then the M5 x 20 stud and jam nut.",
+      "Prop hub over the stud (103 right-hand or 104 left-hand), M5 nyloc until it just seats. Nose cone (105) on with 3 M3 x 8 button.",
       "Finger cot over the tail nipple, greased O-ring on, tail cone on hand-tight. Fill with oil nose-down, no bubbles, seal both ports.",
       "Pylon clamp (106) over the housing, 2 M4 x 30, loose. Label T1-T6 with the prop hand (3 RH, 3 LH)."], "x6",
      ("f_thr_as.png", 2.2, "Finished thruster with its pylon clamp.")),
