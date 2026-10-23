@@ -36,19 +36,19 @@ HW = [
  ("Thrusters (x6)", "6", "1200 GPH bilge pump motor cartridge", "", "$20-25 each", "Amazon / marine store"),
  ("Thrusters (x6)", "6", "Brass shaft coupler 3 -> 5 mm", "Ream the 3 mm end to 1/8\"", "$12", "Amazon"),
  ("Thrusters (x6)", "6 / 6 / 6", "M5 x 20 set screw, M5 nut, M5 nyloc", "Prop drive, stainless", "$8", "Hardware store"),
- ("Thrusters (x6)", "18", "M3 x 6 button head", "Nose cones", "$4", "Hardware store"),
+ ("Thrusters (x6)", "18", "M3 x 8 button head", "Nose cones", "$4", "Hardware store"),
  ("Thrusters (x6)", "6", "O-ring 32 x 2 mm nitrile", "Tail cone spigot", "$6 (kit)", "Amazon"),
  ("Thrusters (x6)", "6", "Cable gland M12 x 1.5, 3-6.5 mm", "Tail cones", "$8 (10-pack)", "Amazon"),
  ("Thrusters (x6)", "12 / 6 / 500 ml", "M4 set screws; nitrile finger cots; mineral oil", "Oil fill ports + compensator", "$15", "Hardware / pharmacy"),
  ("Thrusters (x6)", "12 + 12", "M4 x 30 SHCS + M4 heat-set inserts", "Pylon pinch bolts", "$10", "Amazon"),
  ("Side plates", "1", "1/2\" (12.7 mm) black HDPE sheet, 24 x 24\"", "Both side plates, 478 x 300 mm each. Needs at least 605 mm (23.8\") one way: measure it", "$40-60", "Amazon / plastics supplier"),
  ("Side plates", "-", "Jigsaw blades (fine tooth), spray adhesive, drill bits 3.5 / 4.5 / 5.5 / 10 mm", "Cutting the plates", "$20", "Hardware store"),
- ("Frame", "24 + 24", "M5 x 25 SHCS + M5 heat-set inserts", "Plates to station arms (16) and corner brackets (8)", "$14", "Amazon"),
+ ("Frame", "24 + 24", "M5 x 20 SHCS + M5 heat-set inserts", "Plates to station arms (16) and corner brackets (8)", "$14", "Amazon"),
  ("Frame", "4 / 4 / 8", "M4 x 30, M4 x 20 SHCS, M4 nuts", "Station joints: hull pair (x30), pod pair (x20)", "$5", "Hardware store"),
- ("Frame", "2 + 2", "M4 x 16 SHCS + M4 nut", "Station top halves, centre rib", "$2", "Hardware store"),
- ("Frame", "16 + 16", "M3 x 12 SHCS + M3 heat-set inserts", "Corner pylons to brackets", "$8", "Amazon"),
- ("Frame", "8 + 8 + 8", "M3 x 25 SHCS + M3 nyloc + 1 mm washers", "Vertical pylons straight through the plates", "$5", "Hardware store"),
- ("Frame", "4 + 4", "M4 x 30 SHCS + M4 heat-set inserts", "Belly pan hangers into the lower arms", "$4", "Amazon"),
+ ("Frame", "2 + 2", "M3 x 20 SHCS + M3 nyloc (no washers)", "Station top halves, centre rib", "$2", "Hardware store"),
+ ("Frame", "16 + 16", "M3 x 16 SHCS + M3 heat-set inserts", "Corner pylons to brackets", "$8", "Amazon"),
+ ("Frame", "8 + 8 + 8", "M3 x 30 SHCS + M3 nyloc + 1 mm washers", "Vertical pylons straight through the plates", "$5", "Hardware store"),
+ ("Frame", "4 + 4", "M4 x 50 SHCS + M4 heat-set inserts", "Belly pan hangers into the lower arms (up through the pan's posts)", "$4", "Amazon"),
  ("Frame", "1.6-2.3 kg", "Lead shot in sealed bags (or bar)", "Belly pan ballast, trimmed in the water", "$15-25", "Sporting goods"),
  ("Cowl", "18 + 18", "M3 x 20 SHCS + M3 nyloc", "Cowl centre and section seams", "$6", "Hardware store"),
  ("Cowl", "8 + 8", "M3 x 20 SHCS + M3 heat-set inserts", "Cowl feet to the side plates", "$4", "Amazon"),
@@ -62,7 +62,7 @@ HW = [
  ("Hull", "1", "4\" Sch40 PVC pipe, 16\" (406 mm)", "Electronics hull", "$15", "Hardware store"),
  ("Hull", "1", "4\" acrylic CCTV dome, 100 mm", "UQISOVI, Amazon B0DR2HP4YQ", "$15-25", "Amazon"),
  ("Hull", "5 + 1", "O-rings AS568-240 (x5), -239 (x1)", "Flange radial seals + dome face (-240), rear cap face (-239)", "$11", "Amazon / McMaster"),
- ("Hull", "12 / 6+6", "M3 x 16 SHCS; M3 x 10 SHCS + M3 heat-set inserts", "Rear cap + dome ring (into the flange faces, tapped M3); radial flange screws through the pipe wall", "$8", "Amazon"),
+ ("Hull", "6 / 6 / 6+6", "M3 x 16 SHCS (rear cap); M3 x 12 SHCS (dome ring); M3 x 10 SHCS + M3 heat-set inserts (radial)", "Rear cap and dome ring into the flange faces (tapped M3); radial flange screws through the pipe wall", "$8", "Amazon"),
  ("Hull", "2 + 2", "Cable gland M16 x 1.5 / M12 x 1.5", "MOTORS + BATTERY / LIGHTS + TETHER", "$10", "Amazon"),
  ("Hull + pod", "1 / 2 / 4", "M10 x 1.0 brass hose barb (6 mm / 1/4\" hose); M10 x 1.0 x 12 stainless hex bolt; M10 bonded (Dowty) washer", "VENT ports in 202 and 302: barb for the vacuum test, bolt + washer to dive (2 spare washers)", "$15", "Amazon"),
  ("Electronics sled", "4 + 24", "M3 threaded rod ~340 mm + nuts", "Sled rods (4 extra nuts hold the pan-tilt base)", "$6", "Hardware store"),
@@ -73,7 +73,7 @@ HW = [
  ("Camera", "2", "MG90S metal-gear micro servo (SG90 size)", "Pan and tilt", "$10", "Amazon"),
  ("Camera", "-", "1 mm music wire, M2 x 6 / x 8 screws, 4 x 2 mm M2 standoffs, M2 washer", "Tilt pushrod, cradle pivot and lever, camera", "$6", "Hobby shop"),
  ("Battery pod", "1", "3\" Sch40 PVC pipe, 300 mm", "Battery pod", "$12", "Hardware store"),
- ("Battery pod", "4 / 12+12 / 1", "O-ring 74 x 2.5; M5 x 16 + M5 inserts; M16 gland", "Both pod caps (2 O-rings, 6 bolts each); gland in the rear cap", "$16", "Amazon"),
+ ("Battery pod", "4 / 6 + 6 + 12 / 1", "O-ring 74 x 2.5; M5 x 14 (rear cap) + M5 x 16 (front cap) + M5 inserts; M16 gland", "Both pod caps (2 O-rings, 6 bolts each); gland in the rear cap", "$16", "Amazon"),
  ("Battery pod", "-", "2-part marine epoxy (e.g. JB Weld Marine / West System)", "Bonds both printed flanges onto the pipe", "$10", "Hardware store"),
  ("Battery pod", "24 + 1", "18650 cells + 3S BMS, 40 A, balancing", "3S8P pack", "$12 (BMS)", "Amazon"),
  ("Battery pod", "4 + 16 / 1", "M4 threaded rod ~225 mm + nuts; pure nickel strip 8 x 0.2 mm (~3 m)", "Pack tie rods; cell links (pure nickel, not nickel-plated steel)", "$14", "Amazon"),
@@ -81,7 +81,7 @@ HW = [
  ("Lights (x2)", "2", "Mean Well LDD-700HW constant-current driver", "9-56 V in, PWM dim; inside the hull", "$8-10 each", "Amazon / Jameco / Digi-Key"),
  ("Lights (x2)", "2", "Glass lens 28 x 3 mm, AR coated", "Window", "$8 (pack)", "Amazon"),
  ("Lights (x2)", "1", "6061 round bar 1-3/4\" x 6\"", "Two 5 mm heat-sink discs", "$12", "Amazon"),
- ("Lights (x2)", "1 / 1 / 6", "Thermal adhesive (Arctic Alumina); O-ring kit 1.5 mm; M2.5 x 16 SHCS (thread straight into the 401 body)", "", "$32", "Amazon"),
+ ("Lights (x2)", "1 / 1 / 6", "Thermal adhesive (Arctic Alumina); O-ring kit 1.5 mm; M2.5 x 25 SHCS (thread straight into the 401 body)", "", "$32", "Amazon"),
  ("Wiring", "~4 m", "2-core 18 AWG marine cable (OD 5-6 mm)", "6 thruster leads + 2 light leads to their SP13 plugs", "$15", "Amazon"),
  ("Wiring", "0.8 m", "12-core 0.5 mm2 control cable (OD <= 10 mm)", "Junction box to the hull MOTORS gland and on to every IBT_2", "$10", "Amazon"),
  ("Wiring", "0.5 m", "4-core 0.5-0.75 mm2 cable, OD 3-6.5 mm", "Junction box to the hull LIGHTS gland: two separate LED pairs", "$4", "Amazon"),
@@ -127,6 +127,10 @@ PINOUT = [
  ["36", "3V3 OUT", "logic supply", "VCC on all six IBT_2"], ["38", "GND", "ground", "U9A GND"], ["39", "VSYS", "5 V in", "U9A 5 V through D1"],
  ["26, 27, 29", "GP20, GP21, GP22", "reserved", "I2C0 (depth, IMU), leak probe"],
 ]
+import fasteners as FT                                     # screw rows come from the fastener table (checked against the model)
+_byd = {r[3]: k for k, r in FT.ROWS.items()}; _byd.update({v: k for k, v in FT.REPLACES.items()})
+HW = [FT.ROWS[_byd[r[3]]] if r[3] in _byd and r[0] == FT.ROWS[_byd[r[3]]][0] else r for r in HW]
+assert all(any(r == row for r in HW) for row in FT.ROWS.values()), "a fastener row from assembly/fasteners.py is missing from the shopping list"
 HW += [("Electronics", q, p, f"{r}: {n}", c, src) for r, q, p, n, c, src in ELEC_SECTION if c]
 CUTS = [("4\" Sch40 hull", 1, 406), ("3\" Sch40 battery pod", 1, 300)]
 
@@ -464,7 +468,7 @@ def build_pdf(path):
                  "Tighten the jam nut down against the coupler.",
                  "Drop the prop hub (103 RH or 104 LH, marked on its back face) over the stud so the jam nut sits in the hub's hex pocket. Spin on the M5 nyloc with the 8 mm nut "
                  "driver through the hub until it just seats; the hub must turn freely with no rub on the duct.",
-                 "Slide the nose cone (105) over the hub and fit the 3 M3 x 6 button screws."], start=5),
+                 "Slide the nose cone (105) over the hub and fit the 3 M3 x 8 button screws."], start=5),
           fig(os.path.join("out", "prop_hex_section.png"), "Section through the prop drive.", max_h=2.1*inch),
           Paragraph("7.3  Tail cone, oil fill and compensator", H3),
           steps(["Stretch a nitrile finger cot over the nipple inside the tail cone (102) and tie it on. It is the compensator bladder: "
@@ -664,7 +668,7 @@ def build_pdf(path):
                  "deburr inside. Write F and R on the pipe so each flange goes back in its own end in the same position. "
                  "These screws sit outboard of both O-rings, on the wet side, so they never need sealing.",
                  "Press an M3 heat-set insert into each flange's three radial holes from the outside, flush with the skirt surface (any brass "
-                 "standing proud will score the pipe). Tap the six 2.5 mm holes in each flange face M3 (or let the M3 x 16 screws cut their own thread, "
+                 "standing proud will score the pipe). Tap the six 2.5 mm holes in each flange face M3 (or let the screws cut their own thread, "
                  "slowly). Leave the four sled holes plain.",
                  "Grease two AS568-240 O-rings into each flange's radial grooves."]),
           Paragraph("10.2  Front: dome", H3),
@@ -673,7 +677,7 @@ def build_pdf(path):
                  "Seat an AS568-240 face O-ring in 203's face groove (it is a snug fit in the groove; that is intended). The dome is a 100 mm acrylic dome "
                  "with a 115 mm flange: if its flange has small holes over the O-ring, fill them flush with epoxy or acrylic cement first and let it cure, "
                  "and file any edge tab flush with the 115 mm rim.",
-                 "Lay the dome flange side down on the O-ring, then fit the retaining ring (204) and tighten its 6 M3 x 16 evenly in a star pattern, "
+                 "Lay the dome flange side down on the O-ring, then fit the retaining ring (204) and tighten its 6 M3 x 12 evenly in a star pattern (not 16: they would bottom out in the flange), "
                  "a little at a time, until the ring just bottoms. Don't overtighten: acrylic cracks."], start=6),
           Paragraph("10.3  Rear cap and glands", H3),
           steps(["Tap the rear end cap (202): M16 x 1.5 for MOTORS and BATTERY, M12 x 1.5 for LIGHTS and TETHER, M10 x 1.0 (fine pitch, not the usual 1.5) "
@@ -728,7 +732,7 @@ def build_pdf(path):
                  "(F1, 30 A, is the second fuse, in the hull). Pass the free end of the 12 AWG battery lead (its other end is already through the hull's "
                  "BATTERY gland, section 10.3) in through the pod gland from outside and solder it to the BMS output (P+ / P-). Check polarity with a meter now and mark the red core.",
                  "Put a block of foam against the front cap, slide the pack in from the rear, grease the rear cap's two 74 x 2.5 O-rings "
-                 "and bolt it on with 6 M5 x 16, then tighten the gland on the lead. The pack can also come out the front if you ever need it."]),
+                 "and bolt it on with 6 M5 x 14 (the rear cap is 2 mm thinner than the front: an M5 x 16 bottoms out), then tighten the gland on the lead. The pack can also come out the front if you ever need it."]),
           Paragraph("Pack details, cell matching, welding, BMS wiring, first charge and voltage limits: "
                     "docs/Battery_Pack_Build.md, in the repository (github.com/bgreig/TinkerSub) and the build package.", NOTE),
           Paragraph("Charging: open the rear cap, or fit an inline waterproof connector on the battery lead and charge through it. "
@@ -743,14 +747,14 @@ def build_pdf(path):
                     "and a set screw holds each one (section 17). The cable leaves straight out of the back so it can follow the head through the sleeve.", BODY),
           fig(C("f_light_ex.png"), "Light head, exploded along the beam: rear body, aluminium disc, LED, spacer, window, front ring.", max_h=1.8*inch),
           steps(["Aluminium disc (42 x 5 mm, 6061): drill a 4 mm centre hole and 3 x 2.9 mm holes on a 37 mm circle. Deburr.",
-                 "No inserts in the rear body (401, v2): its three 2.1 mm holes take the M2.5 x 16 screws directly (v1 had 3.6 mm insert holes with only 0.7 mm of wall outside them). Look into the cavity: the 6.4 mm centre hole is for the cable, "
+                 "No inserts in the rear body (401, v2): its three 2.1 mm holes, 12 mm deep, take the M2.5 x 25 screws directly (v1 had 3.6 mm insert holes with only 0.7 mm of wall outside them). A 401 printed before 2026-10-23 has 8 mm deep holes: drill each to 12 mm with a 2.1 mm (5/64\") bit first, or the screws bottom out. Look into the cavity: the 6.4 mm centre hole is for the cable, "
                  "the two 3 mm holes either side are the potting fill and vent.",
                  "Cut about 350 mm of 2-core 18 AWG cable (OD 5-6 mm) for each light. Solder it to the LED star (red to +), pass the wires back through "
                  "the disc's centre hole and bond the star to the disc's front face with thermal adhesive, covering the hole.",
                  "Thread the cable through the rear body's centre hole from the front, so it comes straight out of the back (the round socket). "
-                 "Sit the disc on the front face, holes over the inserts.",
+                 "Sit the disc on the front face, its holes over the three screw holes.",
                  "Seat the 31 x 1.5 O-ring in the front ring's (402) back-face groove and the 24 x 1.5 O-ring under its lip. Drop in the glass window, "
-                 "then the spacer (403), and screw the ring and disc to the rear body with 3 M2.5 x 16: they cut their own thread in the PETG, so drive them slowly, snug, and stop.",
+                 "then the spacer (403), and screw the ring and disc to the rear body with 3 M2.5 x 25: they pass 16.5 mm of ring and disc, then cut their own thread in the PETG, so drive them slowly, snug, and stop.",
                  "Pot the head: stand it nose-down, pull the cable taut and dab silicone round it where it enters the centre hole. Syringe potting compound "
                  "into one 3 mm hole until it comes out of the other. When that has set, fill the round socket at the back to the brim around the cable: "
                  "that is the cable's strain relief and second seal.",
@@ -771,7 +775,7 @@ def build_pdf(path):
                  "Mark 60 mm ahead of and behind the hull's centre on the hull and the same on the pod. Hull upside down on a towel: lay a middle piece (603) at each mark, "
                  "then the pod in the middle pieces' lower cradles, gland end toward the rear.",
                  "Fit the two bottom halves (604 PORT, 605 STBD) under the pod at each station and bolt the pod joints: M4 x 20 through each ear into the nut.",
-                 "Turn it over. Fit the two top halves (601 PORT, 602 STBD) over the hull; bolt the halves to each other through the centre rib (M4 x 16 + nut) and the hull joints "
+                 "Turn it over. Fit the two top halves (601 PORT, 602 STBD) over the hull; bolt the halves to each other through the centre rib (M3 x 20 + nyloc, no washers: the hull clamp ring is right under it) and the hull joints "
                  "with M4 x 30 down through each upper arm and ear into the middle piece's nuts.",
                  "Snug evenly so the hull and pod stay parallel. The arm ends of both stations must line up straight along each side: check with a straight edge."]),
           checklist(["Hull and pod parallel, all four arm ends of each side in line, no bolts torqued so hard they crack the PETG."]),
@@ -783,12 +787,12 @@ def build_pdf(path):
           Paragraph("Four horizontal thrusters sit in the corners turned 45 deg in a diamond: together they drive forward/back, sideways and turn on the spot. "
                     "The two verticals sit on the plates at the estimated centre of gravity, so going up or down doesn't pitch the nose.", BODY),
           fig(C("f_thrusters.png"), "Corner thrusters on their 45 deg brackets, verticals straight on the plates (plates shown see-through).", max_h=2.9*inch),
-          steps(["Corner brackets: 4x M3 inserts in the 45 deg face, 2x M5 inserts in the plate face. Bolt each pylon (106) to its bracket with 4 M3 x 12 "
+          steps(["Corner brackets: 4x M3 inserts in the 45 deg face, 2x M5 inserts in the plate face. Bolt each pylon (106) to its bracket with 4 M3 x 16 (heads in the hex pockets) "
                  "(607 bracket A, marked A FP/RS = front-port and rear-starboard; 608 bracket B, marked B FS/RP = front-starboard and rear-port). Prop end faces out, tail cone toward the hull.",
-                 "Bolt the four brackets to the plates (901 port, 902 starboard) at the holes you marked 607 A / 608 B: 2 M5 x 25 from outside each plate.",
-                 "Vertical thrusters (T5 port, T6 starboard): pylon straight on the plate's inside face between the two big windows, 4 M3 x 25 through "
+                 "Bolt the four brackets to the plates (901 port, 902 starboard) at the holes you marked 607 A / 608 B: 2 M5 x 20 from outside each plate (not 25: the inserts are 10 mm deep and a longer screw bottoms out before it clamps).",
+                 "Vertical thrusters (T5 port, T6 starboard): pylon straight on the plate's inside face between the two big windows, 4 M3 x 30 through "
                  "the plate with a 1 mm shim washer on each and a nyloc outside. Prop up.",
-                 "Offer each plate up to the station arms and bolt it with 8 M5 x 25 (2 per arm end). Do one side, then the other.",
+                 "Offer each plate up to the station arms and bolt it with 8 M5 x 20 (2 per arm end). Do one side, then the other. Top stations printed before 2026-10-23 (601 / 602) have their arm inserts 0.75 mm lower than the plate holes: open the four upper holes in each plate to 7 mm (9/32\") and put a washer under each screw head.",
                  "Slide each thruster in its pylon until the duct clears everything, then tighten the pinch bolts. Spin every prop by hand: nothing may touch. "
                  "The corner jets leave through the round windows in the plates."]),
           Paragraph("Mixing (topside software)", H3),
@@ -803,7 +807,7 @@ def build_pdf(path):
     S += [Paragraph("15  Belly pan", H1), parts_used(["701"]),
           fig(C("f_belly.png"), "Belly pan hanging from the four lower station arms under the pod.", max_h=2.6*inch),
           steps(["Lay lead shot in sealed bags (or bar) along the pan floor: start with 1.6 kg spread evenly front to back.",
-                 "Hang the pan (701) from the four lower arms with M4 x 30 into the arm inserts.",
+                 "Hold the pan (701) up under the four lower arms and fit an M4 x 50 up through each of its four posts into the arm inserts. A pan printed before 2026-10-23 has holes that stop 16 mm short of the bottom of each post: drill each one through from the top with a 4.5 mm (11/64\") bit first (the hole guides the drill).",
                  "The pan is open at the top and floods; the pod above keeps the lead in place."]),
           PageBreak()]
 
@@ -1098,7 +1102,7 @@ def ikea_step(no, title, sec, image, pns, hw, acts, mult="", extra=None, img_h=4
 
 IKEA = [
     ("Thrusters", "7", "f_thr_ex.png", [("101", 1), ("102", 1), ("103/104", 1), ("105", 1), ("106", 1), ("107", "gauge")],
-     ["1200 GPH motor", "Brass coupler + M5 x 20 set screw", "M5 jam nut + M5 nyloc", "3 x M3 x 6 button (nose)",
+     ["1200 GPH motor", "Brass coupler + M5 x 20 set screw", "M5 jam nut + M5 nyloc", "3 x M3 x 8 button (nose)",
       "M12 x 1.5 gland", "32 x 2 O-ring", "2 x M4 set screw (oil ports)", "2 x M4 x 30 (pylon)", "Nitrile finger cot", "Mineral oil"],
      ["Tap the tail cone (102): M12 x 1.5 at the tip, M4 in both side ports. Thread the gland in with sealant.",
       "Ream the coupler to 1/8\", fit the M5 x 20 stud and spin the jam nut down onto it.",
@@ -1122,49 +1126,49 @@ IKEA = [
       "Pushrod 28 mm between Z-bends, horn to lever. Camera looks straight ahead with the servo centred.",
       "Slide 216 onto the rod ends in front of 207, a nut each side. Leads and ribbon back through the windows."]),
     ("Hull: build it and test it empty", "10", "f_ik_hull.png", [("201", 1), ("202", 1), ("203", 1), ("204", 1)],
-     ["4\" pipe, 406 mm", "5 x AS568-240 O-ring", "1 x AS568-239 O-ring", "6 x M3 x 10 (radial)", "12 x M3 x 16 (cap + ring)",
+     ["4\" pipe, 406 mm", "5 x AS568-240 O-ring", "1 x AS568-239 O-ring", "6 x M3 x 10 (radial)", "6 x M3 x 16 (cap)", "6 x M3 x 12 (ring)",
       "100 mm acrylic dome", "2 x M16 + 2 x M12 gland, M10 vent bolt"],
      ["Cut the pipe square, deburr. Mark 12 o'clock at both ends; flanges go in with a face hole at the top.",
       "Mark and drill the 3 radial 3.4 mm holes at each end, 5 mm in. M3 inserts into the flange skirts (chart). Grease the O-rings.",
-      "Front: dome flange 203 in, 3 M3 x 10. Face O-ring, dome, ring 204 with 6 M3 x 16 in a star. Don't overtighten.",
+      "Front: dome flange 203 in, 3 M3 x 10. Face O-ring, dome, ring 204 with 6 M3 x 12 in a star. Don't overtighten.",
       "Rear cap 202: tap the 5 holes, fit glands and vent, push cables (or stubs) through.",
       "Rear flange 201 in, paper towel inside, cap on. Vacuum test, then sink it for 30 min. Check the towel.",
       "Open the rear again: the sled goes in later (step 11)."]),
     ("Battery pod", "11", "f_ik_pod.png", [("301", 2), ("302", 1), ("303", 1), ("305", 6), ("306", 8)],
-     ["3\" pipe, 300 mm", "4 x 74 x 2.5 O-ring", "12 x M5 x 16", "4 x M4 rod, about 225 mm", "24 x 18650 cells (3S8P)", "BMS + 35 A fuse",
+     ["3\" pipe, 300 mm", "4 x 74 x 2.5 O-ring", "6 x M5 x 16 (front)", "6 x M5 x 14 (rear)", "4 x M4 rod, about 225 mm", "24 x 18650 cells (3S8P)", "BMS + 35 A fuse",
       "M16 gland, M10 vent bolt", "Marine epoxy"],
      ["6 M5 inserts in each flange (301). Epoxy a flange on each pipe end, bolt holes lined up. Let it cure.",
       "Front: blank cap 303 with two greased O-rings, 6 M5 x 16.",
       "Rear cap 302: tap, gland and vent. Test the EMPTY pod: vacuum, then sink it 30 min.",
       "Build the pack on plates 305 and spacers 306 (pack guide). BMS on, battery lead soldered, polarity checked.",
-      "Foam at the front, pack in from the rear, rear cap on with 6 M5 x 16, tighten the gland."]),
+      "Foam at the front, pack in from the rear, rear cap on with 6 M5 x 14, tighten the gland."]),
     ("Light heads", "12", "f_light_ex.png", [("401", 1), ("402", 1), ("403", 1)],
-     ["Aluminium disc 42 x 5", "XHP50.2 LED on 20 mm star", "Glass window", "31 x 1.5 + 24 x 1.5 O-ring", "3 x M2.5 x 16",
+     ["Aluminium disc 42 x 5", "XHP50.2 LED on 20 mm star", "Glass window", "31 x 1.5 + 24 x 1.5 O-ring", "3 x M2.5 x 25",
       "2-core 18 AWG, 350 mm", "Thermal adhesive, potting"],
      ["Disc: 4 mm centre hole, 3 x 2.9 mm on a 37 mm circle.",
       "Solder the cable to the LED, wires through the disc, bond the star to the disc.",
       "Cable through the rear body (401) from the front; disc on its face.",
-      "O-rings in ring 402, window, spacer 403, then 3 M2.5 x 16 straight into the plastic. Snug.",
+      "O-rings in ring 402, window, spacer 403, then 3 M2.5 x 25 straight into the plastic (holes 12 mm deep). Snug.",
       "Pot through the 3 mm holes, then fill the back socket around the cable. Test in air only briefly."], "x2",
      ("f_light_as.png", 1.9, "Finished head from behind: cable potted into the round socket.", 3.0)),
     ("Station frames: join hull and pod", "13", "f_ik_stations.png", [("601", 2), ("602", 2), ("603", 2), ("604", 2), ("605", 2)],
-     ["M4 x 30 (hull joints)", "M4 x 20 (pod joints)", "M4 x 16 + nut (centre rib)", "M4 nuts in the hex pockets"],
+     ["M4 x 30 (hull joints)", "M4 x 20 (pod joints)", "M3 x 20 + nyloc (centre rib)", "M4 nuts in the hex pockets"],
      ["Inserts first (chart): M5 in each arm end, M3 on the deck ribs, M4 under the lower arms. M4 nuts into the hex pockets.",
       "Mark 60 mm either side of centre on hull and pod. Hull upside down: a middle piece (603) at each mark, pod in the cradles, gland to the rear.",
       "Bottom halves 604 (PORT) and 605 (STBD) under the pod, M4 x 20 through the ears.",
-      "Turn it over. Top halves 601 (PORT) and 602 (STBD): M4 x 16 through the centre rib, M4 x 30 down through the arms.",
+      "Turn it over. Top halves 601 (PORT) and 602 (STBD): M3 x 20 + nyloc through the centre rib, M4 x 30 down through the arms.",
       "Snug evenly. Hull and pod parallel, arm ends in a straight line along each side."]),
     ("Side plates and thrusters", "14", "f_ik_plates.png", [("607", 2), ("608", 2), ("901", 1), ("902", 1), ("T1-T6", 6)],
-     ["16 x M3 x 12 (pylons to brackets)", "8 x M5 x 25 (brackets)", "16 x M5 x 25 (plates to arms)", "8 x M3 x 25 + nyloc + 1 mm shim (verticals)"],
-     ["Corner pylons onto brackets with 4 M3 x 12 each: 607 = A (front-port, rear-starboard), 608 = B. Prop out, tail toward the hull.",
-      "Brackets onto the plates at the 607 A / 608 B holes, 2 M5 x 25 from outside.",
-      "Vertical thrusters T5 (port) and T6 (stbd) on the inside of the plate, prop up, 4 M3 x 25 with shims and nylocs.",
-      "Each plate onto the station arm ends: 8 M5 x 25. One side, then the other.",
+     ["16 x M3 x 16 (pylons to brackets)", "8 x M5 x 20 (brackets)", "16 x M5 x 20 (plates to arms)", "8 x M3 x 30 + nyloc + 1 mm shim (verticals)"],
+     ["Corner pylons onto brackets with 4 M3 x 16 each: 607 = A (front-port, rear-starboard), 608 = B. Prop out, tail toward the hull.",
+      "Brackets onto the plates at the 607 A / 608 B holes, 2 M5 x 20 from outside.",
+      "Vertical thrusters T5 (port) and T6 (stbd) on the inside of the plate, prop up, 4 M3 x 30 with shims and nylocs.",
+      "Each plate onto the station arm ends: 8 M5 x 20. One side, then the other.",
       "Slide each thruster in its pylon until the duct clears, tighten the pinch bolts. Spin every prop: nothing touches."]),
     ("Belly pan", "15", "f_ik_belly.png", [("701", 1)],
-     ["4 x M4 x 30", "1.6 kg lead shot in sealed bags"],
+     ["4 x M4 x 50", "1.6 kg lead shot in sealed bags"],
      ["Lay the lead along the pan floor, evenly front to back.",
-      "Hang the pan under the four lower arms: M4 x 30 into the arm inserts. (Plates drawn see-through.)"]),
+      "Hold the pan under the four lower arms: M4 x 50 up through each post into the arm insert. (Plates drawn see-through.)"]),
     ("Junction box", "16", "f_ik_jbox.png", [("606", 1), ("501", 1), ("503", 1)],
      ["6 x SP13 2-pin socket", "2 x SP13 3-pin socket", "2 x M3 x 10 (deck)", "4 x M3 x 8 (box)", "4 x M3 x 8 countersunk (lid)",
       "12-core + 4-core cable", "Potting compound"],

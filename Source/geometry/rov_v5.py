@@ -156,20 +156,24 @@ DECK_Y, DECK_T = 72.0, 5.0
 ST_Z = (-60.0, 60.0)                     # station centres (world z); also set below
 JB_ZC = -88.0                            # junction box centre (world z): front thruster plugs clear the cowl's vertical-thruster ducts
 DECK_Z = (JB_ZC - ST_Z[0] + ST_W/2 - 58.0, JB_ZC - ST_Z[0] + ST_W/2 + 58.0)   # station-local z under the 116 mm box
-def arm(sgn, y0, y1, x_in):
+def arm(sgn, y0, y1, x_in, yc):
     a = box(*sorted((sgn*x_in, sgn*XP)), y0, y1, 0, ST_W)
     for dz in (-6.0, 6.0):                                                    # 2x M5 heat-set inserts in the arm end
-        a = a - Manifold.cylinder(10.0, 3.2, 3.2, 24).rotate((0, 90, 0)).translate((sgn*XP - 10.0 if sgn > 0 else sgn*XP, (y0 + y1)/2, ST_W/2 + dz))
+        # (2026-10-23) at yc = the side plate's hole height (ARM_Y). The top arm used to put them at its mid-height
+        # (9.25), 0.75 mm below the plate holes (10.0): more than an M5's play in a 5.5 mm hole.
+        a = a - Manifold.cylinder(10.0, 3.2, 3.2, 24).rotate((0, 90, 0)).translate((sgn*XP - 10.0 if sgn > 0 else sgn*XP, yc, ST_W/2 + dz))
     return a
 def st_top():
     s = RP.clamp_half(R_H, 6.0, ST_W, top=True)[0]
     for sgn in (-1, 1):
-        s = s + arm(sgn, 0.5, 18, 40)
+        s = s + arm(sgn, 0.5, 18, 40, ARM_Y[0])
         s = s + box(*sorted((sgn*36, sgn*44)), 40, DECK_Y, 0, ST_W)            # deck ribs
         s = s - RP.ycyl(2.25, -1, 19, sgn*(R_H + 6 + 5), ST_W/2)               # clamp bolt runs up through the arm
     s = s + box(-6, 6, R_H + 2, DECK_Y, 0, ST_W)                              # centre rib
     s = s - cyl(R_H, -1, ST_W + 1, 200)
-    s = s - RP.xcyl(2.25, -8, 8, DECK_Y - 6, ST_W/2)                           # M4 through the centre rib (joins the halves)
+    # (2026-10-23) M3 through the centre rib (joins the halves). Was M4 at DECK_Y - 6: the clamp ring's outside is 3.2 mm
+    # below that axis, too close for an M4 head or nut (3.5). An M3 head / nyloc fits here and in the old 4.5 mm hole.
+    s = s - RP.xcyl(1.7, -8, 8, DECK_Y - 5, ST_W/2)
     for sgn in (-1, 1): s = s - RP.ycyl(2.0, DECK_Y - 8, DECK_Y + 1, sgn*40, ST_W/2)   # M3 inserts: junction deck screws
     return s
 def junction_deck():
@@ -185,7 +189,7 @@ def st_mid():
     return s - cyl(R_H, -1, ST_W + 1, 200) - cyl(R_P, -1, ST_W + 1, 200).translate((0, A.POD_Y, 0))
 def st_bot():
     s = RP.clamp_half(R_P, 6.0, ST_W, top=False)[0].translate((0, A.POD_Y, 0))
-    for sgn in (-1, 1): s = s + arm(sgn, -150, -134, 30)
+    for sgn in (-1, 1): s = s + arm(sgn, -150, -134, 30, ARM_Y[1])
     s = s - cyl(R_P, -1, ST_W + 1, 200).translate((0, A.POD_Y, 0))
     for sgn in (-1, 1):                                                       # belly pan hanger screws: M4 inserts under the arm
         s = s - RP.ycyl(2.8, -151, -141, sgn*58, ST_W/2)
@@ -206,6 +210,19 @@ def light_aim(m, sx):
     """sleeve / bore built along +z on the z axis: move it to (sx*100, 92) and pitch it LIGHT_TILT deg nose-down about its mid-length"""
     y0, d = LIGHT_PIV; pz = CZ1 - d
     return m.translate((0, 0, -pz)).rotate((LIGHT_TILT, 0, 0)).translate((sx*100, y0, pz))
+
+SEAM_HOLES = ((-110, 120), (-60, 120), (60, 120), (110, 120), (-CW + 6.0, 70), (CW - 6.0, 70))
+def roof_y(z):
+    """outer roof height on the centreline at z (the side profile in cowl())"""
+    if z < CZ0 + 36: return 80 + 46 * (z - CZ0) / 36
+    if z > CZ1 - 40: return 126 - 16 * (z - (CZ1 - 40)) / 40
+    return 126.0
+def centre_bolt_y(z):
+    """middle of the 9 mm flange under the roof (3 mm shell + 3 mm head room above the bolt)"""
+    if z < CZ0 + 36: c = np.cos(np.arctan(46 / 36))
+    elif z > CZ1 - 40: c = np.cos(np.arctan(16 / 40))
+    else: c = 1.0
+    return roof_y(z) - 6.0 / c
 
 def cowl():
     prof = poly_zy([(CZ0, 30), (CZ1, 30), (CZ1, 110), (CZ1 - 40, 126), (CZ0 + 36, 126), (CZ0, 80)])
@@ -245,12 +262,21 @@ def cowl():
     # (2026-10-15) no carry handle: the old hand opening + 6 x 12 mm bar in the middle sections were too weak to lift
     # the ROV (split on the centreline, ~45 MPa in PETG at 15 kg static). The roof is now a closed 3 mm shell.
     # A future lifting point should load the HDPE side plates, not the cowl.
-    # seam bolts (M3 through the flanges)
+    # seam bolts: M3 x 20 + nyloc through the two 7 mm flanges (2026-10-23 fixes, found by checks/fastener_check.py):
+    # - the holes were 20 mm long but the 45-degree ramps (2026-10-20) carry the flanges out to +/-13 mm: a 1 mm skin
+    #   closed every hole end. Holes now run through the ramps, with a 6.8 mm spot face on each side down to the 7 mm
+    #   flange face, so the head and nut seat flat.
+    # - the side pair (x = CW - 4.5) sat 2 mm from the side wall, too close for a head; now CW - 6.
+    # - the outer roof pair (x 120, y 118) broke out of the bottom of the flange (y 117-123 there); now x 110, y 120.
     for z in CSPLIT:
-        for x, y in ((-120, 118), (-60, 120), (60, 120), (120, 118), (-CW + 4.5, 70), (CW - 4.5, 70)):
-            body = body - Manifold.cylinder(20, 1.7, 1.7, 24).translate((x, y, z - 10))
+        for x, y in SEAM_HOLES:
+            body = body - Manifold.cylinder(32, 1.7, 1.7, 24).translate((x, y, z - 16))
+            for s0 in (-1, 1):
+                body = body - Manifold.cylinder(9.0, 3.4, 3.4, 32).translate((x, y, z + 7.0 if s0 > 0 else z - 16.0))
+    # centre seam (x = 0): each hole in the middle of the 9 mm flange under the roof line (the nose and tail slope down:
+    # at a fixed y 120 the front hole had 1.3 mm under the roof and the rear one ran out of the flange)
     for z in (-180.0, -120.0, -30.0, 30.0, 140.0, 200.0):
-        body = body - RP.xcyl(1.7, -12, 12, 120, z)
+        body = body - RP.xcyl(1.7, -12, 12, centre_bolt_y(z), z)
     for z, y in COWL_SCREWS:                                               # side feet: M3 inserts for the screws through the plates
         for sx in (-1, 1): body = body - RP.xcyl(2.0, *sorted((sx*CW, sx*(CW - 8))), y, z)
     return body
@@ -270,7 +296,10 @@ def belly():
     for zc in ST_Z:
         for sgn in (-1, 1):
             t = box(*sorted((sgn*50, sgn*66)), top - 22, -150, zc - 10, zc + 10)
-            b = b + t - RP.ycyl(2.25, top - 6, -149, sgn*58, zc)
+            # (2026-10-23) M4 clearance straight through the post: the screw goes in from below, head under the post
+            # (the pan's bottom corners are rounded r 12, so the head clears the wall). It used to stop 16 mm short of the
+            # post bottom, so no screw could get in.
+            b = b + t - RP.ycyl(2.25, top - 24, -149, sgn*58, zc)
     return b
 
 # ---------------- status colours: yellow = new printed part, black = already printed (v4), grey = bought / cut

@@ -2,6 +2,16 @@
 
 Changes to the TinkerSub KB-1 files. Part numbers are the three digits debossed on each printed part.
 
+## 2026-10-23
+Fastener audit: every screw hole in the assembled ROV is now followed through every part by `Source/checks/fastener_check.py`, which runs in every build and stops it on any problem. Every screw is listed in `Source/assembly/fasteners.py`, and the shopping list takes its screw rows from that table. What the audit found and fixed:
+- **701 belly pan:** the hanger holes stopped 16 mm short of the bottom of the posts, so no screw could go in. Now straight through; **M4 x 50** up from below (was M4 x 30). Printed pans: drill each hole through from the top with a 4.5 mm bit.
+- **601 / 602 station tops:** the arm-end M5 inserts were 0.75 mm below the side-plate holes. Moved to the plate-hole height. Printed tops: open the plates' four upper holes to 7 mm and use washers.
+- **601 / 602 centre rib:** the M4 bolt had no room for its head or nut (the hull clamp ring is 3.2 mm below it). Now an M3 hole 1 mm higher; **M3 x 20 + nyloc, no washers** fits both the new and the old (4.5 mm) hole.
+- **401 light rear body:** the M2.5 x 16 screws never reached the body (16.5 mm of ring and disc first). Pilots now 12 mm deep; **M2.5 x 25**. Printed bodies: drill the three 2.1 mm holes to 12 mm.
+- **801-806 top cowl:** the section-seam holes were closed by the 45-degree flange ramps, the side seam bolts sat too close to the wall for a head, the outer roof holes broke out of the flange, and the centre-seam holes ignored the sloping nose and tail. All fixed; nothing printed yet should be reprinted from the old files.
+- **Shopping list lengths** that didn't fit: plates to arms and brackets **M5 x 20** (was 25: bottoms out in the 10 mm inserts), pylons to brackets **M3 x 16** (was 12: 2.8 mm into the insert), vertical pylons **M3 x 30** (was 25: too short for the nut), dome ring **M3 x 12** (was 16: bottoms out), pod rear cap **M5 x 14** (was 16: bottoms out; the front cap stays M5 x 16), nose cones **M3 x 8** button (was 6).
+- The model's sled rods are now 340 mm, as in the guide (they stopped short of the flanges' locating holes).
+
 ## 2026-10-22
 - `Source/` reorganised by job (`geometry/`, `assembly/`, `outputs/`, `checks/`, `guide/`, `render/`, `inputs/`) with one entry point: `python3 Source/build.py all` rebuilds every part, project, template, figure, render and the guide, then lists what changed against the repository; `install` copies the changes in. See `Source/README.md`.
 - 303 pod front cap: the generator wrote it plug-down; now plate-down, matching the STL that was already shipped (no reprint).

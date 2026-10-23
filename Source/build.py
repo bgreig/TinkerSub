@@ -9,7 +9,11 @@ TinkerSub KB-1: one entry point for everything generated from this folder.
     python3 Source/build.py install          copy what changed into the repository
 
 Steps, in order (each uses what the steps before it wrote, in the build folder):
-    parts     printed parts: generate, assemble (with the interference check), name, number and label -> out_lbl/
+    parts     printed parts: generate, assemble (with the interference check), name, number and label -> out_lbl/,
+              then the fastener check (below)
+    fasteners every screw hole in the assembled ROV followed through every part: the screw in assembly/fasteners.py must
+              go in, reach its thread without bottoming out, and have room for its head and nut; every joint and hole
+              must be accounted for, and the shopping list and guide text must name the same screws. Stops the build.
     plates    HDPE side plates: DXFs, cutting templates, plate STLs -> out_final/
     3mf       Bambu Studio projects (Frame, Core, Reprint) and their plate maps -> outdir/
     step      STEP files for Fusion 360 and other CAD apps -> out_final/step/  (slow: run it on its own or with --step)
@@ -31,7 +35,7 @@ SRC = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(SRC)
 CODE = [os.path.join(SRC, d) for d in ("geometry", "assembly", "outputs", "checks", "guide")]
 FP = "TinkerSub_KB-1"
-STEPS = ["parts", "plates", "3mf", "step", "figures", "scenes", "renders", "guide", "check"]
+STEPS = ["parts", "fasteners", "plates", "3mf", "step", "figures", "scenes", "renders", "guide", "check"]
 
 def log(*a): print(*a, flush=True)
 
@@ -82,6 +86,21 @@ class Build:
         self.run("parts_final.py")
         out = self.run("label_parts.py")
         if "issues: 0" not in out: log("    !! label_parts reported issues: see logs/label_parts_py.log")
+        self.fasteners()
+
+    def fasteners(self):
+        """every screw joint in the assembled model against assembly/fasteners.py: stops the build on any error"""
+        cmd = [sys.executable, os.path.join(SRC, "checks", "fastener_check.py"), "fastener_report.json"]
+        t0 = time.time()
+        r = subprocess.run(cmd, cwd=self.b, env=self.env, capture_output=True, text=True)
+        open(self.p("logs", "fastener_check.log"), "w").write(r.stdout + r.stderr)
+        tail = [l for l in r.stdout.splitlines() if l.startswith(("ERROR", "warning", "fastener check"))]
+        for l in tail[:40]: log("    " + l)
+        if len(tail) > 40: log(f"    ... {len(tail) - 40} more in logs/fastener_check.log")
+        if r.returncode:
+            sys.exit("build.py: the fastener check failed (logs/fastener_check.log, fastener_report.json). Fix the model or "
+                     "assembly/fasteners.py: every screw must fit before anything is built from it.")
+        log(f"    (fastener check {time.time() - t0:.0f} s)")
 
     def plates(self):
         self.run("plate_templates_final.py"); self.run("plate_stl_final.py")
@@ -216,10 +235,6 @@ def compare(a, b):
             if len(x) == len(y):
                 dv = float(np.abs(x["v"] - y["v"]).max())
                 if dv <= 1e-4: return "equivalent", f"float rounding, max {dv * 1000:.3f} um"
-            def sty(t): k = t.find(b"MECHANICAL_DESIGN_GEOMETRIC_PRESENTATION_REPRESENTATION"); return k if k > 0 else t.find(b"STYLED_ITEM")
-            i, j = sty(x), sty(y)                                       # same solids, colour table written in another order?
-            if i > 0 and x[:x.rfind(b"#", 0, i)] == y[:y.rfind(b"#", 0, j)] and _step_colours(x) == _step_colours(y):
-                return "equivalent", "colour table order"
             return "changed", "geometry"
         if ext == ".png":
             import numpy as np
@@ -284,7 +299,7 @@ def main():
     ap.add_argument("--build", default=os.path.join(SRC, "build"), help="build folder (default Source/build)")
     ap.add_argument("--step", action="store_true", help="with all: include the STEP export")
     a = ap.parse_args()
-    steps = [s for s in STEPS if s != "step" or a.step] if "all" in a.steps else a.steps
+    steps = [s for s in STEPS if (s != "step" or a.step) and s != "fasteners"] if "all" in a.steps else a.steps   # parts runs fasteners
     for s in steps:
         if s not in STEPS + ["install"]: sys.exit(f"build.py: unknown step {s} (choose from all, {', '.join(STEPS)}, install)")
     B = Build(a.build); B.inputs()

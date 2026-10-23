@@ -123,7 +123,7 @@ add("cap_rear", Tm(0, 0, REAR_FACE - 10), "hull", (0, 0, -110))
 add("fl_front", Tm(0, 0, FRONT_FACE) @ Rx(180), "hull", (0, 0, 50))
 add("dome_ring", Tm(0, 0, FRONT_FACE), "hull", (0, 0, 110))
 add("dome", Tm(0, 0, FRONT_FACE), "hull", (0, 0, 110))
-z_rs, z_fs = REAR_FACE + SKIRT + 0.1, FRONT_FACE - SKIRT - 0.1
+z_rs, z_fs = -170.0, 170.0      # (2026-10-23) 340 mm rods, centred, as in the guide: the tips sit ~6 mm in the flanges' 4 mm holes
 EXS = (0, 0, -200)
 add("bh_rear", Tm(0, 0, SLED_DISC[0] - RP.BH_T), "sled", EXS)
 add("bh_front", Tm(0, 0, SLED_DISC[1] + RP.BH_T) @ Rx(180), "sled", EXS)

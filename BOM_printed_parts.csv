@@ -9,8 +9,8 @@ Part #,Bambu project,Section,File,Qty,Filament,Print notes,Used for,Est. filamen
 608,TinkerSub_KB-1_Frame.3mf,Stations + brackets,STL/6_Stations_and_brackets/608_rov_bracket_corner_b.stl,2,"PETG, black","Plate face down. 5 walls, 40 %. 4x M3 + 2x M5 inserts.",Front-starboard + rear-port thruster bracket,53
 106,TinkerSub_KB-1_Frame.3mf,Thruster pylons,STL/1_Thrusters/106_pylon_clamp.stl,6,"PETG, black","Rear end down, no supports. M4 + M3 inserts.",Clamps each thruster body,90
 701,TinkerSub_KB-1_Frame.3mf,Belly pan,STL/7_Belly_pan/701_rov_belly_pan.stl,1,"PETG, black","Floor down, no supports.",Lead ballast tray under the pod,107
-801,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/801_rov_cowl_rear_port.stl,1,"PETG, yellow",Rear end down. The 3 mm shell prints solid.,"Top cowl, rear, port (v2)",197
-802,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/802_rov_cowl_rear_stbd.stl,1,"PETG, yellow",Rear end down.,"Top cowl, rear, starboard (v2)",197
+801,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/801_rov_cowl_rear_port.stl,1,"PETG, yellow",Rear end down. The 3 mm shell prints solid.,"Top cowl, rear, port (v2)",196
+802,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/802_rov_cowl_rear_stbd.stl,1,"PETG, yellow",Rear end down.,"Top cowl, rear, starboard (v2)",196
 803,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/803_rov_cowl_mid_port.stl,1,"PETG, yellow",Seam face down. Tree supports (vertical thruster sleeve).,"Top cowl, middle, port (v2)",231
 804,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/804_rov_cowl_mid_stbd.stl,1,"PETG, yellow",Seam face down. Tree supports.,"Top cowl, middle, starboard (v2)",231
 805,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/805_rov_cowl_front_port.stl,1,"PETG, yellow",Nose down (light sleeve vertical).,"Top cowl, front, port (v2)",218

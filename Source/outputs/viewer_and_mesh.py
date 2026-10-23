@@ -21,7 +21,7 @@ if os.path.exists(p):
     open(p, "w").write(s)
 
 import rov_v6 as V6
-from make_step import KEYMAP
+from part_keys import KEYMAP
 d = json.load(open(sys.argv[1] if len(sys.argv) > 1 else "rov_viewer/assembly_v6.json"))
 Zup = np.array([[1, 0, 0, 0], [0, 0, -1, 0], [0, 1, 0, 0], [0, 0, 0, 1]], float)
 sc = trimesh.Scene(); cnt = collections.Counter(); base = {}

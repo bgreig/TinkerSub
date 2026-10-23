@@ -23,7 +23,8 @@ Tested with Python 3.13 on Linux.
 
 | Step | What it does | Main output |
 |---|---|---|
-| `parts` | Generates every printed part, assembles the whole ROV (and reports any interference between parts), names, numbers and labels the parts | `out_lbl/<PN>_<name>.stl`: the files in `STL/` |
+| `parts` | Generates every printed part, assembles the whole ROV (and reports any interference between parts), names, numbers and labels the parts, then runs the fastener check | `out_lbl/<PN>_<name>.stl`: the files in `STL/` |
+| `fasteners` | Follows every screw hole in the assembled ROV through every part and checks it against `assembly/fasteners.py` (below). Any error stops the build | `fastener_report.json`, `logs/fastener_check.log` |
 | `plates` | HDPE side plates: DXFs, cutting templates, one-piece plate STLs | `out_final/`: the files in `CAD/` |
 | `3mf` | Bambu Studio projects (Frame, Core, Reprint) and their plate maps | `outdir/` |
 | `step` | STEP files for Fusion 360 and other CAD apps, and the positioned mesh assembly. Slow (the assembly is 146 MB): not part of `all` unless you add `--step` | `out_final/step/` |
@@ -48,7 +49,7 @@ python3 Source/build.py parts plates guide check
 | `geometry/` | The parts themselves. `thruster.py` (housing, duct, props, tail cone), `pylon.py`, `lights.py`, `rov_parts.py` (pod flanges and caps, sled bulkhead), `jbox.py` (junction box and lid), `pantilt_fit.py` (camera pan-tilt and its fit check), `rov_v5.py` (stations, brackets, belly pan, cowl, side plates, light aim). `frame_clamp.py`, `pvc.py`, `ring.py`, `bracket.py`, `mount.py` and `wiring.py` are earlier versions the current parts still build on. `rail_notch.py` cut the wire opening in the sled rails once; its output is in `inputs/`. |
 | `assembly/` | `rov_v6.py` puts every part in place and checks for interference. `export_v4/5/6.py` write the parts in print orientation. `parts_final.py` is the master part list: part numbers, file names, print notes, labels. `label_parts.py` + `engrave.py` deboss the part numbers. |
 | `outputs/` | `make_3mf.py` (Bambu projects; plate layouts in `plates_*.json`, print profile in `ps.json`), `plate_preview.py` (plate maps), `plate_templates_final.py` and `plate_stl_final.py` (side plates), `make_step.py` + `step_export.py` (STEP), `viewer_and_mesh.py` (mesh assembly). |
-| `checks/` | `print_review.py` checks every printed part for bed fit, loose columns, floating islands, overhangs and thin walls. `insert_walls.py` checks the plastic round every heat-set insert hole. |
+| `checks/` | `fastener_check.py` (with `holes.py`) checks every screw joint, run by the build. `print_review.py` checks every printed part for bed fit, loose columns, floating islands, overhangs and thin walls. `insert_walls.py` checks the plastic round every heat-set insert hole. |
 | `guide/` | The guide (`build_guide.py` styles and helpers, `build_guide_final.py` all the text) and everything that makes its pictures: `scene_final.py`, `light_scene.py`, `elec_scene.py`, `part_scenes.py`, `insert_map.py` (scenes), `pantilt_fig.py`, `plate_figs.py`, `elec_drawings.py` (figures). `package_images.py` says where each picture lives in the package. |
 | `render/` | The renderer: `render.html` (parts and assembly), `render_ikea.html` (picture-by-picture pages), `render_real.html` (electronics), three.js, and the drivers `shoot.py` / `shoot_real.py`. `views/` holds the camera shots, one JSON file per kind of picture. |
 | `inputs/` | Parts drawn in CAD rather than generated, read in as they are (below). |
@@ -75,9 +76,22 @@ python3 Source/build.py parts plates guide check
 | Camera pan-tilt | `geometry/pantilt_fit.py` (its `check()` sweeps the camera through its whole range inside the dome) |
 | Junction box and lid | `geometry/jbox.py` |
 | Part numbers, print notes, labels | `assembly/parts_final.py` |
+| Any screw: size, length, how many | `assembly/fasteners.py` (the shopping list takes its screw rows from here) |
 | Plate layouts in the 3MFs | `outputs/plates_*.json`; print settings in `outputs/make_3mf.py` |
 | Guide text, shopping list | `guide/build_guide_final.py` |
 | A picture's camera angle | `render/views/*.json` |
+
+## The fastener check
+
+Every round hole of screw size in every printed part is placed in the assembled ROV and followed along its axis through every part on that line. For each joint it works out where the head goes, where the thread is, the grip, and the screw lengths that would hold without bottoming out, and checks there is room for the head, the nut and a hex key. Then it compares the model with `assembly/fasteners.py`, the table of every screw in the ROV:
+
+- **BLIND / COVERED**: a screw can't get in (a clearance hole that stops in plastic, an insert that opens against another part). This is the 2026-10-22 belly pan bug.
+- **UNMATED**: a hole that lines up with nothing. This is how a misaligned hole shows up (the top-arm inserts were 0.75 mm off the plate holes). Holes for bought parts that aren't in the model are listed in `NOT_JOINTS` with the reason.
+- **LENGTH / ROOM**: the screw in the table is too short, too long, or its head or nut doesn't fit.
+- **UNDECLARED / COUNT**: a joint the table doesn't know, or a different number of them.
+- **SHOPPING LIST / GUIDE TEXT**: the list or the guide names a screw size the table doesn't have.
+
+To change a screw, change `assembly/fasteners.py` and rebuild: the report gives the lengths that fit each joint.
 
 ## Running one script on its own
 

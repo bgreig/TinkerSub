@@ -49,7 +49,10 @@ def rear_body():
     b = b - cyl(CABLE_R, Z_WALL - 1, Z_CAV + 1, 32)
     for a in (0.0, np.pi):
         b = b - cyl(1.5, Z_WALL - 1, Z_CAV + 1, 20).translate((FILL_R*np.cos(a), FILL_R*np.sin(a), 0))
-    b = b - _screws(Z_DISC - 8, Z_DISC + 1, 1.05)                  # (2026-10-20) 2.1 mm pilots: M2.5 screws thread straight into the PETG.
+    # (2026-10-20) 2.1 mm pilots: M2.5 screws thread straight into the PETG. (2026-10-23) 12 mm deep (was 8): from the head
+    # seat in the front ring through ring + disc is 16.5 mm, so the M2.5 x 16 the guide used to list never reached the body.
+    # M2.5 x 25 now: 8.5 mm of thread.
+    b = b - _screws(Z_DISC - 12, Z_DISC + 1, 1.05)
                                                                    # Was 3.6 mm for heat-set inserts: only 0.7 mm of wall to the outside, which bulges.
     # rear chamfer so the head blends into the pipe
     cone = Manifold.cylinder(7.0, PV.P34_OD/2 + 3.0, R + 1.2, 96).translate((0, 0, -0.01))
