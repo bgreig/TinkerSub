@@ -1,0 +1,78 @@
+name: Bug report
+description: The firmware, topside program, video, build scripts or a generated file does something wrong
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a part that doesn't fit, print or work as the guide says, use **Build problem** instead.
+        A security problem, or a defect that could hurt someone (fire, injury, flooding, thrusters that won't stop), goes in a **private report**: see [SECURITY.md](https://github.com/bgreig/TinkerSub/blob/main/SECURITY.md).
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where is the bug?
+      options:
+        - Pico firmware (Firmware/pico_rov)
+        - Pi bridge (Firmware/pi_bridge)
+        - Topside program (Firmware/topside)
+        - Camera video (MediaMTX)
+        - Build scripts (Source/, build.py)
+        - Guide, BOM or another generated file
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The commit you're on (`git log -1 --oneline`), or the date you downloaded the files
+      placeholder: e.g. d927e19, or downloaded 2026-10-24
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+      description: Include the thruster, light or part involved (T1-T6, L1/L2, part numbers) where it matters
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to make it happen
+      description: Steps from power-on or from a fresh command. Say whether it happens every time.
+      placeholder: |
+        1. Arm with the sticks centred
+        2. Full heave up for 5 s
+        3. T6 stops; T5 keeps running
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output and logs
+      description: |
+        Whatever applies: the topside program's output, `journalctl -u rov-bridge` on the Pi, the Pico's serial monitor, or the build log (the failing step's file in `Source/build/logs/`). Paste text, not a screenshot.
+      render: shell
+  - type: textarea
+    id: setup
+    attributes:
+      label: Your setup
+      description: Only what's relevant
+      placeholder: |
+        Topside: macOS 15, Python 3.13, Xbox controller
+        Pi: Pi OS Bookworm 64-bit
+        Pico: Arduino-Pico core 4.x, config.h changes: I_BUDGET_A = 24
+        Build scripts: Python version, OS
+  - type: textarea
+    id: photos
+    attributes:
+      label: Photos or video
+      description: Drag files here. A short clip of the behaviour often says more than a description.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Not a security or safety problem
+      options:
+        - label: This can't let someone else control the ROV, and can't cause a fire, injury or flooding (otherwise report it privately, see SECURITY.md)
+          required: true

@@ -8,6 +8,7 @@ Open an [issue](https://github.com/bgreig/TinkerSub/issues/new/choose) and pick 
 
 - **Build problem:** something doesn't fit, print or work as the guide says.
 - **Part sourcing:** a part is hard to find, discontinued, or you found a better source.
+- **Bug report:** the firmware, the topside program, the video, the build scripts or a generated file does something wrong.
 - **Design change:** an idea for the next version.
 
 Include the part number (the three digits debossed on every printed part), the guide section, and a photo if you can. Photos solve most build questions in one go.
