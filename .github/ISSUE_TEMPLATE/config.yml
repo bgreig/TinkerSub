@@ -3,3 +3,6 @@ contact_links:
   - name: Wiki
     url: https://github.com/bgreig/TinkerSub/wiki
     about: Build notes, part sourcing and the project story
+  - name: Report a security or safety problem privately
+    url: https://github.com/bgreig/TinkerSub/security/advisories/new
+    about: Vulnerabilities in the firmware, or design and guide defects that could hurt someone (see SECURITY.md)

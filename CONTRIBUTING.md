@@ -12,6 +12,8 @@ Open an [issue](https://github.com/bgreig/TinkerSub/issues/new/choose) and pick 
 
 Include the part number (the three digits debossed on every printed part), the guide section, and a photo if you can. Photos solve most build questions in one go.
 
+A security vulnerability, or a design or guide defect that could hurt someone (fire, injury, flooding, thrusters that won't stop), goes in a private report instead: see [SECURITY.md](SECURITY.md).
+
 ## Share a build or a modification
 
 Add it to the [wiki](https://github.com/bgreig/TinkerSub/wiki): the Build log for photos and notes, Modifications for changes you made and tested, Parts sourcing for where you bought things.

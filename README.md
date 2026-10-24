@@ -66,6 +66,8 @@ KB-1 is being built for the first time now. The design has been checked in CAD f
 - The Pico's GPIO is 3.3 V only. Keep the 12 V wiring separate from the logic, as in the wiring diagram.
 - Lift the ROV by the lower corner windows of the side plates, never by the cowl, a thruster or the dome.
 
+Found a safety defect or a security problem? Please report it privately, as [SECURITY.md](SECURITY.md) describes, not in a public issue. The control link has no authentication, so keep the tether a direct cable and never connect the ROV to a shared network (details in SECURITY.md).
+
 ## Changing it
 
 That's the point. Every part is generated from the Python in `Source/` (manifold3d, trimesh): change a number, run `python3 Source/build.py all`, and the STL, 3MF and STEP files and the guide follow. `Source/README.md` says which file makes which part. Most parts also have a STEP file in `CAD/STEP/parts/` for editing in your CAD program.

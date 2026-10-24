@@ -2,6 +2,9 @@
 
 Changes to the TinkerSub KB-1 files. Part numbers are the three digits debossed on each printed part.
 
+## 2026-10-24
+- `SECURITY.md`: what to report privately (firmware vulnerabilities and safety defects), how, what to expect, and the control system's security model (no authentication on the tether link: keep it a direct cable). Linked from the README, CONTRIBUTING and the new-issue page.
+
 ## 2026-10-23
 Fastener audit: every screw hole in the assembled ROV is now followed through every part by `Source/checks/fastener_check.py`, which runs in every build and stops it on any problem. Every screw is listed in `Source/assembly/fasteners.py`, and the shopping list takes its screw rows from that table. What the audit found and fixed:
 - **701 belly pan:** the hanger holes stopped 16 mm short of the bottom of the posts, so no screw could go in. Now straight through; **M4 x 50** up from below (was M4 x 30). Printed pans: drill each hole through from the top with a 4.5 mm bit.
