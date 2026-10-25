@@ -22,7 +22,7 @@ def image_map(printed_stems):
     m += [(f"{CROP}/f_{f}.png", f"Images/Renders/{f}.png") for f in RENDERS]
     m += [(f"{CROP}/f_{f}.png", f"Images/Assembly_steps/{f}.png") for f in STEPS]
     m += [(f"{CROP}/f_{f}.png", f"Images/Electronics/{n}.png") for f, n in ELECTRONICS]
-    m += [(f"out/{f}.png", f"Images/Diagrams/{f}.png") for f in ("prop_hex_section", "compensator_section", "compensator_cutaway")]
+    m += [(f"out/{f}.png", f"Images/Diagrams/{f}.png") for f in ("prop_hex_section", "compensator_section")]
     m += [(f"{CROP}/f_layout.png", "Images/Diagrams/thruster_layout.png"), (f"{CROP}/f_nest.png", "Images/Diagrams/side_plates_on_24x24_sheet.png")]
     m += [(f"outdir/ROV_{n}_plates.png", f"Images/Diagrams/{FP}_{n}_plates.png") for n in ("Frame", "Core")]
     m += [(f"{CROP}/{f}.png", f"Images/Labels/{f}.png") for f in LABELS]

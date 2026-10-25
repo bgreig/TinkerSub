@@ -166,14 +166,23 @@ def tail_cone(comp=False):
         c = c + ((boss ^ outer) - cyl(SPIG_IN - 2, 100, -60))
         c = c - Manifold.cylinder(30, 1.65, 1.65, 30).rotate((0, 90, 0)).translate((rc - 12 if sgn > 0 else -rc - 18, 0, zc))
     if comp:
-        yt, zb, ztop = COMP_Y, -17.0, -1.0
-        tube = Manifold.cylinder(ztop - zb, 3.0, 3.0, 40).translate((0, yt, zb))
-        barb = Manifold.cylinder(2.0, 3.7, 3.0, 40).translate((0, yt, -3.5))      # wide at bottom: prints clean
-        c = c + ((tube + barb) ^ outer)
-        c = c - Manifold.cylinder(40, 1.1, 1.1, 24).translate((0, yt, ztop - 40 + 0.1))   # vent, straight out the cone
+        # (2026-10-25) v2: the v1 nipple (y 13.5, tip at z -1) sat under the spigot lip, 10 mm down: no room to stretch
+        # the finger cot over it or to tie it. Now it stands clear of the lip with its tip 2.5 mm under the rim, so the cot
+        # slides straight down over it, and a 5 x 1.5 mm O-ring rolled over the barb into the groove holds the cot (no tie).
+        yt, zb, ztop = COMP_Y, -18.0, COMP_TIP
+        zg = ztop - COMP_BARB                                                    # groove top = barb bottom
+        stem = Manifold.cylinder(zg - COMP_GROOVE - zb, 3.0, 3.0, 40).translate((0, yt, zb))
+        groove = Manifold.cylinder(COMP_GROOVE, COMP_GROOVE_R, COMP_GROOVE_R, 40).translate((0, yt, zg - COMP_GROOVE))
+        barb = Manifold.cylinder(COMP_BARB, 3.6, 2.6, 40).translate((0, yt, zg))   # wide at the bottom: holds the ring
+        c = c + ((stem + groove + barb) ^ outer)
+        zv = -17.5                                                               # vent: down the nipple, then 45 deg out
+        c = c - Manifold.cylinder(ztop - zv + 1, 1.1, 1.1, 24).translate((0, yt, zv))
+        c = c - Manifold.cylinder(12, 1.1, 1.1, 24).rotate((-135, 0, 0)).translate((0, yt, zv))   # toward +y, -z
     return c
 
-COMP_Y = 13.5     # internal nipple position (on +Y, clear of the ports, gland and wires)
+COMP_Y = 8.5        # nipple axis: barb clears the spigot lip (r 14.4) by 2.3 mm and the gland hole (r 5.25)
+COMP_TIP = 6.0      # nipple tip, 2.5 mm under the spigot rim (z 8.5): the cot goes on from straight above
+COMP_BARB, COMP_GROOVE, COMP_GROOVE_R = 2.0, 2.0, 2.5   # barb 7.2 -> 5.2 mm; groove 5.0 mm dia for a 5 x 1.5 O-ring
 
 # ===================== PROP with spinner =====================
 COUPLER_D, COUPLER_L = 9.0, 20.0   # brass 3 mm -> 5 mm shaft coupler

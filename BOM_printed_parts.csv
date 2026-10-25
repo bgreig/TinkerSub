@@ -16,7 +16,7 @@ Part #,Bambu project,Section,File,Qty,Filament,Print notes,Used for,Est. filamen
 805,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/805_rov_cowl_front_port.stl,1,"PETG, yellow",Nose down (light sleeve vertical).,"Top cowl, front, port (v2)",218
 806,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/806_rov_cowl_front_stbd.stl,1,"PETG, yellow",Nose down.,"Top cowl, front, starboard (v2)",218
 101,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/101_housing_no_foot.stl,6,"PETG, black","Threaded rear end down, brim, 5 walls.",Thruster body + Kort duct,410
-102,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/102_tail_cone_comp.stl,6,"PETG, black","Tip down, brim. Tap the tip M12 x 1.5.",Tail cone with oil compensator,79
+102,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/102_tail_cone_comp.stl,6,"PETG, black","Tip down, brim. Tap the tip M12 x 1.5.",Tail cone with oil compensator,80
 103,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/103_prop_hub_RH.stl,3,"PETG, black","Back face down, tree supports under the blades.",Right-hand prop,81
 104,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/104_prop_hub_LH.stl,3,"PETG, black","Back face down, tree supports under the blades.",Left-hand prop,81
 105,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/105_nose_cone.stl,6,"PETG, black",Base down.,Prop spinner,15

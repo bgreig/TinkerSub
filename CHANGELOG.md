@@ -2,6 +2,10 @@
 
 Changes to the TinkerSub KB-1 files. Part numbers are the three digits debossed on each printed part.
 
+## 2026-10-25
+- **102 tail cone v2:** the compensator nipple sat under the spigot lip, 10 mm down, so the finger cot was very hard to fit and impossible to tie. The nipple now stands clear of the lip with its tip 2.5 mm below the rim: the cot pushes straight down over it, and a 5 x 1.5 mm O-ring rolled into a groove holds it (no tie). The vent runs down the nipple and out of the cone's side at 45 degrees, clear of the gland. Tail cones printed before this: reprint them (about 25 g each).
+- Guide 7.3, the picture-by-picture thruster page and the shopping list updated. The compensator section figure is now drawn from the part geometry (`Source/guide/comp_fig.py`) instead of by hand; the unused, out-of-date `Images/Diagrams/compensator_cutaway.png` is removed.
+
 ## 2026-10-24
 - `SECURITY.md`: what to report privately (firmware vulnerabilities and safety defects), how, what to expect, and the control system's security model (no authentication on the tether link: keep it a direct cable). Linked from the README, CONTRIBUTING and the new-issue page.
 - New-issue page: the bug report is now a form for the firmware, topside program, video, build scripts and generated files (area, commit, steps, logs, setup), replacing GitHub's generic web-app template.

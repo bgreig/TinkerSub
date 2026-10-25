@@ -39,7 +39,7 @@ HW = [
  ("Thrusters (x6)", "18", "M3 x 8 button head", "Nose cones", "$4", "Hardware store"),
  ("Thrusters (x6)", "6", "O-ring 32 x 2 mm nitrile", "Tail cone spigot", "$6 (kit)", "Amazon"),
  ("Thrusters (x6)", "6", "Cable gland M12 x 1.5, 3-6.5 mm", "Tail cones", "$8 (10-pack)", "Amazon"),
- ("Thrusters (x6)", "12 / 6 / 500 ml", "M4 set screws; nitrile finger cots; mineral oil", "Oil fill ports + compensator", "$15", "Hardware / pharmacy"),
+ ("Thrusters (x6)", "12 / 6 + 6 / 500 ml", "M4 set screws; nitrile finger cots + 5 x 1.5 mm O-rings (from the 1.5 mm O-ring kit); mineral oil", "Oil fill ports + compensator bladders", "$15", "Hardware / pharmacy"),
  ("Thrusters (x6)", "12 + 12", "M4 x 30 SHCS + M4 heat-set inserts", "Pylon pinch bolts", "$10", "Amazon"),
  ("Side plates", "1", "1/2\" (12.7 mm) black HDPE sheet, 24 x 24\"", "Both side plates, 478 x 300 mm each. Needs at least 605 mm (23.8\") one way: measure it", "$40-60", "Amazon / plastics supplier"),
  ("Side plates", "-", "Jigsaw blades (fine tooth), spray adhesive, drill bits 3.5 / 4.5 / 5.5 / 10 mm", "Cutting the plates", "$20", "Hardware store"),
@@ -473,13 +473,16 @@ def build_pdf(path):
                  "Slide the nose cone (105) over the hub and fit the 3 M3 x 8 button screws."], start=4),
           fig(os.path.join("out", "prop_hex_section.png"), "Section through the prop drive.", max_h=2.1*inch),
           Paragraph("7.3  Tail cone, oil fill and compensator", H3),
-          steps(["Stretch a nitrile finger cot over the nipple inside the tail cone (102) and tie it on. It is the compensator bladder: "
-                 "water enters it through the 2 mm vent, oil stays outside it.",
+          steps(["Fit the compensator bladder: push a nitrile finger cot straight down over the nipple inside the tail cone (102) until it "
+                 "covers the groove (the nipple's tip is just below the rim). Roll a 5 x 1.5 mm O-ring down over the barb with a fingertip "
+                 "until it drops into the groove: it clamps the cot, no tie needed. Fold the rest of the cot down into the cone. Water enters "
+                 "it through the 2.2 mm vent; oil stays outside it. (A tail cone printed before 2026-10-25 has its nipple tucked under the "
+                 "spigot lip, where a cot is very hard to fit: reprint it, about 25 g.)",
                  "Pass the motor lead through the tail cone gland, grease the 32 x 2 O-ring on the spigot and thread the tail cone on hand tight.",
                  "Stand the thruster nose down. Fill through one M4 port with a syringe of mineral oil while air leaves the other; "
                  "rock it and spin the prop by hand to free bubbles. Top off, then seal both ports with M4 set screws and sealant.",
                  "Tighten the gland on the lead. Wait an hour and check for weeping at the thread and the ports."], start=9),
-          fig(os.path.join("out", "compensator_section.png"), "Oil fill and compensator, section through the axis.", max_h=2.1*inch),
+          fig(os.path.join("out", "compensator_section.png"), "Oil fill and compensator, section through the axis.", max_h=3.3*inch),
           Paragraph("7.4  Pylon clamp", H3),
           steps(["Slide the pylon clamp (106) over the housing body (101) and close it with the 2 M4 x 30 pinch bolts. Leave it loose: "
                  "its final position is set on the ROV (section 14)."], start=13),
@@ -1105,12 +1108,12 @@ def ikea_step(no, title, sec, image, pns, hw, acts, mult="", extra=None, img_h=4
 IKEA = [
     ("Thrusters", "7", "f_thr_ex.png", [("101", 1), ("102", 1), ("103/104", 1), ("105", 1), ("106", 1), ("107", "gauge")],
      ["1200 GPH motor", "Brass coupler + M5 x 20 set screw", "M5 jam nut + M5 nyloc", "3 x M3 x 8 button (nose)",
-      "M12 x 1.5 gland", "32 x 2 O-ring", "2 x M4 set screw (oil ports)", "2 x M4 x 30 (pylon)", "Nitrile finger cot", "Mineral oil"],
+      "M12 x 1.5 gland", "32 x 2 O-ring", "2 x M4 set screw (oil ports)", "2 x M4 x 30 (pylon)", "Nitrile finger cot + 5 x 1.5 O-ring", "Mineral oil"],
      ["Tap the tail cone (102): M12 x 1.5 at the tip, M4 in both side ports. Thread the gland in with sealant.",
       "Ream the coupler to 1/8\". Motor into the housing (101) from the back.",
       "Bare coupler on the shaft, pushed up to the ceiling of gauge 107; tighten its set screw. Then the M5 x 20 stud and jam nut.",
       "Prop hub over the stud (103 right-hand or 104 left-hand), M5 nyloc until it just seats. Nose cone (105) on with 3 M3 x 8 button.",
-      "Finger cot over the tail nipple, greased O-ring on, tail cone on hand-tight. Fill with oil nose-down, no bubbles, seal both ports.",
+      "Finger cot over the tail nipple, 5 x 1.5 O-ring rolled into its groove. Greased spigot O-ring on, tail cone on hand-tight. Fill with oil nose-down, no bubbles, seal both ports.",
       "Pylon clamp (106) over the housing, 2 M4 x 30, loose. Label T1-T6 with the prop hand (3 RH, 3 LH)."], "x6",
      ("f_thr_as.png", 2.2, "Finished thruster with its pylon clamp.")),
     ("Electronics sled", "8.1 and 9", "f_ik_sled.png", [("207", 1), ("212", 1), ("213", 1), ("214", 1), ("215", 1)],

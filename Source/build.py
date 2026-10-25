@@ -129,6 +129,8 @@ class Build:
         for n in ("elec_sch1", "elec_sch2", "elec_wiring"): shutil.copy(self.p("render/elec", n + ".png"), self.p(crop, f"f_{n}.png"))
         shutil.copy(self.p("render/elec/elec_wires.json"), self.p("render/elec_wires.json"))
         self.fresh |= {f"{crop}/{f}.png" for f in ("f_layout", "f_pantilt_fit", "f_nest", "f_tile", "f_elec_sch1", "f_elec_sch2", "f_elec_wiring")}
+        os.makedirs(self.p("out"), exist_ok=True)
+        self.run("comp_fig.py", "out/compensator_section.png"); self.fresh.add("out/compensator_section.png")
 
     def scenes(self):
         if not os.path.exists(self.p("render/asm.json")): self.run("scene_final.py", "render")
