@@ -31,7 +31,7 @@ The two series links and every centre-to-edge run carry the full pack current, s
 
 ## Parts and tools
 
-Most of this is already in `BOM_hardware.csv`. The new items are the insulator rings, Kapton tape, a pack fuse and the cell tester.
+Most of this is already in the shopping list (`Parts_to_buy.csv`, guide section 4). The new items are the insulator rings, Kapton tape, a pack fuse and the cell tester.
 
 | Qty | Component | Description | Approx. Cost | Source |
 | --- | --- | --- | --- | --- |

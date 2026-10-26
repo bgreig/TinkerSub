@@ -76,10 +76,10 @@ python3 Source/build.py parts plates guide check
 | Camera pan-tilt | `geometry/pantilt_fit.py` (its `check()` sweeps the camera through its whole range inside the dome) |
 | Junction box and lid | `geometry/jbox.py` |
 | Part numbers, print notes, labels | `assembly/parts_final.py` |
-| Any screw: size, length, how many | `assembly/fasteners.py` (the shopping list takes its screw rows from here) |
+| Any screw: size, length, how many | `assembly/fasteners.py` (the shopping list counts its screws from here) |
 | Plate layouts in the 3MFs | `outputs/plates_*.json`; print settings in `outputs/make_3mf.py` |
-| Guide text, shopping list (prices) | `guide/build_guide_final.py` |
-| Anything bought: size, quantity (the guide's "Everything to buy" page, `Parts_to_buy.csv`) | `assembly/purchases.py` |
+| Guide text | `guide/build_guide_final.py` |
+| Anything bought: size, quantity, price, source (the guide's shopping list, `Parts_to_buy.csv`) | `assembly/purchases.py` |
 | A picture's camera angle | `render/views/*.json` |
 
 ## The fastener check
@@ -90,7 +90,7 @@ Every round hole of screw size in every printed part is placed in the assembled 
 - **UNMATED**: a hole that lines up with nothing. This is how a misaligned hole shows up (the top-arm inserts were 0.75 mm off the plate holes). Holes for bought parts that aren't in the model are listed in `NOT_JOINTS` with the reason.
 - **LENGTH / ROOM**: the screw in the table is too short, too long, or its head or nut doesn't fit.
 - **UNDECLARED / COUNT**: a joint the table doesn't know, or a different number of them.
-- **SHOPPING LIST / GUIDE TEXT**: the list or the guide names a screw size the table doesn't have.
+- **GUIDE TEXT**: the guide names a screw size the table doesn't have. (The shopping list counts its screws, nuts and inserts from this table, so it can't disagree.)
 
 To change a screw, change `assembly/fasteners.py` and rebuild: the report gives the lengths that fit each joint.
 

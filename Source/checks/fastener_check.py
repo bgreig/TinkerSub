@@ -382,8 +382,6 @@ def verdicts(joints, FT, guide_text=None):
     for d in FT.JOINTS:
         n = len(found[d["name"]])
         if n != d["n"]: errors.append(f"COUNT: {d['name']}: the table says {d['n']}, the model has {n}")
-        row = FT.ROWS[d["row"]]
-        if f"{d['size']} x {d['length']}" not in row[2]: errors.append(f"SHOPPING LIST: row '{row[3]}' doesn't name {d['size']} x {d['length']} for {d['name']}: '{row[2]}'")
         js = found[d["name"]]
         if js:
             lo = max(j["length_ok"][0] for j in js) + FT.SHIM.get(d["name"], 0); hi = min(j["length_ok"][1] for j in js) + FT.SHIM.get(d["name"], 0)

@@ -9,12 +9,12 @@ Part #,Bambu project,Section,File,Qty,Filament,Print notes,Used for,Est. filamen
 608,TinkerSub_KB-1_Frame.3mf,Stations + brackets,STL/6_Stations_and_brackets/608_rov_bracket_corner_b.stl,2,"PETG, black","Plate face down. 5 walls, 40 %. 4x M3 + 2x M5 inserts.",Front-starboard + rear-port thruster bracket,53
 106,TinkerSub_KB-1_Frame.3mf,Thruster pylons,STL/1_Thrusters/106_pylon_clamp.stl,6,"PETG, black","Rear end down, no supports. M4 + M3 inserts.",Clamps each thruster body,90
 701,TinkerSub_KB-1_Frame.3mf,Belly pan,STL/7_Belly_pan/701_rov_belly_pan.stl,1,"PETG, black","Floor down, no supports.",Lead ballast tray under the pod,107
-801,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/801_rov_cowl_rear_port.stl,1,"PETG, yellow",Rear end down. The 3 mm shell prints solid.,"Top cowl, rear, port (v2)",196
-802,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/802_rov_cowl_rear_stbd.stl,1,"PETG, yellow",Rear end down.,"Top cowl, rear, starboard (v2)",196
-803,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/803_rov_cowl_mid_port.stl,1,"PETG, yellow",Seam face down. Tree supports (vertical thruster sleeve).,"Top cowl, middle, port (v2)",231
-804,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/804_rov_cowl_mid_stbd.stl,1,"PETG, yellow",Seam face down. Tree supports.,"Top cowl, middle, starboard (v2)",231
-805,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/805_rov_cowl_front_port.stl,1,"PETG, yellow",Nose down (light sleeve vertical).,"Top cowl, front, port (v2)",218
-806,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/806_rov_cowl_front_stbd.stl,1,"PETG, yellow",Nose down.,"Top cowl, front, starboard (v2)",218
+801,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/801_rov_cowl_rear_port.stl,1,"PETG, yellow",Rear end down. The 3 mm shell prints solid.,"Top cowl, rear, port",196
+802,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/802_rov_cowl_rear_stbd.stl,1,"PETG, yellow",Rear end down.,"Top cowl, rear, starboard",196
+803,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/803_rov_cowl_mid_port.stl,1,"PETG, yellow",Seam face down. Tree supports (vertical thruster sleeve).,"Top cowl, middle, port",231
+804,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/804_rov_cowl_mid_stbd.stl,1,"PETG, yellow",Seam face down. Tree supports.,"Top cowl, middle, starboard",231
+805,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/805_rov_cowl_front_port.stl,1,"PETG, yellow",Nose down (light sleeve vertical).,"Top cowl, front, port",218
+806,TinkerSub_KB-1_Frame.3mf,Top cowl (YELLOW),STL/8_Top_cowl_YELLOW/806_rov_cowl_front_stbd.stl,1,"PETG, yellow",Nose down.,"Top cowl, front, starboard",218
 101,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/101_housing_no_foot.stl,6,"PETG, black","Threaded rear end down, brim, 5 walls.",Thruster body + Kort duct,410
 102,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/102_tail_cone_comp.stl,6,"PETG, black","Tip down, brim. Tap the tip M12 x 1.5.",Tail cone with oil compensator,80
 103,TinkerSub_KB-1_Core.3mf,Thrusters,STL/1_Thrusters/103_prop_hub_RH.stl,3,"PETG, black","Back face down, tree supports under the blades.",Right-hand prop,81
@@ -39,7 +39,7 @@ Part #,Bambu project,Section,File,Qty,Filament,Print notes,Used for,Est. filamen
 303,TinkerSub_KB-1_Core.3mf,Battery pod,STL/3_Battery_pod/303_rov_pod_endcap_3in_front.stl,1,"PETG, black",Plate down. SOLID: 100 % infill (holds water out).,"3"" pod front cap, blank (no holes)",110
 305,TinkerSub_KB-1_Core.3mf,Battery pod,STL/3_Battery_pod/305_rov_cell_plate_8_v2.stl,6,"PETG, black",Grooved face down.,18650 holder plate,110
 306,TinkerSub_KB-1_Core.3mf,Battery pod,STL/3_Battery_pod/306_rov_cell_spacer_3mm.stl,8,"PETG, black",Flat.,Rod spacer between groups,1
-401,TinkerSub_KB-1_Core.3mf,Lights,STL/4_Lights/401_rov_light_rear_body.stl,2,"PETG, black",Socket end down. 5 walls. (ASA also fine.),Light head rear body (v2),38
+401,TinkerSub_KB-1_Core.3mf,Lights,STL/4_Lights/401_rov_light_rear_body.stl,2,"PETG, black",Socket end down. 5 walls. (ASA also fine.),Light head rear body,38
 402,TinkerSub_KB-1_Core.3mf,Lights,STL/4_Lights/402_rov_light_front_ring.stl,2,"PETG, black",Front face down. SOLID: 100 % infill (seals the window).,Light head front ring,14
 403,TinkerSub_KB-1_Core.3mf,Lights,STL/4_Lights/403_rov_light_spacer.stl,2,"PETG, black",Flat.,Window spacer,3
 501,TinkerSub_KB-1_Core.3mf,Junction boxes,STL/5_Junction_boxes/501_rov_junction_box.stl,1,"PETG, black","Base down, no supports. 5 walls.","Junction box: 6 thruster + 2 light SP13 sockets, 12-core + 4-core out",38

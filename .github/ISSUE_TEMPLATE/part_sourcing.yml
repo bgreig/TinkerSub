@@ -6,7 +6,7 @@ body:
     id: part
     attributes:
       label: Part
-      description: As named in BOM_hardware.csv
+      description: As named in the shopping list (Parts_to_buy.csv, guide section 4)
     validations:
       required: true
   - type: textarea
