@@ -20,11 +20,16 @@
   ]
  ],
  [
-  "Thruster pylons, corner brackets + junction deck",
+  "Thruster pylons + corner brackets",
   [
    "106",
    "607",
-   "608",
+   "608"
+  ]
+ ],
+ [
+  "Junction deck",
+  [
    "606"
   ]
  ],

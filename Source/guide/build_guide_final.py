@@ -54,7 +54,7 @@ HW = [
  ("Cowl", "8 + 8", "M3 x 20 SHCS + M3 heat-set inserts", "Cowl feet to the side plates", "$4", "Amazon"),
  ("Cowl", "2", "M3 x 8 set screw", "Locks each light head in its sleeve", "$1", "Hardware store"),
  ("Cowl", "1.0-1.7 L", "Depth-rated closed-cell foam (PVC core foam such as H80, or 2-lb closed-cell PU)", "Blocks inside the cowl. Not pink/blue insulation board: it crushes at depth", "$20-35", "Composites supplier / Amazon"),
- ("Junction box", "2 + 4 + 6", "M3 x 10 SHCS (deck), M3 x 8 SHCS (box), M3 heat-set inserts", "Deck to station ribs (2); box to deck (4 inserts in the deck)", "$3", "Hardware store"),
+ ("Junction box", "4 + 4 + 8", "M3 x 10 SHCS (deck), M3 x 8 SHCS (box), M3 heat-set inserts", "Deck to both stations' ribs (4); box to deck (4 inserts in the deck)", "$3", "Hardware store"),
  ("Junction box", "4 + 4", "M3 x 8 countersunk screws + M3 heat-set inserts", "Lid 503 to the box bosses", "$2", "Hardware store"),
  ("Junction box", "6 pairs", "SP13 IP68 2-pin connector, panel socket (rear nut) + cable plug, 4-6.5 mm cable", "Thrusters T1-T6 plug into the box sides", "$18-25", "Amazon / AliExpress"),
  ("Junction box", "2 pairs", "SP13 IP68 3-pin connector, panel socket (rear nut) + cable plug", "Lights L1, L2 on the front face (3-pin so they can't go in a motor socket)", "$6-9", "Amazon / AliExpress"),
@@ -392,9 +392,9 @@ def build_pdf(path):
                  "so you can build them while the rest prints.",
                  "Then TinkerSub_KB-1_Core.3mf plates 5-10: hull rear flange, cap and sled bulkheads (5); dome flange and camera pan-tilt (6); "
                  "dome ring, lights and junction box with lid (7); sled rails and deck (8); battery pod (9); battery pack plates and spacers (10).",
-                 "TinkerSub_KB-1_Frame.3mf plates 1-5 in black: station tops (1), station middles (2), station bottoms (3), "
-                 "thruster pylons, corner brackets and junction deck (4), belly pan (5).",
-                 "Change to yellow PETG for TinkerSub_KB-1_Frame.3mf plates 6-8: the six top cowl sections, rear, middle and front. "
+                 "TinkerSub_KB-1_Frame.3mf plates 1-6 in black: station tops (1), station middles (2), station bottoms (3), "
+                 "thruster pylons and corner brackets (4), junction deck (5), belly pan (6).",
+                 "Change to yellow PETG for TinkerSub_KB-1_Frame.3mf plates 7-9: the six top cowl sections, rear, middle and front. "
                  "Each plate's name says YELLOW and no plate mixes colours.",
                  "Check every part against the list below as it comes off. Every part has its part number cut into it, so they can't get mixed up."]),
           Paragraph(f"TinkerSub_KB-1_Frame.3mf  ({N_A} parts)", H2), parts_table(PRINTED_A),
@@ -792,7 +792,7 @@ def build_pdf(path):
           Paragraph("Two stations, 60 mm either side of the hull centre, clamp the hull and pod together. Each is 5 printed parts: a top in two halves "
                     "(port and starboard) with the upper arms, a middle piece between the hull and the pod, and a bottom in two halves with the lower arms. "
                     "The side plates bolt to the arm ends.", BODY),
-          fig(C("f_station.png"), "Both stations exploded around the hull and pod; junction deck and box on the rear station.", max_h=3.0*inch),
+          fig(C("f_station.png"), "Both stations exploded around the hull and pod; the junction deck spans both, the box sits over the rear station.", max_h=3.0*inch),
           steps(["Inserts: 2x M5 in each arm end (top and bottom halves), 1x M3 in the top of each deck rib, 1x M4 under each lower arm (belly hanger). "
                  "Push M4 nuts into the hex pockets under the middle piece's hull ears and under the bottom halves' pod ears.",
                  "Mark 60 mm ahead of and behind the hull's centre on the hull and the same on the pod. Hull upside down on a towel: lay a middle piece (603) at each mark, "
@@ -849,7 +849,8 @@ def build_pdf(path):
                  "Pass the 12-core and 4-core in through the back exits. Solder the 12-core pairs to the motor socket cups, one pair per socket, and the 4-core to the light sockets "
                  "as two separate pairs, L1 +/- and L2 +/-. Never join the two LED - wires: each LDD-700HW output is its own current loop. "
                  "Sleeve every cup with heat-shrink and note which core colours go to which socket.",
-                 "Screw the deck (606) to the rear station's two ribs with 2 M3 x 10, then the box to the deck where it says JUNCTION BOX, 4 M3 x 8 down through the floor.",
+                 "Screw the deck (606) to the ribs of both stations with 4 M3 x 10 (2 into each station top), then the box to the deck where it says JUNCTION BOX, "
+                 "4 M3 x 8 down through the floor. (A 606 printed before 2026-10-26 is shorter and reaches only the rear station: reprint it, it is stiffer.)",
                  "Test every socket for continuity to the hull end of its cable before potting. Then pour potting compound in thin layers, tapping out bubbles, until it covers the "
                  "socket cups and the floor screws but stays a few mm below the lid bosses. The potting is what keeps the box waterproof: the sockets are only splash-rated. Let it cure fully.",
                  "Screw the lid (503) on with 4 M3 x 8 countersunk screws. The socket map on the lid matches the labels on the sides.",
@@ -985,7 +986,7 @@ def build_pdf(path):
           fig(C("f_exploded.png"), "Exploded.", max_h=3.4*inch), fig(C("f_under.png"), "From below.", max_h=2.6*inch),
           table(["Item", "z (mm)", "Notes"], [
               ["Side plates (HDPE)", "-238 to +240", "x +/-156.5 to 169.2 (12.7 thick), y -202 (skid edge) to +98 (300 mm tall)"],
-              ["Rear station", "-72 to -48", "Junction deck on top"], ["Front station", "+48 to +72", ""],
+              ["Rear station", "-72 to -48", "Junction deck on top, under the box"], ["Front station", "+48 to +72", "Front end of the junction deck"],
               ["Vertical thrusters", "-8", "T5 / T6 on the plates"], ["Corner thrusters", "about +/-118", "T1-T4 on 45 deg brackets"],
               ["Top cowl", "-212 to +236", "Splits at -62 and +87, and on the centreline"],
               ["Belly pan", "-112 to +112", "Under the pod"], ["Hull / dome", "-223 to +270", "Electronics only"],
@@ -1197,7 +1198,7 @@ IKEA = [
       "12-core + 4-core cable", "Potting compound"],
      ["Sockets into the box from outside, nuts inside: T1-T6 on the sides, L1 / L2 at the front. M3 inserts in the lid bosses.",
       "12-core and 4-core in through the back. One pair per socket; never join the two LED - wires.",
-      "Deck 606 onto the rear station ribs (2 M3 x 10), box onto the deck (4 M3 x 8).",
+      "Deck 606 onto both stations' ribs (4 M3 x 10), box onto the deck (4 M3 x 8).",
       "Check every socket for continuity, then pot in thin layers below the lid bosses. Cure. Lid on.",
       "Thruster leads up the plates to their sockets with a drip loop: SP13 plugs, dielectric grease, hand-tight."]),
     ("Wire it, test it on the bench, slide the sled in", "16", "f_ik_sledin.png", [("201", 1), ("202", 1)],

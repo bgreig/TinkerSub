@@ -29,7 +29,7 @@ Tested with Python 3.13 on Linux.
 | `3mf` | Bambu Studio projects (Frame, Core, Reprint) and their plate maps | `outdir/` |
 | `step` | STEP files for Fusion 360 and other CAD apps, and the positioned mesh assembly. Slow (the assembly is 146 MB): not part of `all` unless you add `--step` | `out_final/step/` |
 | `figures` | Drawn figures: thruster layout, pan-tilt fit diagram, side-plate figures, the compensator section, the two schematic sheets, the wiring diagram and the wire list | `render/final/crop/`, `out/compensator_section.png` |
-| `scenes` | 3D scenes for the renders: the assembly, the lights, the electronics sled, the heat-set insert map, single parts | `render/*.json` |
+| `scenes` | 3D scenes for the renders: the assembly, the lights, the electronics sled, the heat-set insert map, single parts; and the interactive viewer's data (`guide/viewer_scene.py`: every part, the electronics and the cables) | `render/*.json`, `render/viewer/` |
 | `renders` | Renders every view in `render/views/*.json` in headless Chromium | `render/final/crop/` |
 | `guide` | Builds the guide PDF and the whole generated package | `outdir/TinkerSub_KB-1_Build_Package/` |
 | `check` | Compares the package with the repository, file by file | a list: same / equivalent / changed / new |
@@ -51,7 +51,7 @@ python3 Source/build.py parts plates guide check
 | `outputs/` | `make_3mf.py` (Bambu projects; plate layouts in `plates_*.json`, print profile in `ps.json`), `plate_preview.py` (plate maps), `plate_templates_final.py` and `plate_stl_final.py` (side plates), `make_step.py` + `step_export.py` (STEP), `viewer_and_mesh.py` (mesh assembly). |
 | `checks/` | `fastener_check.py` (with `holes.py`) checks every screw joint, run by the build. `print_review.py` checks every printed part for bed fit, loose columns, floating islands, overhangs and thin walls. `insert_walls.py` checks the plastic round every heat-set insert hole. |
 | `guide/` | The guide (`build_guide.py` styles and helpers, `build_guide_final.py` all the text) and everything that makes its pictures: `scene_final.py`, `light_scene.py`, `elec_scene.py`, `part_scenes.py`, `insert_map.py` (scenes), `pantilt_fig.py`, `plate_figs.py`, `comp_fig.py`, `elec_drawings.py` (figures). `package_images.py` says where each picture lives in the package. |
-| `render/` | The renderer: `render.html` (parts and assembly), `render_ikea.html` (picture-by-picture pages), `render_real.html` (electronics), three.js, and the drivers `shoot.py` / `shoot_real.py`. `views/` holds the camera shots, one JSON file per kind of picture. |
+| `render/` | `viewer.html` is the interactive 3D viewer (spin, explode, show/hide, click a part): serve it next to `build/render/viewer/*.json`. The renderer: `render.html` (parts and assembly), `render_ikea.html` (picture-by-picture pages), `render_real.html` (electronics), three.js, and the drivers `shoot.py` / `shoot_real.py`. `views/` holds the camera shots, one JSON file per kind of picture. |
 | `inputs/` | Parts drawn in CAD rather than generated, read in as they are (below). |
 
 ## Inputs

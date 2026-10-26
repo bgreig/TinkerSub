@@ -1,5 +1,5 @@
 Group,Qty,Component,Description,Approx. Cost,Source
-Filament,~2.8 kg,"PETG, black","Every printed part except the cowl (includes ~10 % for brims, supports, failed prints)",$45-60,Bambu / Amazon
+Filament,~2.9 kg,"PETG, black","Every printed part except the cowl (includes ~10 % for brims, supports, failed prints)",$45-60,Bambu / Amazon
 Filament,~1.5 kg,"PETG, yellow",The six top cowl sections,$20-25,Bambu / Amazon
 Thrusters (x6),6,1200 GPH bilge pump motor cartridge,,$20-25 each,Amazon / marine store
 Thrusters (x6),6,Brass shaft coupler 3 -> 5 mm,"Ream the 3 mm end to 1/8""",$12,Amazon
@@ -22,7 +22,7 @@ Cowl,18 + 18,M3 x 20 SHCS + M3 nyloc,Cowl centre and section seams,$6,Hardware s
 Cowl,8 + 8,M3 x 20 SHCS + M3 heat-set inserts,Cowl feet to the side plates,$4,Amazon
 Cowl,2,M3 x 8 set screw,Locks each light head in its sleeve,$1,Hardware store
 Cowl,1.0-1.7 L,"Depth-rated closed-cell foam (PVC core foam such as H80, or 2-lb closed-cell PU)",Blocks inside the cowl. Not pink/blue insulation board: it crushes at depth,$20-35,Composites supplier / Amazon
-Junction box,2 + 4 + 6,"M3 x 10 SHCS (deck), M3 x 8 SHCS (box), M3 heat-set inserts",Deck to station ribs (2); box to deck (4 inserts in the deck),$3,Hardware store
+Junction box,4 + 4 + 8,"M3 x 10 SHCS (deck), M3 x 8 SHCS (box), M3 heat-set inserts",Deck to both stations' ribs (4); box to deck (4 inserts in the deck),$3,Hardware store
 Junction box,4 + 4,M3 x 8 countersunk screws + M3 heat-set inserts,Lid 503 to the box bosses,$2,Hardware store
 Junction box,6 pairs,"SP13 IP68 2-pin connector, panel socket (rear nut) + cable plug, 4-6.5 mm cable",Thrusters T1-T6 plug into the box sides,$18-25,Amazon / AliExpress
 Junction box,2 pairs,"SP13 IP68 3-pin connector, panel socket (rear nut) + cable plug","Lights L1, L2 on the front face (3-pin so they can't go in a motor socket)",$6-9,Amazon / AliExpress

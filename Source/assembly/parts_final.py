@@ -106,7 +106,7 @@ LABELS = {
                         L("PICO", (85, 50), 5), L("12V POWER", (165, 88), 4.5), L("MOTOR DRIVERS", (150, 50), 4.5),
                         L("LED DRIVERS", (150, 14), 4), L("BUCK 5V", (200, 75), 4), L("FUSE", (205, 30), 4)],
  "rov_sled_bulkhead_rear": [L("REAR - GLAND SIDE", (0, 0), 4)],
- "rov_junction_deck": [L("JUNCTION BOX", (0, 0), 5, "bottom")],
+ "rov_junction_deck": [L("JUNCTION BOX", (0, -51), 5, "bottom")],   # under the box: the deck runs on forward over the front station
  "rov_station_top_port": [L("PORT", None, 6)], "rov_station_top_stbd": [L("STBD", None, 6)],
  "rov_station_bot_port": [L("PORT", None, 6)], "rov_station_bot_stbd": [L("STBD", None, 6)],
  "rov_bracket_corner_a": [L("A  FP/RS", None, 5)], "rov_bracket_corner_b": [L("B  FS/RP", None, 5)],

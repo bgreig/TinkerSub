@@ -2,6 +2,10 @@
 
 Changes to the TinkerSub KB-1 files. Part numbers are the three digits debossed on each printed part.
 
+## 2026-10-26
+- **606 junction deck v2:** the deck hung off the rear station alone (2 screws in one row, 86 mm overhang) and flexed. It now runs forward over both stations and screws to each, 4 x M3 x 10 into the inserts both station tops already had. 104 x 218 mm; prints on its own plate (Frame plate 5; belly pan and cowl plates move to 6 and 7-9). A 606 printed before this: reprint it.
+- Interactive 3D viewer data (`Source/guide/viewer_scene.py`, run by the `scenes` step) and the viewer page (`Source/render/viewer.html`): every part, the sled electronics and harness, and the cables outside the hull.
+
 ## 2026-10-25
 - **102 tail cone v2:** the compensator nipple sat under the spigot lip, 10 mm down, so the finger cot was very hard to fit and impossible to tie. The nipple now stands clear of the lip with its tip 2.5 mm below the rim: the cot pushes straight down over it, and a 5 x 1.5 mm O-ring rolled into a groove holds it (no tie). The vent runs down the nipple and out of the cone's side at 45 degrees, clear of the gland. Tail cones printed before this: reprint them (about 25 g each).
 - Guide 4.1 **Everything to buy** (new page before the prices) and `Parts_to_buy.csv`: every bought part for one ROV with its total quantity and exact size. Screw, nut and insert counts come from `Source/assembly/fasteners.py`; the insert totals are checked against the Appendix B chart at build time. List in `Source/assembly/purchases.py`.

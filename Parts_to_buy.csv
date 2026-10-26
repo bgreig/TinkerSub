@@ -1,11 +1,11 @@
 Group,Qty,Item (exact size),Used for
-Printed parts,2.8 kg,"PETG filament, black",every printed part except the cowl (includes ~10 % for brims and reprints)
+Printed parts,2.9 kg,"PETG filament, black",every printed part except the cowl (includes ~10 % for brims and reprints)
 Printed parts,1.5 kg,"PETG filament, yellow",the six top cowl sections
 Fasteners,6,"M2.5 x 25 mm socket head cap screw, stainless",light head: ring + disc to body
 Fasteners,18,"M3 x 8 mm button head screw, stainless",nose cone to prop hub
 Fasteners,4,"M3 x 8 mm socket head cap screw, stainless",junction box to deck
 Fasteners,4,"M3 x 8 mm countersunk screw, stainless",junction box lid
-Fasteners,8,"M3 x 10 mm socket head cap screw, stainless",junction deck to station rib; radial flange screw through the pipe
+Fasteners,10,"M3 x 10 mm socket head cap screw, stainless",junction deck to station rib; radial flange screw through the pipe
 Fasteners,6,"M3 x 12 mm socket head cap screw, stainless",dome ring
 Fasteners,22,"M3 x 16 mm socket head cap screw, stainless",corner pylon to bracket; hull rear cap
 Fasteners,28,"M3 x 20 mm socket head cap screw, stainless","station top halves, centre rib; cowl centre seam; cowl section seam; cowl foot to side plate"

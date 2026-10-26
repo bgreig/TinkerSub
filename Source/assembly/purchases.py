@@ -15,7 +15,7 @@ import fasteners as FT
 HEAD = {"SHCS": "socket head cap screw", "button": "button head screw", "csk": "countersunk screw"}
 NUT = {"M3": "M3 nyloc nut", "M4": "M4 hex nut"}             # every nut joint: M3 ones are nyloc, the M4 station joints plain
 WASHERS = {"Vertical pylon through the plate": ("M3 washer, 1 mm thick (shim)", 1)}   # per joint
-EXTRA_INSERTS = Counter({"M3": 2})   # 601 and 602 both carry the junction-deck insert; only one station uses it (NOT_JOINTS)
+EXTRA_INSERTS = Counter()   # inserts the model has but no joint uses (none since the 2026-10-26 deck screws to both stations)
 
 def fastener_lines():
     """[(qty, description, used for)] counted from the fastener table"""

@@ -155,7 +155,9 @@ R_H, R_P = A.FC.R_IN, FC.POD4_R
 DECK_Y, DECK_T = 72.0, 5.0
 ST_Z = (-60.0, 60.0)                     # station centres (world z); also set below
 JB_ZC = -88.0                            # junction box centre (world z): front thruster plugs clear the cowl's vertical-thruster ducts
-DECK_Z = (JB_ZC - ST_Z[0] + ST_W/2 - 58.0, JB_ZC - ST_Z[0] + ST_W/2 + 58.0)   # station-local z under the 116 mm box
+# (2026-10-26) v2: the deck runs from under the junction box forward over BOTH stations and screws to each (4 x M3).
+# v1 hung off the rear station alone (2 screws in one row, 86 mm overhang behind): it flexed.
+DECK_Z = (JB_ZC - ST_Z[0] + ST_W/2 - 58.0, ST_Z[1] - ST_Z[0] + ST_W)          # station-local z (rear station's start = 0)
 def arm(sgn, y0, y1, x_in, yc):
     a = box(*sorted((sgn*x_in, sgn*XP)), y0, y1, 0, ST_W)
     for dz in (-6.0, 6.0):                                                    # 2x M5 heat-set inserts in the arm end
@@ -177,9 +179,10 @@ def st_top():
     for sgn in (-1, 1): s = s - RP.ycyl(2.0, DECK_Y - 8, DECK_Y + 1, sgn*40, ST_W/2)   # M3 inserts: junction deck screws
     return s
 def junction_deck():
-    """separate flat plate screwed onto the rear station's ribs; the junction box (501) screws to it"""
+    """flat plate screwed onto the ribs of both stations (2 x M3 each); the junction box (501) screws to it"""
     d = box(-52, 52, DECK_Y, DECK_Y + DECK_T, *DECK_Z)
-    for sgn in (-1, 1): d = d - RP.ycyl(1.7, DECK_Y - 1, DECK_Y + DECK_T + 1, sgn*40, ST_W/2)
+    for zs in (ST_W/2, ST_W/2 + ST_Z[1] - ST_Z[0]):                            # rear and front station ribs
+        for sgn in (-1, 1): d = d - RP.ycyl(1.7, DECK_Y - 1, DECK_Y + DECK_T + 1, sgn*40, zs)
     for x in (-20.0, 20.0):                                                   # junction box screws: M3 inserts
         for dz in (-36.0, 36.0): d = d - RP.ycyl(2.0, DECK_Y - 1, DECK_Y + DECK_T + 1, x, ST_W/2 + (JB_ZC - ST_Z[0]) + dz)
     return d

@@ -136,6 +136,7 @@ class Build:
         if not os.path.exists(self.p("render/asm.json")): self.run("scene_final.py", "render")
         self.run("light_scene.py", "render/asm.json", "render")
         self.run("elec_scene.py", "rov_viewer/assembly_v6.json", "render")
+        self.run("viewer_scene.py", "render/asm.json", "render/elec_scene.json", "render/viewer")   # the interactive 3D viewer's data
         self.run("insert_map.py", "out_lbl", "render", "render/inserts.json")
         self.run("part_scenes.py", "out_lbl", "render")
         if not os.path.exists(self.p("render/parts901.json")): self.run("plate_figs.py", "render/final/crop", "render")
