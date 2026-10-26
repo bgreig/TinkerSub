@@ -10,7 +10,8 @@ STEPS = ("thr_ex", "thr_as", "sled", "hull", "pod", "pack", "light_ex", "light_a
          "thrusters", "belly", "deck", "cowl", "tile", "pantilt", "pantilt_top", "pantilt_fit")
 ELECTRONICS = (("e_layout_top", "sled_top_face"), ("e_layout_bot", "sled_bottom_face"), ("e_stack", "stacked_pair"), ("e_rear", "rear_bay"),
                ("e_wire_port", "harness_port"), ("e_wire_stbd", "harness_starboard"), ("e_hull", "sled_in_hull"),
-               ("elec_sch1", "schematic_1_power_and_drivers"), ("elec_sch2", "schematic_2_control_and_lights"), ("elec_wiring", "wiring_diagram"))
+               ("elec_sch1", "schematic_1_power_and_drivers"), ("elec_sch2", "schematic_2_control_and_lights"), ("elec_wiring", "wiring_diagram"),
+               ("elec_pico", "pin_map_pico"), ("elec_pizero", "pin_map_pi_zero"))
 LABELS = ("L_bh215", "L_deck", "L_deck214", "L_jbox", "L_rearcap", "L_station")          # label close-ups (no generator: kept as pictures)
 PICTURE_STEPS = ("sled", "pantilt", "hull", "pod", "stations", "plates", "belly", "jbox", "sledin", "cowl")   # Appendix B
 INSERT_PARTS = ("106", "201", "203", "301", "501", "601", "602", "604", "605", "606", "607", "608", "801", "802", "803", "804", "805", "806")

@@ -2,9 +2,10 @@
 Electronics drawings for the guide, written as SVG and rendered to PNG in headless Chromium:
   elec_sch1.png   schematic sheet 1: battery, fuses, 12 V bus, battery sense, six IBT_2 drivers and motors
   elec_sch2.png   schematic sheet 2: 5 V supply, Pico, Pi Zero, camera, Ethernet, servos, LED drivers and lights
+  elec_pico.png, elec_pizero.png  pin maps (which pin goes where), from PINS, the one pin-connection list
   elec_wiring.png wiring diagram: every wire by colour and gauge, from the hull glands through the rear bulkhead to the boards
 Net names: +12V (after F1), +12V_AUX (after F2), +5V (U9A out: Pi, Pico), +5V_SERVO (U9B out: servos only), 3V3 (Pico 3V3 OUT), GND (star point on the GND Wago).
-Pin numbers and nets match the electronics page (Pico pinout table) and the 3D wiring scene (elec_scene.py).
+Pin numbers and nets match the electronics page (pin table, written from PINS here) and the 3D wiring scene (elec_scene.py).
 usage: python3 elec_drawings.py <out_dir>
 """
 import sys, os
@@ -316,7 +317,7 @@ WIRES = [
  (16, "LIGHTS gland", "LDD 1 +Vo/-Vo, LDD 2 +Vo/-Vo", "4-core: two separate pairs"),
  (17, "TETHER gland", "HAT RJ45 (on the Pi)", "Cat6, inline coupler + 90-degree patch lead"),
  (18, "HAT hub input", "Pi Zero USB OTG", "micro-USB link board (comes with the HAT)"),
- (19, "IBT_2 header (each)", "Pico breakout terminals (see pinout)", "x 6: RPWM, LPWM, R_EN+L_EN, VCC, GND; Dupont at the IBT_2"),
+ (19, "IBT_2 header (each)", "Pico breakout terminals (see the pin table)", "x 6: RPWM, LPWM, R_EN+L_EN, VCC, GND; Dupont at the IBT_2"),
  (20, "Pi pins 6, 8, 10 (HAT stacking pins)", "Pico terminals 3, 2, 1", "soldered at the Pi: GND, TXD->GP1, RXD<-GP0"),
  (21, "U9A OUT+", "Pi pin 2 (5 V, HAT stacking pin)", "via the 5 V splice behind the Pi"),
  (22, "5 V splice; U9A OUT-", "D1 -> Pico VSYS (39); Pico GND (38)", "red + 1N5817; black"),
@@ -326,10 +327,149 @@ WIRES = [
 import json
 json.dump(WIRES, open(f"{OUT}/elec_wires.json", "w"))
 
+# ================================================================== pin maps: Pico and Pi Zero 2W, one line per connection
+# PINS is the one list: the pin drawings label from it and the guide's 9.6 table and Pin_connections.csv are written from it.
+# (board, pin, pin name, connects to, wire # in the wire list)
+TH = ("T1", "T2", "T3", "T4", "T5", "T6")
+PINS = [("Pico", 1, "GP0 (UART TX)", "Pi Zero pin 10 (RXD)", "20"), ("Pico", 2, "GP1 (UART RX)", "Pi Zero pin 8 (TXD)", "20"),
+        ("Pico", 3, "GND", "Pi Zero pin 6 (GND)", "20")]
+GNDPIN = {"T1": 3, "T2": 3, "T3": 8, "T4": 8, "T5": 13, "T6": 13}
+for k, t in enumerate(TH):
+    PINS.append(("Pico", 4 + k * 2 + (k >= 2) + (k >= 4), f"GP{2 + 2*k} (PWM)", f"{t} header RPWM", "19"))
+    PINS.append(("Pico", 5 + k * 2 + (k >= 2) + (k >= 4), f"GP{3 + 2*k} (PWM)", f"{t} header LPWM", "19"))
+PINS += [("Pico", GNDPIN[t], "GND", f"{t} header GND", "19") for t in TH]
+PINS += [("Pico", 18, "GND", "R1 10 k, ground leg (other leg on pin 20)", "-"), ("Pico", 18, "GND", "R2 10 k, ground leg (other leg on pin 19)", "-"),
+         ("Pico", 19, "GP14 (DIM)", "LDD 1 DIM", "24"), ("Pico", 19, "GP14 (DIM)", "LDD 2 DIM", "24"),
+         ("Pico", 19, "GP14 (DIM)", "R2 10 k (other leg on pin 18)", "-")]
+PINS += [("Pico", 20, "GP15 (ARM)", f"{t} header R_EN + L_EN (joined in the Dupont housing)", "19") for t in TH]
+PINS += [("Pico", 20, "GP15 (ARM)", "R1 10 k (other leg on pin 18)", "-"),
+         ("Pico", 21, "GP16 (PWM)", "Pan servo signal (orange lead)", "23"), ("Pico", 22, "GP17 (PWM)", "Tilt servo signal (orange lead)", "23"),
+         ("Pico", 31, "GP26 (ADC0)", "R3 33 k, other leg to the +12V Wago (hull side of F1)", "-"),
+         ("Pico", 31, "GP26 (ADC0)", "R4 10 k (other leg on pin 33)", "-"), ("Pico", 33, "AGND", "R4 10 k, ground leg", "-")]
+PINS += [("Pico", 36, "3V3 OUT", f"{t} header VCC", "19") for t in TH]
+PINS += [("Pico", 38, "GND", "U9A OUT- (5 V return)", "22"),
+         ("Pico", 39, "VSYS", "D1 1N5817, band end (D1's other end to the 5 V splice from U9A OUT+)", "22"),
+         ("Pi Zero", 2, "5V", "5 V splice from U9A OUT+ (soldered to the HAT's stacking pin)", "21"),
+         ("Pi Zero", 6, "GND", "Pico pin 3 (GND)", "20"), ("Pi Zero", 8, "GPIO14 (TXD)", "Pico pin 2 (GP1, UART RX)", "20"),
+         ("Pi Zero", 10, "GPIO15 (RXD)", "Pico pin 1 (GP0, UART TX)", "20"),
+         ("Pi Zero", "CSI", "camera connector", "Camera ribbon, 22-pin (contacts toward the board)", "-"),
+         ("Pi Zero", "USB", "USB OTG (middle port)", "ETH/USB HAT micro-USB link board", "18"),
+         ("ETH/USB HAT", "RJ45", "Ethernet", "Cat6 tether via the inline coupler and 90-degree patch lead", "17")]
+_BO = {"Pico": 0, "Pi Zero": 1, "ETH/USB HAT": 2}
+PINS.sort(key=lambda r: (_BO[r[0]], r[1] if isinstance(r[1], int) else 99))   # stable: board, then pin
+json.dump(PINS, open(f"{OUT}/elec_pins.json", "w"))
+
+PICO_NAMES = {1: "GP0", 2: "GP1", 3: "GND", 4: "GP2", 5: "GP3", 6: "GP4", 7: "GP5", 8: "GND", 9: "GP6", 10: "GP7", 11: "GP8", 12: "GP9", 13: "GND",
+              14: "GP10", 15: "GP11", 16: "GP12", 17: "GP13", 18: "GND", 19: "GP14", 20: "GP15", 21: "GP16", 22: "GP17", 23: "GND", 24: "GP18",
+              25: "GP19", 26: "GP20", 27: "GP21", 28: "GND", 29: "GP22", 30: "RUN", 31: "GP26", 32: "GP27", 33: "AGND", 34: "GP28", 35: "ADC_VREF",
+              36: "3V3 OUT", 37: "3V3_EN", 38: "GND", 39: "VSYS", 40: "VBUS"}
+PI_NAMES = {1: "3V3", 2: "5V", 3: "GPIO2", 4: "5V", 5: "GPIO3", 6: "GND", 7: "GPIO4", 8: "GPIO14 TXD", 9: "GND", 10: "GPIO15 RXD", 11: "GPIO17",
+            12: "GPIO18", 13: "GPIO27", 14: "GND", 15: "GPIO22", 16: "GPIO23", 17: "3V3", 18: "GPIO24", 19: "GPIO10", 20: "GND", 21: "GPIO9",
+            22: "GPIO25", 23: "GPIO11", 24: "GPIO8", 25: "GND", 26: "GPIO7", 27: "ID_SD", 28: "ID_SC", 29: "GPIO5", 30: "GND", 31: "GPIO6",
+            32: "GPIO12", 33: "GPIO13", 34: "GND", 35: "GPIO19", 36: "GPIO16", 37: "GPIO26", 38: "GPIO20", 39: "GND", 40: "GPIO21"}
+TEAL, P3V3 = "#0f7f86", "#b5462a"
+CAT = {"uart": GRN, "pwm": BLU, "gnd": INK, "ctrl": PUR, "servo": "#c2570c", "adc": TEAL, "5v": ORG, "3v3": P3V3, "res": "#9aa1a9"}
+TINT = {GRN: "#e9f5ec", BLU: "#e8f0fb", INK: "#eceef0", PUR: "#f1eaf9", "#c2570c": "#fcefe5", TEAL: "#e4f4f5", ORG: "#fdf1e2", P3V3: "#f9e9e5", "#9aa1a9": "#ffffff"}
+PICO_LBL = {1: ("to Pi pin 10 (RXD)", "uart"), 2: ("from Pi pin 8 (TXD)", "uart"), 3: ("Pi pin 6 + T1, T2 GND", "gnd"),
+            8: ("T3, T4 GND", "gnd"), 13: ("T5, T6 GND", "gnd"), 18: ("R1 + R2 ground legs", "gnd"),
+            19: ("DIM: LDD 1 + 2, R2", "ctrl"), 20: ("ARM: all six EN, R1", "ctrl"), 21: ("pan servo signal", "servo"), 22: ("tilt servo signal", "servo"),
+            26: ("reserved: I2C0 SDA", "res"), 27: ("reserved: I2C0 SCL", "res"), 29: ("reserved: leak probe", "res"),
+            31: ("battery sense: R3, R4", "adc"), 33: ("R4 ground leg", "gnd"), 36: ("VCC of all six IBT_2", "3v3"),
+            38: ("U9A OUT- (5 V return)", "gnd"), 39: ("5 V in, through D1", "5v")}
+for k, t in enumerate(TH):
+    PICO_LBL[4 + k * 2 + (k >= 2) + (k >= 4)] = (f"{t} RPWM", "pwm"); PICO_LBL[5 + k * 2 + (k >= 2) + (k >= 4)] = (f"{t} LPWM", "pwm")
+PI_LBL = {2: ("5 V in from U9A", "5v"), 6: ("Pico pin 3 (GND)", "gnd"), 8: ("to Pico pin 2 (GP1)", "uart"), 10: ("from Pico pin 1 (GP0)", "uart")}
+# the drawings and the table must agree: every connected pin labelled, every label backed by a connection
+for board, LBL in (("Pico", PICO_LBL), ("Pi Zero", PI_LBL)):
+    used = {r[1] for r in PINS if r[0] == board and isinstance(r[1], int)}
+    lab = {n for n, (_, c) in LBL.items() if c != "res"}
+    assert used == lab, (board, used ^ lab)
+    names = PICO_NAMES if board == "Pico" else PI_NAMES
+    for r in PINS:
+        if r[0] == board and isinstance(r[1], int): assert r[2].split(" ")[0] == names[r[1]].split(" ")[0], r
+
+def pill(s, x, y, text, cat, side):
+    col = CAT[cat]; w = 24 + 8.9 * len(text); h = 28
+    x0 = x - w if side == "L" else x
+    s.rect(round(x0, 1), y - h / 2, round(w, 1), h, TINT[col], col, 1.8 if cat != "res" else 1.2, 14, "4 3" if cat == "res" else None)
+    s.text(x0 + w / 2, y + 5.5, text, 15, col if cat != "gnd" else INK, "middle", 600 if cat != "res" else 500, italic=(cat == "res"))
+def pad(s, x, y, cat=None, square=False):
+    col = CAT[cat] if cat and cat != "res" else "#b9bec4"
+    if square: s.rect(x - 10, y - 10, 20, 20, "#fff", col, 3 if cat else 2, 2)
+    else: s.circle(x, y, 10, col, "#fff", 3 if cat else 2)
+    s.dot(x, y, col if cat and cat != "res" else "#cfd3d7", 4.5)
+def legend(s, x, y, items):
+    for i, (t, c) in enumerate(items):
+        xx = x + (i % 4) * 250; yy = y + (i // 4) * 30
+        s.rect(xx, yy - 9, 18, 18, TINT[CAT[c]], CAT[c], 1.8, 4); s.text(xx + 26, yy + 5, t, 14, INK)
+
+# ---------------- Pico, seen from above, USB at the top
+s = SVG(1100, 1110)
+title(s, "Raspberry Pi Pico: which pin goes where", "Seen from above with the USB socket at the top. The breakout's terminal numbers are the Pico's pin numbers.")
+bx0, bx1, by0, by1 = 425, 675, 128, 1000
+s.rect(bx0, by0, bx1 - bx0, by1 - by0, "#2f7d4a", "#1f5c35", 2.4, 14)
+s.rect(515, 108, 70, 44, "#c9ced3", "#7d848c", 2, 5); s.text(550, 100, "USB", 13, MUTED, "middle", 700)
+s.rect(505, 460, 90, 90, "#1d2125", "#1d2125", 1, 6); s.text(550, 510, "RP2040", 14, "#ffffff", "middle", 700)
+s.rect(526, 300, 48, 34, "#f2f2f2", "#7d848c", 1.6, 4); s.text(550, 352, "BOOTSEL", 12, "#ffffff", "middle", 600)
+s.text(550, 960, "pin 1 = square pad", 12.5, "#ffffff", "middle", 600)
+for i in range(20):
+    y = 170 + i * 41
+    for side, pin, x in (("L", i + 1, bx0 + 18), ("R", 40 - i, bx1 - 18)):
+        lbl = PICO_LBL.get(pin); cat = lbl[1] if lbl else None
+        pad(s, x, y, cat, square=(pin == 1))
+        s.text(x + (18 if side == "L" else -18), y + 5, str(pin), 14, "#ffffff", "start" if side == "L" else "end", 700)
+        nx = bx0 - 14 if side == "L" else bx1 + 14
+        s.text(nx, y + 5, PICO_NAMES[pin], 14.5, INK if cat and cat != "res" else MUTED, "end" if side == "L" else "start", 700 if cat and cat != "res" else 500)
+        if lbl:
+            lx = bx0 - 120 if side == "L" else bx1 + 120
+            tw = 9.2 * len(PICO_NAMES[pin]) + 10
+            s.line([(nx + (-tw if side == "L" else tw), y), (lx, y)], CAT[cat], 1.6)
+            pill(s, lx, y, lbl[0], cat, side)
+legend(s, 60, 1040, [("UART link to the Pi", "uart"), ("thruster PWM (IBT_2)", "pwm"), ("ARM / DIM", "ctrl"), ("servo signal", "servo"),
+                     ("battery sense (ADC)", "adc"), ("power in / out", "5v"), ("ground", "gnd"), ("not used / reserved", "res")])
+open(f"{OUT}/elec_pico.svg", "w").write(s.svg())
+
+# ---------------- Pi Zero 2W header, turned so it runs top to bottom (pin 1 at the top), with an orientation sketch
+s = SVG(1100, 1110)
+title(s, "Pi Zero 2W: which pin goes where", "Header seen from above, board turned so the header runs top to bottom (SD card at the top). The HAT's stacking pins carry the same numbers.")
+hx0, hx1 = 470, 530
+s.rect(hx0 - 22, 148, hx1 - hx0 + 44, 20 * 41 + 4, "#1d2125", "#1d2125", 1, 6)
+for i in range(20):
+    y = 170 + i * 41
+    for side, pin, x in (("L", 2 * i + 1, hx0), ("R", 2 * i + 2, hx1)):
+        lbl = PI_LBL.get(pin); cat = lbl[1] if lbl else None
+        pad(s, x, y, cat, square=(pin == 1))
+        s.text(x + (-34 if side == "L" else 34), y + 5, str(pin), 14, INK, "end" if side == "L" else "start", 700)
+        nx = x + (-72 if side == "L" else 72)
+        s.text(nx, y + 5, PI_NAMES[pin], 14.5, INK if cat else MUTED, "end" if side == "L" else "start", 700 if cat else 500)
+        if lbl:
+            lx = x + 220
+            s.line([(nx + 9.2 * len(PI_NAMES[pin]) + 10, y), (lx, y)], CAT[cat], 1.6); pill(s, lx, y, lbl[0], cat, side)
+s.text(hx0 - 34, 150 - 12, "inner row", 12, MUTED, "end"); s.text(hx1 + 34, 150 - 12, "board-edge row", 12, MUTED, "start")
+# orientation sketch: the Zero turned 90 degrees clockwise (header on the right, SD card at the top)
+ox, oy, sc = 830, 470, 6.2
+W_, H_ = 30 * sc, 65 * sc
+s.text(ox + W_ / 2, oy - 40, "How to hold the Pi", 15, INK, "middle", 700)
+s.rect(ox, oy, W_, H_, "#2f7d4a", "#1f5c35", 2.2, 14)
+s.rect(ox + W_ / 2 - 36, oy - 14, 72, 30, "#c9ced3", "#7d848c", 1.6, 3); s.text(ox + W_ / 2, oy + 32, "SD card", 12, "#ffffff", "middle", 600)
+s.rect(ox + W_ - 26, oy + 22, 18, H_ - 44, "#1d2125", "#1d2125", 1, 3)
+s.rect(ox + W_ - 26, oy + 24, 9, 9, "#ffffff", "#ffffff", 1, 1); s.line([(ox + W_ - 22, oy + 28), (ox + W_ + 40, oy + 28)], RED, 2)
+s.text(ox + W_ + 44, oy + 33, "pin 1", 13, RED, "start", 700)
+for k, (t, f) in enumerate((("mini HDMI", 0.22), ("USB (OTG)", 0.55), ("PWR IN", 0.78))):
+    yy = oy + H_ * f; s.rect(ox - 12, yy - 16, 26, 32, "#c9ced3", "#7d848c", 1.6, 3)
+    s.text(ox - 20, yy + 5, t, 12.5, INK if "OTG" in t else MUTED, "end", 700 if "OTG" in t else 500)
+s.text(ox - 20, oy + H_ * 0.55 + 21, "HAT link board", 12, BLU, "end", 600)
+s.rect(ox + W_ / 2 - 40, oy + H_ - 22, 80, 18, "#f2f2f2", "#7d848c", 1.4, 2); s.text(ox + W_ / 2, oy + H_ + 22, "camera (CSI)", 12.5, INK, "middle", 700)
+s.rect(ox + 40, oy + 160, 70, 70, "#1d2125", "#1d2125", 1, 4); s.text(ox + 75, oy + 200, "RP3A0", 12, "#ffffff", "middle", 600)
+s.text(60, 1000, "Only four header pins are used. Pins 2, 6, 8 and 10 are soldered at the HAT's stacking pins, 2-3 mm above the HAT.", 14, INK)
+s.text(60, 1022, "The camera ribbon goes in the CSI socket at the far end from the SD card; the HAT's link board plugs into the middle micro-USB (OTG).", 14, INK)
+legend(s, 60, 1062, [("UART link to the Pico", "uart"), ("5 V in", "5v"), ("ground", "gnd"), ("not used", "res")])
+open(f"{OUT}/elec_pizero.svg", "w").write(s.svg())
+
 # ------------------------------------------------------------------ render
 with sync_playwright() as p:
     b = p.chromium.launch()
-    for n in ("elec_sch1", "elec_sch2", "elec_wiring"):
+    for n in ("elec_sch1", "elec_sch2", "elec_wiring", "elec_pico", "elec_pizero"):
         svg = open(f"{OUT}/{n}.svg").read()
         import re
         w, h = map(int, re.search(r'width="(\d+)" height="(\d+)"', svg).groups())

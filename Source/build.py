@@ -126,9 +126,10 @@ class Build:
         self.run("plate_figs.py", crop, "render")
         os.makedirs(self.p("render/elec"), exist_ok=True)
         self.run("elec_drawings.py", "render/elec")
-        for n in ("elec_sch1", "elec_sch2", "elec_wiring"): shutil.copy(self.p("render/elec", n + ".png"), self.p(crop, f"f_{n}.png"))
+        for n in ("elec_sch1", "elec_sch2", "elec_wiring", "elec_pico", "elec_pizero"): shutil.copy(self.p("render/elec", n + ".png"), self.p(crop, f"f_{n}.png"))
         shutil.copy(self.p("render/elec/elec_wires.json"), self.p("render/elec_wires.json"))
-        self.fresh |= {f"{crop}/{f}.png" for f in ("f_layout", "f_pantilt_fit", "f_nest", "f_tile", "f_elec_sch1", "f_elec_sch2", "f_elec_wiring")}
+        shutil.copy(self.p("render/elec/elec_pins.json"), self.p("render/elec_pins.json"))
+        self.fresh |= {f"{crop}/{f}.png" for f in ("f_layout", "f_pantilt_fit", "f_nest", "f_tile", "f_elec_sch1", "f_elec_sch2", "f_elec_wiring", "f_elec_pico", "f_elec_pizero")}
         os.makedirs(self.p("out"), exist_ok=True)
         self.run("comp_fig.py", "out/compensator_section.png"); self.fresh.add("out/compensator_section.png")
 
@@ -173,6 +174,10 @@ class Build:
             import csv
             rows = list(csv.reader(open(os.path.join(ROOT, "Wire_list.csv"))))[1:]
             json.dump([[int(r[0]), r[1], r[2], r[3]] for r in rows], open(self.p("render/elec_wires.json"), "w"))
+        if not os.path.exists(self.p("render/elec_pins.json")):     # pin table back from the repository's CSV
+            import csv
+            rows = list(csv.reader(open(os.path.join(ROOT, "Pin_connections.csv"))))[1:]
+            json.dump([[r[0], int(r[1]) if r[1].isdigit() else r[1], r[2], r[3], r[4]] for r in rows], open(self.p("render/elec_pins.json"), "w"))
         if not os.path.exists(self.p("render/inserts.json")): self.run("insert_map.py", "out_lbl", "render", "render/inserts.json")
         import trimesh                                      # part volumes (labelled parts, as printed) for the filament estimates
         vols = {}

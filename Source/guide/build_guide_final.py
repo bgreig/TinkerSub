@@ -56,16 +56,6 @@ ELEC_SECTION = [
  ("Wire", "1 set", "Dupont female housings + 22 AWG hook-up wire, crimp splices", "Logic bundles (Dupont at the IBT_2 headers, bare ends into the Pico terminals), UART, DIM, 5 V", "$8", "Amazon"),
  ("Misc", "-", "Zip ties 2.5-3.6 mm, heat-shrink assortment", "Boards, harness ties, every splice", "$8", "Any"),
 ]
-PINOUT = [
- ["1", "GP0", "UART0 TX", "Pi RXD, pin 10"], ["2", "GP1", "UART0 RX", "Pi TXD, pin 8"], ["3", "GND", "ground", "Pi pin 6; T1, T2 bundle GND"],
- ["4 / 5", "GP2 / GP3", "T1 RPWM / LPWM", "IBT_2 T1"], ["6 / 7", "GP4 / GP5", "T2 RPWM / LPWM", "IBT_2 T2"], ["8", "GND", "signal ground", "T3, T4 bundle GND"],
- ["9 / 10", "GP6 / GP7", "T3 RPWM / LPWM", "IBT_2 T3"], ["11 / 12", "GP8 / GP9", "T4 RPWM / LPWM", "IBT_2 T4"], ["13", "GND", "signal ground", "T5, T6 bundle GND"],
- ["14 / 15", "GP10 / GP11", "T5 RPWM / LPWM", "IBT_2 T5"], ["16 / 17", "GP12 / GP13", "T6 RPWM / LPWM", "IBT_2 T6"],
- ["19", "GP14", "lights DIM, 500 Hz", "LDD 1 + LDD 2 DIM; R2 10 k to GND"], ["20", "GP15", "ARM", "All 12 R_EN / L_EN; R1 10 k to GND"],
- ["21 / 22", "GP16 / GP17", "pan / tilt servo, 50 Hz", "Servo signal wires"], ["31", "GP26 / ADC0", "battery voltage", "33 k / 10 k divider from +12V"],
- ["36", "3V3 OUT", "logic supply", "VCC on all six IBT_2"], ["38", "GND", "ground", "U9A GND"], ["39", "VSYS", "5 V in", "U9A 5 V through D1"],
- ["26, 27, 29", "GP20, GP21, GP22", "reserved", "I2C0 (depth, IMU), leak probe"],
-]
 import purchases as PU                                     # "Everything to buy": fasteners counted from the fastener table
 from insert_map import EXPECT as _INS                      # the insert chart's counts per part
 BUY = PU.buy_list(round(G_B/1000 + 0.3, 1), round(G_Y/1000 + 0.2, 1))
@@ -107,6 +97,9 @@ def build_package():
     with open(os.path.join(PKG, "Wire_list.csv"), "w", newline="") as fh:
         w = csv.writer(fh); w.writerow(["Wire #", "From", "To", "Wire"])
         for row in json.load(open(os.path.join(os.path.dirname(RD.rstrip("/")), "elec_wires.json"))): w.writerow(row)
+    with open(os.path.join(PKG, "Pin_connections.csv"), "w", newline="") as fh:
+        w = csv.writer(fh); w.writerow(["Board", "Pin", "Pin name", "Connects to", "Wire #"])
+        for row in json.load(open(os.path.join(os.path.dirname(RD.rstrip("/")), "elec_pins.json"))): w.writerow(row)
     with open(os.path.join(PKG, "Pipe_cut_list.csv"), "w", newline="") as fh:
         w = csv.writer(fh); w.writerow(["Piece", "Qty", "Length (mm)", "Length (in)"])
         for n, q, L in CUTS: w.writerow([n, q, L, round(L/25.4, 2)])
@@ -481,6 +474,7 @@ def build_pdf(path):
     # ---------------- 9 electronics
     ELEG = json.load(open(os.path.join(os.path.dirname(RD.rstrip("/")), "elec_legends.json")))
     EWIRES = json.load(open(os.path.join(os.path.dirname(RD.rstrip("/")), "elec_wires.json")))
+    EPINS = json.load(open(os.path.join(os.path.dirname(RD.rstrip("/")), "elec_pins.json")))
     def efig(name, caption, max_h=3.3*inch):
         """Render with numbered callouts; the callout texts are set below it as a two-column key."""
         leg = ELEG.get(name, [])
@@ -534,10 +528,19 @@ def build_pdf(path):
           efig("e_rear", "Rear bay, seen from aft and above with the rear cap see-through: the bus, both fuses and the LED drivers on 215, and the four glands.", max_h=3.6*inch),
           efig("e_wire_port", "Port side: the 12 V harness. Power feeds above, the bottom-board motor cores below, and the feed up to the two 5 V bucks.", max_h=2.3*inch),
           efig("e_wire_stbd", "Starboard side: the logic harness from every header to the Pico, the DIM line aft, and the tether over the boards.", max_h=2.3*inch),
-          Paragraph("9.6  Pico pinout", H3),
-          table(["Pin", "GPIO", "Function", "Goes to"], PINOUT, [0.5*inch, 0.75*inch, 1.9*inch, W_TXT - 3.15*inch]),
+          PageBreak(),
+          Paragraph("9.6  Pico and Pi Zero pins", H3),
+          Paragraph("Which pin goes where, board by board, then every connection on its own line. The Pico breakout's terminal numbers are the "
+                    "Pico's pin numbers. On the sled the Pico's USB faces forward with pins 1-20 on the starboard side; the Pi's header runs fore and aft.", BODY),
+          img(C("f_elec_pico.png"), W_TXT, 6.9*inch), Paragraph("Pico pin map, seen from above with the USB socket at the top.", CAP),
+          PageBreak(),
+          img(C("f_elec_pizero.png"), W_TXT, 6.9*inch), Paragraph("Pi Zero 2W header, seen from above with the SD card at the top.", CAP),
+          PageBreak(),
+          Paragraph("Pin connections, one line per connection. Wire # is the wire list number (9.4); a dash is a resistor soldered at the terminal.", BODY),
+          table(["Board", "Pin", "Pin name", "Connects to", "Wire #"], [[b_, str(p_), n_, t_, w_] for b_, p_, n_, t_, w_ in EPINS],
+                [0.75*inch, 0.45*inch, 1.25*inch, W_TXT - 3.0*inch, 0.55*inch]),
           Paragraph("Each thruster owns one PWM slice at 20 kHz (channel A = RPWM, B = LPWM). The lights dim from GP14 at 500 Hz; the servos run at 50 Hz on slice 0. "
-                    "GP26 reads the battery through the 33 k / 10 k divider (12.6 V reads 2.93 V).", SMALL),
+                    "GP26 reads the battery through the 33 k / 10 k divider (12.6 V reads 2.93 V). GP20, GP21 and GP22 are kept free for a depth sensor, an IMU and a leak probe.", SMALL),
           Paragraph("9.7  Wire and test the sled", H3),
           steps(["Flash the Pico before wiring: hold BOOTSEL, plug it into your computer's USB and copy Firmware/build/pico_rov.ino.uf2 onto it. "
                  "Set up the Pi Zero with Firmware/pi_bridge/SETUP.md (static address 192.168.2.2 on the tether, video server, bridge service).",
@@ -555,11 +558,11 @@ def build_pdf(path):
                  "and down through the slot and the port lower window through D1 (band toward the Pico) to the VSYS terminal (pin 39). "
                  "U9A OUT- to the Pico GND terminal (pin 38). U9B's output feeds only the servos (next steps). Never join the two 5 V outputs; the grounds are common.",
                  "Logic (19): one bundle per board along the starboard side, outside rail 213, Dupont housings on the IBT_2 end and bare ends into the Pico's terminals "
-                 "through the lower rail window: RPWM and LPWM to the board's two GP pins in the pinout, "
-                 "R_EN + L_EN to ARM (pin 20), VCC to 3V3 OUT (pin 36), GND to the nearest Pico GND (3, 8 or 13). Splice the six VCC wires, and the six "
+                 "through the lower rail window: RPWM and LPWM to the board's two pins in the 9.6 table, "
+                 "R_EN + L_EN to ARM (pin 20), VCC to 3V3 OUT (pin 36), GND to the board's Pico GND in 9.6 (3, 8 or 13). Splice the six VCC wires, and the six "
                  "ARM pairs, so one wire goes into each terminal; VCC crosses under the breakout to the 3V3 OUT terminal on the port side. R_IS and L_IS stay empty.",
-                 "Pull-downs and sense: R1 10 k from ARM (pin 20) to GND and R2 10 k from DIM (pin 19) to GND, soldered inline at the Pico end. "
-                 "Battery sense: R3 33 k from the +12V Wago (hull side of F1) to GP26 (pin 31), R4 10 k from GP26 to GND.",
+                 "Pull-downs and sense: R1 10 k from ARM (pin 20) to GND (pin 18) and R2 10 k from DIM (pin 19) to the same GND terminal (pin 18), soldered at the Pico end. "
+                 "Battery sense: R3 33 k from the +12V Wago (hull side of F1) to GP26 (pin 31), R4 10 k from GP26 to AGND (pin 33).",
                  "Pi to Pico (20): Pi pin 8 (TXD) to Pico pin 2 (GP1), Pi pin 10 (RXD) to Pico pin 1 (GP0), Pi pin 6 to Pico pin 3. With the HAT on, "
                  "solder these three (and the 5 V on pin 2) to the HAT's stacking pins 2-3 mm above the HAT and heat-shrink them; a Dupont housing there "
                  "would stand too tall for the hull. The wires drop through the slot just behind the Pi, out through the starboard lower rail window and forward to the GP0, GP1 and GND terminals. Check the HAT's micro-USB link board is pushed "
