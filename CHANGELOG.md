@@ -4,6 +4,8 @@ Changes to the TinkerSub KB-1 files. Part numbers are the three digits debossed 
 
 ## 2026-10-25
 - **102 tail cone v2:** the compensator nipple sat under the spigot lip, 10 mm down, so the finger cot was very hard to fit and impossible to tie. The nipple now stands clear of the lip with its tip 2.5 mm below the rim: the cot pushes straight down over it, and a 5 x 1.5 mm O-ring rolled into a groove holds it (no tie). The vent runs down the nipple and out of the cone's side at 45 degrees, clear of the gland. Tail cones printed before this: reprint them (about 25 g each).
+- Guide 4.1 **Everything to buy** (new page before the prices) and `Parts_to_buy.csv`: every bought part for one ROV with its total quantity and exact size. Screw, nut and insert counts come from `Source/assembly/fasteners.py`; the insert totals are checked against the Appendix B chart at build time. List in `Source/assembly/purchases.py`.
+- **O-ring sizes corrected** (measured from the grooves; the original flange script had the dash numbers wrong): hull flange radial seals **AS568-238** (was -240), rear cap face **AS568-237** (was -239), dome face AS568-240 (unchanged); pod caps **72 x 2.5** (was 74 x 2.5: looser than its groove); light front ring **30 x 1.5** (was 31 x 1.5). Gland clamping ranges added (M16: 5-10 mm), and the tether must be slim Cat6 (OD 6.5 mm or less) to fit its M12 gland.
 - Guide 7.3, the picture-by-picture thruster page and the shopping list updated. The compensator section figure is now drawn from the part geometry (`Source/guide/comp_fig.py`) instead of by hand; the unused, out-of-date `Images/Diagrams/compensator_cutaway.png` is removed.
 
 ## 2026-10-24

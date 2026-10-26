@@ -27,7 +27,7 @@ ROWS = {
     "lid":      ("Junction box", "4 + 4", "M3 x 8 countersunk screws + M3 heat-set inserts", "Lid 503 to the box bosses", "$2", "Hardware store"),
     "hull":     ("Hull", "6 / 6 / 6+6", "M3 x 16 SHCS (rear cap); M3 x 12 SHCS (dome ring); M3 x 10 SHCS + M3 heat-set inserts (radial)",
                  "Rear cap and dome ring into the flange faces (tapped M3); radial flange screws through the pipe wall", "$8", "Amazon"),
-    "pod":      ("Battery pod", "4 / 6 + 6 + 12 / 1", "O-ring 74 x 2.5; M5 x 14 (rear cap) + M5 x 16 (front cap) + M5 inserts; M16 gland",
+    "pod":      ("Battery pod", "4 / 6 + 6 + 12 / 1", "O-ring 72 x 2.5; M5 x 14 (rear cap) + M5 x 16 (front cap) + M5 inserts; M16 gland (5-10 mm)",
                  "Both pod caps (2 O-rings, 6 bolts each); gland in the rear cap", "$16", "Amazon"),
     "lights":   ("Lights (x2)", "1 / 1 / 6", "Thermal adhesive (Arctic Alumina); O-ring kit 1.5 mm; M2.5 x 25 SHCS (thread straight into the 401 body)", "", "$32", "Amazon"),
 }

@@ -47,7 +47,7 @@ python3 Source/build.py parts plates guide check
 |---|---|
 | `build.py` | The one entry point. Its docstring lists every step. |
 | `geometry/` | The parts themselves. `thruster.py` (housing, duct, props, tail cone), `pylon.py`, `lights.py`, `rov_parts.py` (pod flanges and caps, sled bulkhead), `jbox.py` (junction box and lid), `pantilt_fit.py` (camera pan-tilt and its fit check), `rov_v5.py` (stations, brackets, belly pan, cowl, side plates, light aim). `frame_clamp.py`, `pvc.py`, `ring.py`, `bracket.py`, `mount.py` and `wiring.py` are earlier versions the current parts still build on. `rail_notch.py` cut the wire opening in the sled rails once; its output is in `inputs/`. |
-| `assembly/` | `rov_v6.py` puts every part in place and checks for interference. `export_v4/5/6.py` write the parts in print orientation. `parts_final.py` is the master part list: part numbers, file names, print notes, labels. `label_parts.py` + `engrave.py` deboss the part numbers. |
+| `assembly/` | `rov_v6.py` puts every part in place and checks for interference. `export_v4/5/6.py` write the parts in print orientation. `parts_final.py` is the master part list: part numbers, file names, print notes, labels. `fasteners.py` is every screw joint; `purchases.py` is everything to buy (fasteners counted from `fasteners.py`). `label_parts.py` + `engrave.py` deboss the part numbers. |
 | `outputs/` | `make_3mf.py` (Bambu projects; plate layouts in `plates_*.json`, print profile in `ps.json`), `plate_preview.py` (plate maps), `plate_templates_final.py` and `plate_stl_final.py` (side plates), `make_step.py` + `step_export.py` (STEP), `viewer_and_mesh.py` (mesh assembly). |
 | `checks/` | `fastener_check.py` (with `holes.py`) checks every screw joint, run by the build. `print_review.py` checks every printed part for bed fit, loose columns, floating islands, overhangs and thin walls. `insert_walls.py` checks the plastic round every heat-set insert hole. |
 | `guide/` | The guide (`build_guide.py` styles and helpers, `build_guide_final.py` all the text) and everything that makes its pictures: `scene_final.py`, `light_scene.py`, `elec_scene.py`, `part_scenes.py`, `insert_map.py` (scenes), `pantilt_fig.py`, `plate_figs.py`, `comp_fig.py`, `elec_drawings.py` (figures). `package_images.py` says where each picture lives in the package. |
@@ -78,7 +78,8 @@ python3 Source/build.py parts plates guide check
 | Part numbers, print notes, labels | `assembly/parts_final.py` |
 | Any screw: size, length, how many | `assembly/fasteners.py` (the shopping list takes its screw rows from here) |
 | Plate layouts in the 3MFs | `outputs/plates_*.json`; print settings in `outputs/make_3mf.py` |
-| Guide text, shopping list | `guide/build_guide_final.py` |
+| Guide text, shopping list (prices) | `guide/build_guide_final.py` |
+| Anything bought: size, quantity (the guide's "Everything to buy" page, `Parts_to_buy.csv`) | `assembly/purchases.py` |
 | A picture's camera angle | `render/views/*.json` |
 
 ## The fastener check

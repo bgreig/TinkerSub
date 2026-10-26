@@ -50,7 +50,7 @@ Open **[TinkerSub_KB-1_Assembly_Guide.pdf](TinkerSub_KB-1_Assembly_Guide.pdf)**.
 | `Source/` | The Python generators for every part, the 3MFs, the templates, the STEP files, the renders and the guide, with their input files. `python3 Source/build.py all` rebuilds everything; see `Source/README.md` |
 | `docs/` | [Battery pack build](docs/Battery_Pack_Build.md): cell matching, welding, BMS wiring, first charge |
 | `Images/` | Renders, assembly pictures, part pictures, diagrams and the electronics drawings |
-| `BOM_hardware.csv`, `BOM_printed_parts.csv`, `Pipe_cut_list.csv`, `Wire_list.csv` | Everything to buy, print, cut and wire |
+| `Parts_to_buy.csv`, `BOM_hardware.csv`, `BOM_printed_parts.csv`, `Pipe_cut_list.csv`, `Wire_list.csv` | Everything to buy (one line per item, exact sizes; then with prices and sources), print, cut and wire |
 | `CHANGELOG.md` | What changed in the files, and when: check it if you printed parts earlier |
 
 Every printed part has a three-digit number debossed into it, and its file name starts with that number. The first digit is the subsystem: 1 thrusters, 2 hull and sled, 3 battery pod, 4 lights, 5 junction box, 6 stations and brackets, 7 belly pan, 8 cowl, 9 side plates.

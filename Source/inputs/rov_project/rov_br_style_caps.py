@@ -29,7 +29,7 @@ PISTON_D   = PIPE_ID - 2 * RAD_CLEAR
 SKIRT_WALL = 8.0
 INNER_D    = PISTON_D - 2 * SKIRT_WALL      # flange through-opening (~Ø85.9)
 
-# radial O-rings: 2 x AS568-240 (94.84 mm ID x 3.53 CS)
+# radial O-rings: 2 x AS568-238 (94.84 mm ID x 3.53 CS)   [dash number corrected 2026-10-25; was written -240]
 OR_CS, SQUEEZE, GROOVE_W = 3.53, 0.20, 4.8
 GROOVE_BOT = PIPE_ID - 2 * OR_CS * (1 - SQUEEZE)
 GROOVE_D   = (PISTON_D - GROOVE_BOT) / 2
@@ -47,7 +47,7 @@ G1 = RETAIN_Z + 6.0
 G2 = G1 + GROOVE_W + GROOVE_D + 3.2
 SKIRT_END  = G2 + GROOVE_W + GROOVE_D + 3.0 + M3_INS_H   # sled inserts clear the grooves
 
-# face-seal O-ring under the end cap: AS568-239 (91.67 ID), groove ID = O-ring ID
+# face-seal O-ring under the end cap: AS568-237 (91.67 ID), groove ID = O-ring ID   [was written -239]
 FACE_OR_ID = 91.67
 FACE_GW, FACE_GD = 3.8, 2.65
 
@@ -74,7 +74,7 @@ BODY_D = {"M12x1.5": 17.0, "M16x1.5": 22.0, "M10 (BR vent)": 17.0}   # gland/nut
 DOME_OD, DOME_FL_D, DOME_FL_T = 99.8, 115.0, 2.0   # MEASURE the flange thickness
 FRONT_RING_OD = 130.0
 FRONT_PCD     = 122.0
-DOME_OR_ID    = 101.19                      # AS568-242 face seal under the dome flange
+DOME_OR_ID    = 101.19                      # AS568-240 face seal under the dome flange   [was written -242]
 RR_T          = 6.0
 # -------------------------------------------------------------------------------------------
 

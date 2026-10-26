@@ -29,9 +29,9 @@ Junction box,2 pairs,"SP13 IP68 3-pin connector, panel socket (rear nut) + cable
 Junction box,1,Silicone dielectric grease,Plug threads and pins before mating,$6,Hardware store
 Hull,1,"4"" Sch40 PVC pipe, 16"" (406 mm)",Electronics hull,$15,Hardware store
 Hull,1,"4"" acrylic CCTV dome, 100 mm","UQISOVI, Amazon B0DR2HP4YQ",$15-25,Amazon
-Hull,5 + 1,"O-rings AS568-240 (x5), -239 (x1)","Flange radial seals + dome face (-240), rear cap face (-239)",$11,Amazon / McMaster
+Hull,4 + 1 + 1,"O-rings AS568-238 (x4), -240 (x1), -237 (x1), nitrile 70A","Flange radial seals (-238), dome face (-240), rear cap face (-237)",$11,Amazon / McMaster
 Hull,6 / 6 / 6+6,M3 x 16 SHCS (rear cap); M3 x 12 SHCS (dome ring); M3 x 10 SHCS + M3 heat-set inserts (radial),Rear cap and dome ring into the flange faces (tapped M3); radial flange screws through the pipe wall,$8,Amazon
-Hull,2 + 2,Cable gland M16 x 1.5 / M12 x 1.5,MOTORS + BATTERY / LIGHTS + TETHER,$10,Amazon
+Hull,2 + 2,Cable gland M16 x 1.5 (5-10 mm) / M12 x 1.5 (3-6.5 mm),MOTORS + BATTERY / LIGHTS + TETHER,$10,Amazon
 Hull + pod,1 / 2 / 4,"M10 x 1.0 brass hose barb (6 mm / 1/4"" hose); M10 x 1.0 x 12 stainless hex bolt; M10 bonded (Dowty) washer","VENT ports in 202 and 302: barb for the vacuum test, bolt + washer to dive (2 spare washers)",$15,Amazon
 Electronics sled,4 + 24,M3 threaded rod ~340 mm + nuts,Sled rods (4 extra nuts hold the pan-tilt base),$6,Hardware store
 Electronics sled,12 + 12 + 24,"M3 x 8 male-female standoffs, M3 x 8 female-female standoffs, M3 x 6 screws","IBT_2 boards, stacked in pairs on the deck",$10,Amazon
@@ -41,7 +41,7 @@ Camera,1,Arducam for Pi Zero (Pi Camera v2 size board) + Pi Zero ribbon,,$20-30,
 Camera,2,MG90S metal-gear micro servo (SG90 size),Pan and tilt,$10,Amazon
 Camera,-,"1 mm music wire, M2 x 6 / x 8 screws, 4 x 2 mm M2 standoffs, M2 washer","Tilt pushrod, cradle pivot and lever, camera",$6,Hobby shop
 Battery pod,1,"3"" Sch40 PVC pipe, 300 mm",Battery pod,$12,Hardware store
-Battery pod,4 / 6 + 6 + 12 / 1,O-ring 74 x 2.5; M5 x 14 (rear cap) + M5 x 16 (front cap) + M5 inserts; M16 gland,"Both pod caps (2 O-rings, 6 bolts each); gland in the rear cap",$16,Amazon
+Battery pod,4 / 6 + 6 + 12 / 1,O-ring 72 x 2.5; M5 x 14 (rear cap) + M5 x 16 (front cap) + M5 inserts; M16 gland (5-10 mm),"Both pod caps (2 O-rings, 6 bolts each); gland in the rear cap",$16,Amazon
 Battery pod,-,2-part marine epoxy (e.g. JB Weld Marine / West System),Bonds both printed flanges onto the pipe,$10,Hardware store
 Battery pod,24 + 1,"18650 cells + 3S BMS, 40 A, balancing",3S8P pack,$12 (BMS),Amazon
 Battery pod,4 + 16 / 1,M4 threaded rod ~225 mm + nuts; pure nickel strip 8 x 0.2 mm (~3 m),"Pack tie rods; cell links (pure nickel, not nickel-plated steel)",$14,Amazon
@@ -55,7 +55,7 @@ Wiring,0.8 m,12-core 0.5 mm2 control cable (OD <= 10 mm),Junction box to the hul
 Wiring,0.5 m,"4-core 0.5-0.75 mm2 cable, OD 3-6.5 mm",Junction box to the hull LIGHTS gland: two separate LED pairs,$4,Amazon
 Wiring,0.6 m,2-core 12 AWG silicone or marine cable (OD <= 10 mm),Battery pod to hull,$6,Amazon
 Wiring,1,MG Chemicals 832B epoxy potting compound,Junction box (behind the sockets) + light cavities,$35-40,Amazon
-Wiring,1,Cat6 tether + strain relief,Data only (power is on board),$20-40,Amazon
+Wiring,1,"Slim Cat6 tether (OD 6.5 mm or less, for the M12 gland) + strain relief",Data only (power is on board),$20-40,Amazon
 Battery pod,-,"Fish-paper insulator rings, Kapton tape, inline ATO fuse holder (12 AWG) + 35 A fuse, silica gel",See the battery pack guide,$25,Amazon
 Electronics,6,IBT_2 (BTS7960) H-bridge driver,"U1-U6: One per thruster, heatsinks removed. Logic VCC from the Pico 3V3",$40-60,Amazon
 Electronics,2,"Mini MP1584EN 5 V 1.8 A buck boards (5-30 V in, fixed 5 V out)","U9A, U9B: Top face, port side beside the Pi: U9A for the Pi, HAT, camera and Pico; U9B for the servos only",already owned,Amazon

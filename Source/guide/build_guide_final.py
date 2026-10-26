@@ -61,9 +61,9 @@ HW = [
  ("Junction box", "1", "Silicone dielectric grease", "Plug threads and pins before mating", "$6", "Hardware store"),
  ("Hull", "1", "4\" Sch40 PVC pipe, 16\" (406 mm)", "Electronics hull", "$15", "Hardware store"),
  ("Hull", "1", "4\" acrylic CCTV dome, 100 mm", "UQISOVI, Amazon B0DR2HP4YQ", "$15-25", "Amazon"),
- ("Hull", "5 + 1", "O-rings AS568-240 (x5), -239 (x1)", "Flange radial seals + dome face (-240), rear cap face (-239)", "$11", "Amazon / McMaster"),
+ ("Hull", "4 + 1 + 1", "O-rings AS568-238 (x4), -240 (x1), -237 (x1), nitrile 70A", "Flange radial seals (-238), dome face (-240), rear cap face (-237)", "$11", "Amazon / McMaster"),
  ("Hull", "6 / 6 / 6+6", "M3 x 16 SHCS (rear cap); M3 x 12 SHCS (dome ring); M3 x 10 SHCS + M3 heat-set inserts (radial)", "Rear cap and dome ring into the flange faces (tapped M3); radial flange screws through the pipe wall", "$8", "Amazon"),
- ("Hull", "2 + 2", "Cable gland M16 x 1.5 / M12 x 1.5", "MOTORS + BATTERY / LIGHTS + TETHER", "$10", "Amazon"),
+ ("Hull", "2 + 2", "Cable gland M16 x 1.5 (5-10 mm) / M12 x 1.5 (3-6.5 mm)", "MOTORS + BATTERY / LIGHTS + TETHER", "$10", "Amazon"),
  ("Hull + pod", "1 / 2 / 4", "M10 x 1.0 brass hose barb (6 mm / 1/4\" hose); M10 x 1.0 x 12 stainless hex bolt; M10 bonded (Dowty) washer", "VENT ports in 202 and 302: barb for the vacuum test, bolt + washer to dive (2 spare washers)", "$15", "Amazon"),
  ("Electronics sled", "4 + 24", "M3 threaded rod ~340 mm + nuts", "Sled rods (4 extra nuts hold the pan-tilt base)", "$6", "Hardware store"),
  ("Electronics sled", "12 + 12 + 24", "M3 x 8 male-female standoffs, M3 x 8 female-female standoffs, M3 x 6 screws", "IBT_2 boards, stacked in pairs on the deck", "$10", "Amazon"),
@@ -73,7 +73,7 @@ HW = [
  ("Camera", "2", "MG90S metal-gear micro servo (SG90 size)", "Pan and tilt", "$10", "Amazon"),
  ("Camera", "-", "1 mm music wire, M2 x 6 / x 8 screws, 4 x 2 mm M2 standoffs, M2 washer", "Tilt pushrod, cradle pivot and lever, camera", "$6", "Hobby shop"),
  ("Battery pod", "1", "3\" Sch40 PVC pipe, 300 mm", "Battery pod", "$12", "Hardware store"),
- ("Battery pod", "4 / 6 + 6 + 12 / 1", "O-ring 74 x 2.5; M5 x 14 (rear cap) + M5 x 16 (front cap) + M5 inserts; M16 gland", "Both pod caps (2 O-rings, 6 bolts each); gland in the rear cap", "$16", "Amazon"),
+ ("Battery pod", "4 / 6 + 6 + 12 / 1", "O-ring 72 x 2.5; M5 x 14 (rear cap) + M5 x 16 (front cap) + M5 inserts; M16 gland (5-10 mm)", "Both pod caps (2 O-rings, 6 bolts each); gland in the rear cap", "$16", "Amazon"),
  ("Battery pod", "-", "2-part marine epoxy (e.g. JB Weld Marine / West System)", "Bonds both printed flanges onto the pipe", "$10", "Hardware store"),
  ("Battery pod", "24 + 1", "18650 cells + 3S BMS, 40 A, balancing", "3S8P pack", "$12 (BMS)", "Amazon"),
  ("Battery pod", "4 + 16 / 1", "M4 threaded rod ~225 mm + nuts; pure nickel strip 8 x 0.2 mm (~3 m)", "Pack tie rods; cell links (pure nickel, not nickel-plated steel)", "$14", "Amazon"),
@@ -81,13 +81,13 @@ HW = [
  ("Lights (x2)", "2", "Mean Well LDD-700HW constant-current driver", "9-56 V in, PWM dim; inside the hull", "$8-10 each", "Amazon / Jameco / Digi-Key"),
  ("Lights (x2)", "2", "Glass lens 28 x 3 mm, AR coated", "Window", "$8 (pack)", "Amazon"),
  ("Lights (x2)", "1", "6061 round bar 1-3/4\" x 6\"", "Two 5 mm heat-sink discs", "$12", "Amazon"),
- ("Lights (x2)", "1 / 1 / 6", "Thermal adhesive (Arctic Alumina); O-ring kit 1.5 mm; M2.5 x 25 SHCS (thread straight into the 401 body)", "", "$32", "Amazon"),
+ ("Lights (x2)", "1 / 1 / 6", "Thermal adhesive (Arctic Alumina); O-ring kit 1.5 mm (30 x 1.5, 24 x 1.5, 5 x 1.5); M2.5 x 25 SHCS (thread straight into the 401 body)", "", "$32", "Amazon"),
  ("Wiring", "~4 m", "2-core 18 AWG marine cable (OD 5-6 mm)", "6 thruster leads + 2 light leads to their SP13 plugs", "$15", "Amazon"),
  ("Wiring", "0.8 m", "12-core 0.5 mm2 control cable (OD <= 10 mm)", "Junction box to the hull MOTORS gland and on to every IBT_2", "$10", "Amazon"),
  ("Wiring", "0.5 m", "4-core 0.5-0.75 mm2 cable, OD 3-6.5 mm", "Junction box to the hull LIGHTS gland: two separate LED pairs", "$4", "Amazon"),
  ("Wiring", "0.6 m", "2-core 12 AWG silicone or marine cable (OD <= 10 mm)", "Battery pod to hull", "$6", "Amazon"),
  ("Wiring", "1", "MG Chemicals 832B epoxy potting compound", "Junction box (behind the sockets) + light cavities", "$35-40", "Amazon"),
- ("Wiring", "1", "Cat6 tether + strain relief", "Data only (power is on board)", "$20-40", "Amazon"),
+ ("Wiring", "1", "Slim Cat6 tether (OD 6.5 mm or less, for the M12 gland) + strain relief", "Data only (power is on board)", "$20-40", "Amazon"),
  ("Battery pod", "-", "Fish-paper insulator rings, Kapton tape, inline ATO fuse holder (12 AWG) + 35 A fuse, silica gel", "See the battery pack guide", "$25", "Amazon"),
 ]
 
@@ -132,6 +132,13 @@ _byd = {r[3]: k for k, r in FT.ROWS.items()}; _byd.update({v: k for k, v in FT.R
 HW = [FT.ROWS[_byd[r[3]]] if r[3] in _byd and r[0] == FT.ROWS[_byd[r[3]]][0] else r for r in HW]
 assert all(any(r == row for r in HW) for row in FT.ROWS.values()), "a fastener row from assembly/fasteners.py is missing from the shopping list"
 HW += [("Electronics", q, p, f"{r}: {n}", c, src) for r, q, p, n, c, src in ELEC_SECTION if c]
+import purchases as PU                                     # "Everything to buy": fasteners counted from the fastener table
+from insert_map import EXPECT as _INS                      # the insert chart's counts per part
+BUY = PU.buy_list(round(G_B/1000 + 0.3, 1), round(G_Y/1000 + 0.2, 1))
+_qty = {}
+for _p in PRINTED: _qty[pn(_p[1])] = _qty.get(pn(_p[1]), 0) + _p[3]
+_chart = {s_: sum(d.get(s_, 0)*_qty.get(k, 0) for k, d in _INS.items()) for s_ in ("M3", "M4", "M5")}
+assert _chart == dict(PU.fastener_lines()[1]), f"insert totals: chart {_chart} vs fastener table {dict(PU.fastener_lines()[1])}"
 CUTS = [("4\" Sch40 hull", 1, 406), ("3\" Sch40 battery pod", 1, 300)]
 
 # ------------------------------------------------------------------ package
@@ -163,6 +170,9 @@ def build_package():
     with open(os.path.join(PKG, "BOM_hardware.csv"), "w", newline="") as fh:
         w = csv.writer(fh); w.writerow(["Group", "Qty", "Component", "Description", "Approx. Cost", "Source"])
         for row in HW: w.writerow(row)
+    with open(os.path.join(PKG, "Parts_to_buy.csv"), "w", newline="") as fh:
+        w = csv.writer(fh); w.writerow(["Group", "Qty", "Item (exact size)", "Used for"])
+        for row in BUY: w.writerow(row)
     with open(os.path.join(PKG, "Wire_list.csv"), "w", newline="") as fh:
         w = csv.writer(fh); w.writerow(["Wire #", "From", "To", "Wire"])
         for row in json.load(open(os.path.join(os.path.dirname(RD.rstrip("/")), "elec_wires.json"))): w.writerow(row)
@@ -298,7 +308,8 @@ def build_pdf(path):
               ["TinkerSub_KB-1_Core.3mf", f"Bambu Studio project, {N_B} parts, all black: thrusters, hull flanges and caps, sled, camera mount, battery pod, lights, junction box and lid."],
               ["TinkerSub_KB-1_Reprint_2026-10-20.3mf", "Only the parts changed on 2026-10-20 (hull and pod caps SOLID, pan-tilt, light heads, cowl v2), for anyone who printed before that date."],
               ["BOM_printed_parts.csv", "Every printed part: project, file, quantity, filament colour, print notes, filament weight."],
-              ["BOM_hardware.csv", "Everything to buy: Qty, Component, Description, Approx. Cost, Source."],
+              ["Parts_to_buy.csv", "Everything to buy, one line per item: Group, Qty, exact size, used for (section 4.1)."],
+              ["BOM_hardware.csv", "The shopping list with prices and sources: Qty, Component, Description, Approx. Cost, Source."],
               ["Pipe_cut_list.csv", "4\" hull and 3\" pod lengths."],
               ["STL/", "Every printable part in print orientation (mm), in 8 folders in build order. The cowl folder is marked YELLOW."],
               ["CAD/", "Side plates: rov_side_plate_templates.pdf (instructions + 1:1 paper templates on Letter landscape, the same pages as Appendix A), "
@@ -349,6 +360,13 @@ def build_pdf(path):
 
     # ---------------- 4 shopping
     S += [Paragraph("4  Shopping list", H1),
+          Paragraph("4.1  Everything to buy", H3),
+          Paragraph("Every bought part for one ROV, with its total quantity and exact size. The screw, nut and insert counts come from "
+                    "the build's fastener table, checked against the 3D model. Tools are in section 3. Also in Parts_to_buy.csv.", BODY),
+          table(["Group", "Qty", "Item (exact size)", "Used for"], [(g if i == 0 or g != BUY[i - 1][0] else "", q, d, u) for i, (g, q, d, u) in enumerate(BUY)],
+                [0.95*inch, 0.8*inch, 3.1*inch, W_TXT - 4.85*inch]),
+          PageBreak(),
+          Paragraph("4.2  Prices and sources", H3),
           Paragraph("Rough US prices for budgeting; check current prices before ordering. Filament weights are estimates from the 3D models.", BODY),
           table(["Group", "Qty", "Component", "Description", "Approx. Cost", "Source"], HW,
                 [0.85*inch, 0.6*inch, 1.75*inch, 2.1*inch, 0.75*inch, 0.95*inch]),
@@ -675,7 +693,7 @@ def build_pdf(path):
                  "Press an M3 heat-set insert into each flange's three radial holes from the outside, flush with the skirt surface (any brass "
                  "standing proud will score the pipe). Tap the six 2.5 mm holes in each flange face M3 (or let the screws cut their own thread, "
                  "slowly). Leave the four sled holes plain.",
-                 "Grease two AS568-240 O-rings into each flange's radial grooves."]),
+                 "Grease two AS568-238 O-rings into each flange's radial grooves."]),
           Paragraph("10.2  Front: dome", H3),
           steps(["Press the dome flange (203) into the front of the pipe, face hole on the top line, until the pipe end meets its collar; turn it slightly until the "
                  "radial inserts show through the pipe holes and fit the 3 M3 x 10.",
@@ -695,7 +713,7 @@ def build_pdf(path):
           Paragraph("10.4  Test the empty hull", H3),
           steps(["Rear flange (201): O-rings greased, press it into the rear of the pipe (face hole at 12 o'clock) and fit its 3 radial screws. "
                  "Lay a folded dry paper towel inside.",
-                 "Seat the AS568-239 face O-ring on 201 and bolt the cap on with 6 M3 x 16, labels the right way up (MOTORS upper port), in a star pattern.",
+                 "Seat the AS568-237 face O-ring on 201 and bolt the cap on with 6 M3 x 16, labels the right way up (MOTORS upper port), in a star pattern.",
                  "Vacuum test (section 18.1): -10 inHg must hold for 15 minutes.",
                  "Dunk: strap about 4 kg to the hull (it floats hard) and sink it in a pool or tub for 30 minutes, deeper is better. Dry it off, open the "
                  "cap and check the paper towel. Any damp spot shows you which end leaked."], start=12),
@@ -723,7 +741,7 @@ def build_pdf(path):
                  "Press 6 M5 heat-set inserts into the face of each flange (301, x2).",
                  "Epoxy a flange onto each end with marine epoxy, pushed on until the pipe hits the flange's stop ledge. "
                  "Line up the bolt holes of the two flanges. Let it cure fully.",
-                 "Front: grease two 74 x 2.5 O-rings onto the blank cap's plug (303, marked FRONT) and bolt it on with 6 M5 x 16.",
+                 "Front: grease two 72 x 2.5 O-rings onto the blank cap's plug (303, marked FRONT) and bolt it on with 6 M5 x 16.",
                  "Build the pack by docs/Battery_Pack_Build.md (in the repository and the package): test and match the cells, fish-paper ring on every + end, "
                  "six plates (305) grooved faces out, all 24 cells + toward the rear, 8 mm pure nickel in the grooves with the centre-to-edge run doubled, "
                  "series links folded across the 3 mm gaps, four M4 rods with a 3 mm spacer (306) on each rod in both gaps. Every plate goes on with its tab notch at the top. "
@@ -731,12 +749,12 @@ def build_pdf(path):
                  "Tap the rear cap (302): M16 x 1.5 in the hole marked BATTERY (gland), M10 x 1.0 in VENT. Fit the gland body (sealing washer outside, "
                  "silicone on the threads) and the vent bolt with a bonded washer.",
                  "Test the EMPTY pod before the pack goes in: push a 150 mm stub of the 12 AWG lead through the gland and tighten it, put a dry paper towel "
-                 "inside, grease the rear cap's two 74 x 2.5 O-rings and bolt it on. Vacuum test it (section 18.1), then strap on about 2 kg, sink it for "
+                 "inside, grease the rear cap's two 72 x 2.5 O-rings and bolt it on. Vacuum test it (section 18.1), then strap on about 2 kg, sink it for "
                  "30 minutes and check the towel. Only then open it again.",
                  "Mount the BMS on group C's rear plate, balance leads along the notch in the bottom edge. Fit the 35 A inline fuse holder at pack + "
                  "(F1, 30 A, is the second fuse, in the hull). Pass the free end of the 12 AWG battery lead (its other end is already through the hull's "
                  "BATTERY gland, section 10.3) in through the pod gland from outside and solder it to the BMS output (P+ / P-). Check polarity with a meter now and mark the red core.",
-                 "Put a block of foam against the front cap, slide the pack in from the rear, grease the rear cap's two 74 x 2.5 O-rings "
+                 "Put a block of foam against the front cap, slide the pack in from the rear, grease the rear cap's two 72 x 2.5 O-rings "
                  "and bolt it on with 6 M5 x 14 (the rear cap is 2 mm thinner than the front: an M5 x 16 bottoms out), then tighten the gland on the lead. The pack can also come out the front if you ever need it."]),
           Paragraph("Pack details, cell matching, welding, BMS wiring, first charge and voltage limits: "
                     "docs/Battery_Pack_Build.md, in the repository (github.com/bgreig/TinkerSub) and the build package.", NOTE),
@@ -758,7 +776,7 @@ def build_pdf(path):
                  "the disc's centre hole and bond the star to the disc's front face with thermal adhesive, covering the hole.",
                  "Thread the cable through the rear body's centre hole from the front, so it comes straight out of the back (the round socket). "
                  "Sit the disc on the front face, its holes over the three screw holes.",
-                 "Seat the 31 x 1.5 O-ring in the front ring's (402) back-face groove and the 24 x 1.5 O-ring under its lip. Drop in the glass window, "
+                 "Seat the 30 x 1.5 O-ring in the front ring's (402) back-face groove and the 24 x 1.5 O-ring under its lip. Drop in the glass window, "
                  "then the spacer (403), and screw the ring and disc to the rear body with 3 M2.5 x 25: they pass 16.5 mm of ring and disc, then cut their own thread in the PETG, so drive them slowly, snug, and stop.",
                  "Pot the head: stand it nose-down, pull the cable taut and dab silicone round it where it enters the centre hole. Syringe potting compound "
                  "into one 3 mm hole until it comes out of the other. When that has set, fill the round socket at the back to the brim around the cable: "
@@ -870,7 +888,7 @@ def build_pdf(path):
                  "the camera must not touch anything at full pan and tilt.",
                  "Press 201 in behind it, guiding the four rear rod tips into its sled holes, and refit its 3 radial screws. The sled should have only "
                  "1-2 mm of end play. Tuck the slack cables into the rear bay so none crosses the 12 V / logic divide or presses on the camera ribbon.",
-                 "Fit F1 (the ROV is now live: see below). Wipe and re-grease the AS568-239 O-ring, seat it on 201 and bolt the cap on (MOTORS upper port, "
+                 "Fit F1 (the ROV is now live: see below). Wipe and re-grease the AS568-237 O-ring, seat it on 201 and bolt the cap on (MOTORS upper port, "
                  "6 M3 x 16 in a star). Tighten every gland nut last, after the cables are dressed, so no cable is twisted in its gland."], start=7),
           Paragraph("Power on and off", H3),
           Paragraph("There is no main switch yet. The ROV is live whenever both fuses are in: the 35 A fuse at the pack (in the pod) and F1 (30 A, in the hull "
@@ -1131,7 +1149,7 @@ IKEA = [
       "Pushrod 28 mm between Z-bends, horn to lever. Camera looks straight ahead with the servo centred.",
       "Slide 216 onto the rod ends in front of 207, a nut each side. Leads and ribbon back through the windows."]),
     ("Hull: build it and test it empty", "10", "f_ik_hull.png", [("201", 1), ("202", 1), ("203", 1), ("204", 1)],
-     ["4\" pipe, 406 mm", "5 x AS568-240 O-ring", "1 x AS568-239 O-ring", "6 x M3 x 10 (radial)", "6 x M3 x 16 (cap)", "6 x M3 x 12 (ring)",
+     ["4\" pipe, 406 mm", "4 x AS568-238 O-ring", "AS568-240 + -237 O-rings", "6 x M3 x 10 (radial)", "6 x M3 x 16 (cap)", "6 x M3 x 12 (ring)",
       "100 mm acrylic dome", "2 x M16 + 2 x M12 gland, M10 vent bolt"],
      ["Cut the pipe square, deburr. Mark 12 o'clock at both ends; flanges go in with a face hole at the top.",
       "Mark and drill the 3 radial 3.4 mm holes at each end, 5 mm in. M3 inserts into the flange skirts (chart). Grease the O-rings.",
@@ -1140,7 +1158,7 @@ IKEA = [
       "Rear flange 201 in, paper towel inside, cap on. Vacuum test, then sink it for 30 min. Check the towel.",
       "Open the rear again: the sled goes in later (step 11)."]),
     ("Battery pod", "11", "f_ik_pod.png", [("301", 2), ("302", 1), ("303", 1), ("305", 6), ("306", 8)],
-     ["3\" pipe, 300 mm", "4 x 74 x 2.5 O-ring", "6 x M5 x 16 (front)", "6 x M5 x 14 (rear)", "4 x M4 rod, about 225 mm", "24 x 18650 cells (3S8P)", "BMS + 35 A fuse",
+     ["3\" pipe, 300 mm", "4 x 72 x 2.5 O-ring", "6 x M5 x 16 (front)", "6 x M5 x 14 (rear)", "4 x M4 rod, about 225 mm", "24 x 18650 cells (3S8P)", "BMS + 35 A fuse",
       "M16 gland, M10 vent bolt", "Marine epoxy"],
      ["6 M5 inserts in each flange (301). Epoxy a flange on each pipe end, bolt holes lined up. Let it cure.",
       "Front: blank cap 303 with two greased O-rings, 6 M5 x 16.",
@@ -1148,7 +1166,7 @@ IKEA = [
       "Build the pack on plates 305 and spacers 306 (pack guide). BMS on, battery lead soldered, polarity checked.",
       "Foam at the front, pack in from the rear, rear cap on with 6 M5 x 14, tighten the gland."]),
     ("Light heads", "12", "f_light_ex.png", [("401", 1), ("402", 1), ("403", 1)],
-     ["Aluminium disc 42 x 5", "XHP50.2 LED on 20 mm star", "Glass window", "31 x 1.5 + 24 x 1.5 O-ring", "3 x M2.5 x 25",
+     ["Aluminium disc 42 x 5", "XHP50.2 LED on 20 mm star", "Glass window", "30 x 1.5 + 24 x 1.5 O-ring", "3 x M2.5 x 25",
       "2-core 18 AWG, 350 mm", "Thermal adhesive, potting"],
      ["Disc: 4 mm centre hole, 3 x 2.9 mm on a 37 mm circle.",
       "Solder the cable to the LED, wires through the disc, bond the star to the disc.",
@@ -1183,7 +1201,7 @@ IKEA = [
       "Check every socket for continuity, then pot in thin layers below the lid bosses. Cure. Lid on.",
       "Thruster leads up the plates to their sockets with a drip loop: SP13 plugs, dielectric grease, hand-tight."]),
     ("Wire it, test it on the bench, slide the sled in", "16", "f_ik_sledin.png", [("201", 1), ("202", 1)],
-     ["F1 fuse, 30 A", "AS568-239 O-ring (re-greased)", "6 x M3 x 16", "Patch lead + RJ45 coupler"],
+     ["F1 fuse, 30 A", "AS568-237 O-ring (re-greased)", "6 x M3 x 16", "Patch lead + RJ45 coupler"],
      ["All four cables through the rear flange's bore. Sled on the bench behind the hull, camera end toward it.",
       "Connect motors, lights, battery (F1 OUT) and tether (section 16). 12 V port side, logic starboard.",
       "Fit F1 and do the first power-up: directions, link loss, lights (Firmware/README.md). Pull F1.",

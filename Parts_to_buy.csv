@@ -1,0 +1,114 @@
+Group,Qty,Item (exact size),Used for
+Printed parts,2.8 kg,"PETG filament, black",every printed part except the cowl (includes ~10 % for brims and reprints)
+Printed parts,1.5 kg,"PETG filament, yellow",the six top cowl sections
+Fasteners,6,"M2.5 x 25 mm socket head cap screw, stainless",light head: ring + disc to body
+Fasteners,18,"M3 x 8 mm button head screw, stainless",nose cone to prop hub
+Fasteners,4,"M3 x 8 mm socket head cap screw, stainless",junction box to deck
+Fasteners,4,"M3 x 8 mm countersunk screw, stainless",junction box lid
+Fasteners,8,"M3 x 10 mm socket head cap screw, stainless",junction deck to station rib; radial flange screw through the pipe
+Fasteners,6,"M3 x 12 mm socket head cap screw, stainless",dome ring
+Fasteners,22,"M3 x 16 mm socket head cap screw, stainless",corner pylon to bracket; hull rear cap
+Fasteners,28,"M3 x 20 mm socket head cap screw, stainless","station top halves, centre rib; cowl centre seam; cowl section seam; cowl foot to side plate"
+Fasteners,8,"M3 x 30 mm socket head cap screw, stainless",vertical pylon through the plate
+Fasteners,4,"M4 x 20 mm socket head cap screw, stainless",station middle to bottom (pod pair)
+Fasteners,16,"M4 x 30 mm socket head cap screw, stainless",pylon pinch bolt; station top to middle (hull pair)
+Fasteners,4,"M4 x 50 mm socket head cap screw, stainless",belly pan hanger
+Fasteners,6,"M5 x 14 mm socket head cap screw, stainless",pod rear cap
+Fasteners,6,"M5 x 16 mm socket head cap screw, stainless",pod front cap
+Fasteners,24,"M5 x 20 mm socket head cap screw, stainless",side plate to station arm; side plate to corner bracket
+Fasteners,28,"M3 nyloc nut, stainless",screw joints with a nut
+Fasteners,8,"M4 hex nut, stainless",screw joints with a nut
+Fasteners,8,"M3 washer, 1 mm thick (shim)",vertical pylons
+Fasteners,42,M3 brass heat-set insert (for 3D prints),Appendix B chart
+Fasteners,16,M4 brass heat-set insert (for 3D prints),Appendix B chart
+Fasteners,36,M5 brass heat-set insert (for 3D prints),Appendix B chart
+Thrusters,6,1200 GPH bilge pump motor cartridge,T1-T6
+Thrusters,6,"Brass shaft coupler, 3 mm to 5 mm, 9 mm OD x 20 mm",motor shaft to prop stud
+Thrusters,6,"M5 x 20 mm set screw (grub screw), stainless",prop stud in each coupler
+Thrusters,6,"M5 hex nut, stainless","jam nut, drives the prop hub"
+Thrusters,6,"M5 nyloc nut, stainless",holds the prop hub on
+Thrusters,12,"M4 x 4 mm set screw (grub screw), stainless","oil fill and bleed ports, 2 per tail cone"
+Thrusters,6,"O-ring 32 x 2 mm (ID x cross-section), nitrile",tail cone spigot
+Thrusters,6,"O-ring 5 x 1.5 mm, nitrile",holds each compensator bladder on its nipple
+Thrusters,6 (+4 spare),Nitrile finger cot,compensator bladders
+Thrusters,500 ml,"Mineral oil (white, food or USP grade)",oil fill
+Thrusters,6,"Cable gland M12 x 1.5, nylon, clamping range 3-6.5 mm",motor lead out of each tail cone
+Hull,1,"4"" Sch40 PVC pipe, 406 mm (16"")",electronics hull
+Hull,1,"Acrylic dome 100 mm, 115 mm flange (UQISOVI, Amazon B0DR2HP4YQ)",camera dome
+Hull,4,"O-ring AS568-238 (94.84 x 3.53 mm / 3.734 x 0.139""), nitrile 70A","flanges 201 and 203, two radial grooves each"
+Hull,1,"O-ring AS568-237 (91.67 x 3.53 mm / 3.609 x 0.139""), nitrile 70A","rear cap face seal, on 201"
+Hull,1,"O-ring AS568-240 (101.19 x 3.53 mm / 3.984 x 0.139""), nitrile 70A","dome face seal, on 203"
+Hull,2,"Cable gland M16 x 1.5, nylon, clamping range 5-10 mm",MOTORS and BATTERY in the rear cap
+Hull,2,"Cable gland M12 x 1.5, nylon, clamping range 3-6.5 mm",LIGHTS and TETHER in the rear cap
+Hull + pod,2,"M10 x 1.0 x 12 mm hex bolt (fine pitch), stainless",VENT plugs in 202 and 302
+Hull + pod,4,M10 bonded sealing washer (Dowty),under the vent bolts and the test barb (2 spare)
+Hull + pod,1,"M10 x 1.0 male to 6 mm (1/4"") hose barb, brass",vacuum tests
+Sled,2,"M3 threaded rod, 1 m, stainless",cut 4 sled rods of 340 mm
+Sled,24,"M3 hex nut, stainless",sled rods (16) and pan-tilt base (8)
+Sled,12,"M3 x 8 mm male-female standoff, brass",IBT_2 boards
+Sled,12,"M3 x 8 mm female-female standoff, brass",IBT_2 boards
+Sled,24,M3 x 6 mm screw,IBT_2 boards
+Sled,4,"M3 x 10 mm male-female standoff, brass",Pico breakout
+Sled,4,M3 x 6 mm screw,Pico breakout onto its standoffs
+Sled,4,"M2.5 x 8 mm male-female standoff, brass",Pi Zero
+Sled,4,M2.5 x 6 mm screw,Pi Zero onto its standoffs
+Camera,1,Arducam for Pi Zero (Pi Camera v2 size board) + 150-200 mm Pi Zero ribbon,camera
+Camera,2,MG90S metal-gear micro servo (with its screws and horns),pan and tilt
+Camera,9,M2 x 6 mm self-tapping screw,"servo horn (4), camera (4), tilt lever (1)"
+Camera,1,M2 x 8 mm self-tapping screw,cradle pivot
+Camera,4,M2 x 2 mm spacer / standoff,under the camera board
+Camera,1,M2 flat washer,tilt lever
+Camera,100 mm,1 mm steel music wire,tilt pushrod
+Battery pod,1,"3"" Sch40 PVC pipe, 300 mm",battery pod
+Battery pod,4,"O-ring 72 x 2.5 mm, nitrile","pod caps, two per cap"
+Battery pod,1,"Cable gland M16 x 1.5, nylon, clamping range 5-10 mm",battery lead out of the rear cap
+Battery pod,24,"18650 Li-ion cell, matched (same model and batch)",3S8P pack
+Battery pod,1,"3S BMS, 40 A, with balancing",pack
+Battery pod,1,"M4 threaded rod, 1 m, stainless",cut 4 pack tie rods of ~225 mm
+Battery pod,16,"M4 hex nut, stainless",pack tie rods
+Battery pod,3 m,"Pure nickel strip, 8 x 0.2 mm (not nickel-plated steel)",cell links
+Battery pod,1 + 1,"Inline ATO fuse holder, 12 AWG + 35 A ATO fuse",pack fuse
+Battery pod,1 set,"Fish-paper insulator rings (18650), Kapton tape, silica gel packs",pack
+Battery pod,1,2-part marine epoxy (JB Weld Marine or West System),bonds the pod flanges to the pipe
+Lights,2 (+1 spare),"Cree XHP50.2 LED, 6 V version, 5000-6500 K, on a 20 mm copper DTP star",light heads
+Lights,2,Mean Well LDD-700HW constant-current LED driver,inside the hull
+Lights,2,"Glass lens 28 x 3 mm, AR coated",light windows
+Lights,1,"6061 aluminium round bar, 1-3/4"" x 6""",two 5 mm heat-sink discs
+Lights,1,Thermal adhesive (Arctic Alumina),LED star onto the disc
+Lights,2,"O-ring 30 x 1.5 mm, nitrile",front ring face groove
+Lights,2,"O-ring 24 x 1.5 mm, nitrile","window, under the front lip"
+Lights,2,"M3 x 8 mm set screw (grub screw), stainless",locks each light head in the cowl
+Frame,1,"Black HDPE sheet, 1/2"" (12.7 mm), 24 x 24"" (at least 605 mm one way)",both side plates
+Frame,1.6-2.3 kg,Lead shot in sealed bags (or lead bar),belly pan ballast
+Cowl,1.0-1.7 L,"Depth-rated closed-cell foam (PVC core foam such as H80, or 2-lb closed-cell PU)",buoyancy blocks in the cowl
+Junction box,6 pairs,"SP13 IP68 2-pin connector: panel socket (rear nut) + cable plug, 4-6.5 mm cable",thrusters T1-T6
+Junction box,2 pairs,"SP13 IP68 3-pin connector: panel socket (rear nut) + cable plug, 4-6.5 mm cable","lights L1, L2"
+Junction box,1,MG Chemicals 832B epoxy potting compound,junction box and light cavities
+Wiring,4 m,"2-core 18 AWG marine cable, OD 5-6 mm",6 thruster leads + 2 light leads
+Wiring,0.8 m,"12-core control cable, 0.5 mm2 cores, OD 8-10 mm",junction box to the hull (motors)
+Wiring,0.5 m,"4-core cable, 0.5-0.75 mm2 cores, OD 3-6.5 mm",junction box to the hull (lights)
+Wiring,0.6 m,"2-core 12 AWG silicone or marine cable, OD 5-10 mm",battery pod to the hull
+Wiring,as needed,"Cat6 cable, slim (OD 6.5 mm or less), + strain relief",tether (data only)
+Electronics,6,IBT_2 (BTS7960) H-bridge motor driver,U1-U6
+Electronics,2,"Mini MP1584EN buck board, fixed 5 V, 1.8 A","U9A, U9B"
+Electronics,1,Raspberry Pi Pico with headers + 57 x 63 mm screw-terminal breakout board,U10
+Electronics,1,Raspberry Pi Zero 2W with header,U11
+Electronics,1,Waveshare ETH/USB HUB HAT (RTL8152B) for Pi Zero,U12
+Electronics,1,"Cat6 patch lead 0.3 m, one end 90-degree",HAT to the tether
+Electronics,1,RJ45 inline coupler,patch lead to the tether
+Electronics,1 + 1,"Inline ATO/ATC fuse holder, 12 AWG + 30 A fuse",F1
+Electronics,1 + 1,Inline mini-blade fuse holder + 3 A fuse,F2
+Electronics,1,Capacitor 1000 uF 25 V low-ESR electrolytic,C1
+Electronics,1,Capacitor 470 uF 10 V electrolytic,C2
+Electronics,1,1N5817 Schottky diode,D1
+Electronics,3,"Resistor 10 k, 1/4 W","R1, R2, R4"
+Electronics,1,"Resistor 33 k, 1/4 W",R3
+Electronics,2,Wago 221-415 lever connector (5-way),12 V and GND bus
+Electronics,1 m + 1 m,"14 AWG silicone wire, red + black",bus to the top driver boards
+Electronics,0.5 m + 0.5 m,"16 AWG silicone wire, red + black",jumpers to the bottom driver boards
+Electronics,1 m + 1 m,"20 AWG silicone wire, red + black",aux branch
+Electronics,1 set,Dupont female housings + 22 AWG hook-up wire,logic wiring
+Supplies,1,Silicone O-ring grease (not petroleum),every O-ring
+Supplies,1,Silicone dielectric grease,SP13 plug threads and pins
+Supplies,1,"Clear silicone sealant (RTV), small tube",gland threads and oil-port set screws
+Supplies,1 set,"Heat-shrink assortment incl. 20-25 mm clear, double-sided foam tape, zip ties 2.5-3.6 mm","splices, buck boards, harness"
