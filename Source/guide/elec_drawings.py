@@ -2,6 +2,7 @@
 Electronics drawings for the guide, written as SVG and rendered to PNG in headless Chromium:
   elec_sch1.png   schematic sheet 1: battery, fuses, 12 V bus, battery sense, six IBT_2 drivers and motors
   elec_sch2.png   schematic sheet 2: 5 V supply, Pico, Pi Zero, camera, Ethernet, servos, LED drivers and lights
+  elec_arm_servo.png  how the ARM wires join and how the servos are powered
   elec_pico.png, elec_pizero.png  pin maps (which pin goes where), from PINS, the one pin-connection list
   elec_wiring.png wiring diagram: every wire by colour and gauge, from the hull glands through the rear bulkhead to the boards
 Net names: +12V (after F1), +12V_AUX (after F2), +5V (U9A out: Pi, Pico), +5V_SERVO (U9B out: servos only), 3V3 (Pico 3V3 OUT), GND (star point on the GND Wago).
@@ -466,10 +467,95 @@ s.text(60, 1022, "The camera ribbon goes in the CSI socket at the far end from t
 legend(s, 60, 1062, [("UART link to the Pico", "uart"), ("5 V in", "5v"), ("ground", "gnd"), ("not used", "res")])
 open(f"{OUT}/elec_pizero.svg", "w").write(s.svg())
 
+# ---------------- ARM harness and servo power: how the wires physically join (guide 9.7)
+s = SVG(1700, 960)
+title(s, "ARM and servo wiring", "Left: R_EN + L_EN of all six IBT_2 joined into one wire for Pico terminal 20, with R1. Right: the servos run from U9B only; their signals come from terminals 21 and 22.")
+BRN = "#7a4a22"; SIGO = "#e08a00"
+# Pico, bottom end of the breakout (terminal number = pin number)
+px0, px1 = 770, 1040
+s.rect(px0, 300, px1 - px0, 430, "#2f7d4a", "#1f5c35", 2.4, 12); s.text((px0 + px1) / 2, 712, "Pico (bottom end)", 13, "#ffffff", "middle", 700)
+s.text((px0 + px1) / 2, 290, "breakout terminals", 12.5, MUTED, "middle")
+TL = {17: 380, 18: 450, 19: 520, 20: 590}; TR = {22: 520, 21: 590}
+def term(x, y, n, side):
+    s.rect(x - 15, y - 15, 30, 30, "#3a86d6" if False else "#e9edf1", "#5d6670", 1.8, 3); s.circle(x, y, 7, "#5d6670", "#ffffff", 1.6)
+    s.line([(x - 4, y + 4), (x + 4, y - 4)], "#5d6670", 1.6)
+    s.text(x + (26 if side == "L" else -26), y + 5, str(n), 15, "#ffffff", "start" if side == "L" else "end", 700)
+for n, y in TL.items(): term(px0, y, n, "L")
+for n, y in TR.items(): term(px1, y, n, "R")
+s.text(px0 + 50, 385, "GP13", 12, "#d7eadd"); s.text(px0 + 50, 455, "GND", 12, "#d7eadd"); s.text(px0 + 50, 525, "GP14 DIM", 12, "#d7eadd")
+s.text(px0 + 50, 595, "GP15 ARM", 12, "#ffffff", "start", 700)
+s.text(px1 - 50, 525, "GP17", 12, "#ffffff", "end", 700); s.text(px1 - 50, 595, "GP16", 12, "#ffffff", "end", 700)
+s.line([(px0 - 15, 380), (px0 - 60, 380)], "#b9bec4", 2); s.text(px0 - 64, 384, "T6 LPWM", 12, MUTED, "end")
+# six IBT_2 logic headers
+HN = ("RPWM", "LPWM", "R_EN", "L_EN", "R_IS", "L_IS", "VCC", "GND")
+SPL = (560, 590)
+for k in range(6):
+    y = 160 + k * 100; x0 = 120
+    s.text(40, y + 6, f"T{k + 1}", 17, INK, "start", 700); s.text(40, y + 24, "IBT_2", 11.5, MUTED)
+    s.rect(x0 - 6, y - 14, 8 * 40 + 12, 28, "#1d2125", "#1d2125", 1, 3)
+    for i, n in enumerate(HN):
+        xx = x0 + i * 40 + 20; on = n in ("R_EN", "L_EN")
+        s.rect(xx - 11, y - 9, 22, 18, "#f3e9fb" if on else "#4a5057", PUR if on else "#4a5057", 1.6, 2)
+        s.text(xx, y - 20, n, 10, PUR if on else MUTED, "middle", 700 if on else 500)
+    xa, xb = x0 + 2 * 40 + 20, x0 + 3 * 40 + 20; xm = (xa + xb) / 2
+    s.line([(xa, y + 9), (xa, y + 28), (xm, y + 40)], PUR, 2.4); s.line([(xb, y + 9), (xb, y + 28), (xm, y + 40)], PUR, 2.4)
+    s.rect(xm - 9, y + 34, 18, 22, "#d9c7f0", PUR, 1.4, 3); s.dot(xm, y + 40, PUR, 4.5)
+    s.line([(xm, y + 56), (xm, y + 66), (470, y + 66), (SPL[0] - 40, SPL[1] + (k - 2.5) * 9), (SPL[0] - 6, SPL[1])], PUR, 2.2)
+    s.text(x0 + 8 * 40 + 14, y + 5, "other 3 wires: pin table", 11, MUTED) if k == 0 else None
+s.rect(SPL[0] - 8, SPL[1] - 14, 52, 28, "#d9c7f0", PUR, 1.6, 5); s.dot(SPL[0], SPL[1], PUR, 6)
+s.line([(SPL[0] + 44, SPL[1]), (px0 - 15, 590)], PUR, 3)
+s.text(SPL[0] + 20, SPL[1] + 38, "six into one: solder,", 12.5, INK, "start", 600); s.text(SPL[0] + 20, SPL[1] + 54, "heat-shrink, one lead", 12.5, INK, "start", 600)
+s.text(232, 795, "At each header: R_EN and L_EN tails twisted and soldered", 12.5, INK, "middle", 600)
+s.text(232, 811, "to the ARM wire, heat-shrunk; both Dupont pins in the housing", 12.5, INK, "middle", 600)
+# R1 between terminal 20 and terminal 18
+rx = 730
+s.line([(px0 - 15, 450), (rx, 450)], INK, 2); s.dot(rx, 590, PUR, 5)
+resistor(s, rx, 450, 590, "", "", PUR); s.text(rx - 16, 490, "R1  10 k", 15, INK, "end", 700)
+s.text(rx - 16, 510, "one leg in 18 (GND),", 12, MUTED, "end"); s.text(rx - 16, 526, "one in 20 with ARM", 12, MUTED, "end")
+# servo side: U9B, rails, C2, plugs
+ux0, ux1, uy0, uy1 = 1110, 1290, 160, 250
+s.rect(ux0, uy0, ux1 - ux0, uy1 - uy0, "#f6f8fa", INK, 2.4, 6); s.text((ux0 + ux1) / 2, 200, "U9B", 17, INK, "middle", 700)
+s.text((ux0 + ux1) / 2, 220, "5 V buck, servos only", 12.5, MUTED, "middle")
+s.line([(ux0 + 40, uy0), (ux0 + 40, 112), (1660, 112)], RED, 2.6); s.text(1660, 102, "+12V_AUX (after F2)  ->  IN+", 13, RED, "end", 700)
+s.line([(ux0 + 80, uy0), (ux0 + 80, 134), (1660, 134)], INK, 2.6); s.text(1660, 152, "GND  ->  IN-", 13, INK, "end", 700)
+XR, XB = ux0 + 70, ux0 + 110
+s.text(XR - 6, uy1 + 18, "OUT+", 12, RED, "end", 700); s.text(XB + 6, uy1 + 18, "OUT-", 12, INK, "start", 700)
+s.line([(XR, uy1), (XR, 650)], RED, 2.8); s.line([(XB, uy1), (XB, 680)], INK, 2.8)
+cx = 1380
+s.dot(XR, 330, RED, 5); s.line([(XR, 330), (cx, 330)], RED, 2.2); capacitor(s, cx, 330, 410, "C2", "470 uF 10 V"); s.line([(cx, 410), (XB, 410)], INK, 2.2); s.dot(XB, 410, INK, 5)
+s.text(cx + 20, 446, "stripe (-) to the black side", 12, MUTED)
+PX = 1340
+for nm, yc, tpin, gp in (("SV2 tilt", 520, 22, "GP17"), ("SV1 pan", 650, 21, "GP16")):
+    yo, yr, yb = yc - 30, yc, yc + 30
+    s.rect(PX, yo - 16, 34, 92, "#1d2125", "#1d2125", 1, 4)
+    for yy, col in ((yo, SIGO), (yr, RED), (yb, BRN)): s.rect(PX + 6, yy - 8, 22, 16, col, col, 1, 2)
+    s.line([(PX + 34, yr), (PX + 110, yr)], "#555", 5); s.rect(PX + 110, yr - 30, 140, 60, "#2a6fb3", "#1f5280", 2, 6)
+    s.text(PX + 180, yr - 4, nm, 15, "#ffffff", "middle", 700); s.text(PX + 180, yr + 15, "MG90S", 12, "#d6e6f7", "middle")
+    s.dot(XR, yr, RED, 5); s.line([(XR, yr), (PX + 6, yr)], RED, 2.4)
+    s.dot(XB, yb, INK, 5); s.line([(XB, yb), (PX + 6, yb)], INK, 2.4)
+    ty = TR[tpin]; bend = 1075 if tpin == 22 else 1100
+    s.line([(px1 + 15, ty), (bend, ty), (bend, yo), (PX + 6, yo)], SIGO, 2.4)
+    s.text(PX - 12, yo - 6, f"orange (signal) <- {gp}", 11.5, SIGO, "end", 600) if False else None
+for t, y, c in (("orange: signal", 470, SIGO), ("red: + 5 V", 500, RED), ("brown: -", 530, BRN)):
+    pass
+s.text(PX + 17, 460, "plug", 12, MUTED, "middle"); s.text(PX + 52, 486, "orange = signal", 11.5, SIGO, "start", 600) if False else None
+lg = [("orange: signal (3.3 V from the Pico)", SIGO), ("red: + 5 V from U9B OUT+", RED), ("brown: - to U9B OUT-", BRN)]
+for i, (t, c) in enumerate(lg): s.rect(1340, 744 + i * 26, 16, 16, c, c, 1, 3); s.text(1364, 757 + i * 26, t, 13, INK)
+s.rect(985, 760, 330, 92, "#fff4f2", RED, 1.6, 8)
+s.text(1000, 784, "U9A (Pi + Pico 5 V) is a separate supply.", 13, RED, "start", 700)
+s.text(1000, 804, "Never join U9A OUT+ to U9B OUT+.", 13, INK, "start", 600)
+s.text(1000, 824, "The grounds are shared (that is fine and", 13, INK)
+s.text(1000, 842, "needed: the signal needs a common ground).", 13, INK)
+s.rect(40, 880, 1620, 58, "#f6f8fa", "#c3c8cd", 1.2, 8)
+s.text(60, 905, "Bench checks before plugging the servos in:  U9B OUT+ to OUT-  4.9-5.2 V.   Terminal 20 to GND:  0 V disarmed, about 3.3 V armed "
+       "(1-2 V disarmed = an ARM joint not reaching R1).", 13.5, INK, "start", 600)
+s.text(60, 925, "Wire numbers: ARM is in each logic bundle (wire 19); servo power and signals are wire 23.", 13, MUTED)
+open(f"{OUT}/elec_arm_servo.svg", "w").write(s.svg())
+
 # ------------------------------------------------------------------ render
 with sync_playwright() as p:
     b = p.chromium.launch()
-    for n in ("elec_sch1", "elec_sch2", "elec_wiring", "elec_pico", "elec_pizero"):
+    for n in ("elec_sch1", "elec_sch2", "elec_wiring", "elec_pico", "elec_pizero", "elec_arm_servo"):
         svg = open(f"{OUT}/{n}.svg").read()
         import re
         w, h = map(int, re.search(r'width="(\d+)" height="(\d+)"', svg).groups())

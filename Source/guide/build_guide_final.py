@@ -541,6 +541,7 @@ def build_pdf(path):
                 [0.75*inch, 0.45*inch, 1.25*inch, W_TXT - 3.0*inch, 0.55*inch]),
           Paragraph("Each thruster owns one PWM slice at 20 kHz (channel A = RPWM, B = LPWM). The lights dim from GP14 at 500 Hz; the servos run at 50 Hz on slice 0. "
                     "GP26 reads the battery through the 33 k / 10 k divider (12.6 V reads 2.93 V). GP20, GP21 and GP22 are kept free for a depth sensor, an IMU and a leak probe.", SMALL),
+          PageBreak(), landscape("elec_arm_servo"), PageBreak(),
           Paragraph("9.7  Wire and test the sled", H3),
           steps(["Flash the Pico before wiring: hold BOOTSEL, plug it into your computer's USB and copy Firmware/build/pico_rov.ino.uf2 onto it. "
                  "Set up the Pi Zero with Firmware/pi_bridge/SETUP.md (static address 192.168.2.2 on the tether, video server, bridge service).",
@@ -561,7 +562,7 @@ def build_pdf(path):
                  "through the lower rail window: RPWM and LPWM to the board's two pins in the 9.6 table, "
                  "R_EN + L_EN to ARM (pin 20), VCC to 3V3 OUT (pin 36), GND to the board's Pico GND in 9.6 (3, 8 or 13). Splice the six VCC wires, and the six "
                  "ARM pairs, so one wire goes into each terminal; VCC crosses under the breakout to the 3V3 OUT terminal on the port side. R_IS and L_IS stay empty.",
-                 "Pull-downs and sense: R1 10 k from ARM (pin 20) to GND (pin 18) and R2 10 k from DIM (pin 19) to the same GND terminal (pin 18), soldered at the Pico end. "
+                 "Pull-downs and sense (ARM and R1: the ARM and servo drawing before 9.7): R1 10 k from ARM (pin 20) to GND (pin 18) and R2 10 k from DIM (pin 19) to the same GND terminal (pin 18), soldered at the Pico end. "
                  "Battery sense: R3 33 k from the +12V Wago (hull side of F1) to GP26 (pin 31), R4 10 k from GP26 to AGND (pin 33).",
                  "Pi to Pico (20): Pi pin 8 (TXD) to Pico pin 2 (GP1), Pi pin 10 (RXD) to Pico pin 1 (GP0), Pi pin 6 to Pico pin 3. With the HAT on, "
                  "solder these three (and the 5 V on pin 2) to the HAT's stacking pins 2-3 mm above the HAT and heat-shrink them; a Dupont housing there "
@@ -569,7 +570,7 @@ def build_pdf(path):
                  "fully into the Pi's USB OTG port (18).",
                  "DIM (24): Pico pin 19 to both LDD DIM inputs, along the starboard side and through 215's starboard window.",
                  "Camera and servos (23): the camera ribbon from the Pi's CSI connector forward through 207's top window. Pan servo signal to GP16 (pin 21), "
-                 "tilt to GP17 (pin 22); servo + and - to U9B's OUT+ / OUT-, with C2 (470 uF) across them at the plugs.",
+                 "tilt to GP17 (pin 22); servo + and - to U9B's OUT+ / OUT-, with C2 (470 uF) across them at the plugs (same drawing). Measure U9B's output (4.9-5.2 V) before plugging the servos in.",
                  "The motor cores (12), the two light pairs (16) and the tether (17) come in through the rear cap and are connected in section 16."], start=1),
           Paragraph("Bench test, before the sled goes in the hull", H3),
           steps(["Meter, no power: +12V to GND on the Wagos must not read a short. Each IBT_2 VCC must read continuity to Pico pin 36 and none to +12V.",

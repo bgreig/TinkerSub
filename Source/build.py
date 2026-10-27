@@ -126,10 +126,10 @@ class Build:
         self.run("plate_figs.py", crop, "render")
         os.makedirs(self.p("render/elec"), exist_ok=True)
         self.run("elec_drawings.py", "render/elec")
-        for n in ("elec_sch1", "elec_sch2", "elec_wiring", "elec_pico", "elec_pizero"): shutil.copy(self.p("render/elec", n + ".png"), self.p(crop, f"f_{n}.png"))
+        for n in ("elec_sch1", "elec_sch2", "elec_wiring", "elec_pico", "elec_pizero", "elec_arm_servo"): shutil.copy(self.p("render/elec", n + ".png"), self.p(crop, f"f_{n}.png"))
         shutil.copy(self.p("render/elec/elec_wires.json"), self.p("render/elec_wires.json"))
         shutil.copy(self.p("render/elec/elec_pins.json"), self.p("render/elec_pins.json"))
-        self.fresh |= {f"{crop}/{f}.png" for f in ("f_layout", "f_pantilt_fit", "f_nest", "f_tile", "f_elec_sch1", "f_elec_sch2", "f_elec_wiring", "f_elec_pico", "f_elec_pizero")}
+        self.fresh |= {f"{crop}/{f}.png" for f in ("f_layout", "f_pantilt_fit", "f_nest", "f_tile", "f_elec_sch1", "f_elec_sch2", "f_elec_wiring", "f_elec_pico", "f_elec_pizero", "f_elec_arm_servo")}
         os.makedirs(self.p("out"), exist_ok=True)
         self.run("comp_fig.py", "out/compensator_section.png"); self.fresh.add("out/compensator_section.png")
 
