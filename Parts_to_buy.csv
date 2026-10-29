@@ -107,7 +107,7 @@ Electronics,2,Wago 221-415 lever connector (5-way),12 V and GND bus,$6 (2),Amazo
 Electronics,1 m + 1 m,"14 AWG silicone wire, red + black",bus to the top driver boards,$8,Amazon
 Electronics,0.5 m + 0.5 m,"16 AWG silicone wire, red + black",jumpers to the bottom driver boards,$6,Amazon
 Electronics,1 m + 1 m,"20 AWG silicone wire, red + black",aux branch,$5,Amazon
-Electronics,1 set,Dupont female housings + 22 AWG hook-up wire,logic wiring,$8,Amazon
+Electronics,1 set,Dupont female housings + 22 AWG and 26 AWG hook-up wire,logic wiring: RPWM / LPWM wires and the ARM / VCC / GND chain,$8,Amazon
 Supplies,1,Silicone O-ring grease (not petroleum),every O-ring,$6,Hardware store
 Supplies,1,Silicone dielectric grease,SP13 plug threads and pins,$6,Hardware store
 Supplies,1,"Clear silicone sealant (RTV), small tube",gland threads and oil-port set screws,$6,Hardware store

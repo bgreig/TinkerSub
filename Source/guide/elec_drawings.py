@@ -115,7 +115,7 @@ s.text(900, 330, "+12V_AUX feeds both 5 V converters (U9A, U9B) and both LED dri
 s.line([(1180, 240), (1660, 240)], INK, 3.2); s.text(1660, 228, "GND  (Wago 221-415, star point)", 15, INK, "end", 700)
 s.dot(1180, 240, INK); s.line([(1180, 240), (1180, 262)], INK); gnd(s, 1180, 262)
 s.text(1200, 290, "Every ground symbol is this net. Heavy returns go to the GND Wago;", 12.5, MUTED)
-s.text(1200, 306, "the GND wire in each logic bundle is a signal reference only.", 12.5, MUTED)
+s.text(1200, 306, "the IBT_2 logic-ground chain is a signal reference only.", 12.5, MUTED)
 T = [("T1", "front port", 2, 3), ("T2", "front stbd", 4, 5), ("T3", "rear port", 6, 7), ("T4", "rear stbd", 8, 9), ("T5", "vert port", 10, 11), ("T6", "vert stbd", 12, 13)]
 for i, (tn, where, ga, gb) in enumerate(T):
     x0 = 92 + i * 268; y0 = 430
@@ -134,7 +134,7 @@ for i, (tn, where, ga, gb) in enumerate(T):
     s.circle(cx, mp[1] + 56, 26, PUR); s.text(cx, mp[1] + 63, "M", 20, PUR, "middle", 700)
     s.text(cx, mp[1] + 104, f"M{i + 1}  {tn}", 15, INK, "middle", 700); s.text(cx, mp[1] + 122, where, 13, MUTED, "middle")
     s.text(cx, mp[1] + 138, f"MOTORS pair {i + 1}", 12, MUTED, "middle")
-s.text(40, 1110, "IBT_2 boards: VCC from the Pico's 3V3 OUT (never 5 V or 12 V); R_EN and L_EN of all six on ARM (GP15, R1 10 k to GND, sheet 2); R_IS and L_IS not connected.", 13, MUTED)
+s.text(40, 1110, "IBT_2 boards: VCC chained from the Pico's 3V3 OUT (never 5 V or 12 V); R_EN + L_EN bridged on each board and chained to ARM (GP15, R1 10 k to GND, sheet 2); R_IS, L_IS not connected.", 13, MUTED)
 s.text(40, 1130, "Each stacked pair (T1/T4, T2/T5, T3/T6) takes one 14 AWG feed from the bus to the top board, jumped to the bottom board with 16 AWG. F1 is the only path into +12V.", 13, MUTED)
 s.text(40, 1150, "M+ / M-: the motor pair in the 12-core MOTORS cable. Spin direction is set in firmware (THRUSTER_DIR), not by swapping wires.", 13, MUTED)
 open(f"{OUT}/elec_sch1.svg", "w").write(s.svg())
@@ -188,7 +188,7 @@ for i, (num, n) in enumerate(PR):
     elif n == "GP26": flag(s, p[0], p[1], "VBAT_SENSE", "right")
     elif n in ("GP16", "GP17"): flag(s, p[0], p[1], n, "right")
     else: s.line([p, (p[0] + 12, p[1])], MUTED, 1.6); s.text(p[0] + 16, p[1] + 5, RES[n], 12.5, MUTED)
-s.text(40, 1262, "GP2-GP13: RPWM / LPWM of U1-U6 (sheet 1). GND pins 3, 8, 13, 18: the signal-ground wire of each logic bundle.", 12.5, MUTED)
+s.text(40, 1262, "GP2-GP13: RPWM / LPWM of U1-U6 (sheet 1). GND pin 13: the IBT_2 logic-ground chain; pin 3: the Pi; pin 18: R1 and R2.", 12.5, MUTED)
 for net, r, xx in (("ARM", "R1", 900), ("DIM", "R2", 1010)):
     flag(s, xx, 720, net, "right"); s.line([(xx, 720), (xx, 736)]); resistor(s, xx, 736, 820, r, "10 k"); gnd(s, xx, 820)
 s.text(880, 880, "R1 holds all six bridges off until firmware raises ARM.", 12.5, MUTED)
@@ -277,7 +277,9 @@ num(214, 850, 16); s.text(111, 926, "two separate pairs,", 11.5, MUTED, "middle"
 # W20 tether
 s.line([(176, 170), (1520, 170), (1520, 220)], "#2f6fd1", 4.4); num(700, 170, 17, "#2f6fd1")
 s.line([(1520, 290), (1520, 380)], INK, 3); num(1520, 335, 18); lab(1534, 340, "USB OTG")
-# W22 logic bundles (Dupont x 6 per board)
+# W22 RPWM + LPWM per board, and one ARM / VCC / GND chain across all six
+s.line([(1420, 560), (822, 560)], "#0f7f86", 3, "10 5")
+for x in (1302, 1062, 822): s.line([(x, 500), (x, 620)], "#0f7f86", 3, "10 5"); s.dot(x, 560, "#0f7f86", 4.5)
 for i, (t, b, x) in enumerate(COLS):
     s.line([(x + 170, 500), (x + 170, 524 - i * 6), (1392 + i * 6, 524 - i * 6), (1392 + i * 6, 650 + i * 8), (1420, 650 + i * 8)], "#d4a017", 2.4)
     s.line([(x + 170, 620), (x + 170, 600 - i * 6), (1374 + i * 6, 600 - i * 6), (1374 + i * 6, 690 + i * 8), (1420, 690 + i * 8)], "#d4a017", 2.4)
@@ -295,10 +297,10 @@ s.line([(480, 1040), (480, 900), (470, 900)], PUR, 1.8); num(1100, 1070, 24, PUR
 s.rect(690, 860, 690, 186, "#ffffff", "#c3c8cd", 1.2, 6); s.text(706, 884, "LEGEND", 12, MUTED, "start", 700)
 LEG = [("#2f6fd1", 4.4, None, "Cat6 tether"), ("#7d8389", 7, None, "12-core motor cable"), (PUR, 2.4, None, "motor pair M+ / M-"),
        (RED, 4.6, None, "12 AWG battery lead"), (RED, 3.4, None, "14 AWG +12V feed"), (INK, 3.4, None, "14 AWG GND feed"),
-       (RED, 2.6, "7 4", "16 AWG jumper (+ and -)"), (RED, 2, None, "20 AWG aux (red +, black -)"), ("#d4a017", 2.4, None, "logic bundle"),
+       (RED, 2.6, "7 4", "16 AWG jumper (+ and -)"), (RED, 2, None, "20 AWG aux (red +, black -)"), ("#d4a017", 2.4, None, "RPWM + LPWM"), ("#0f7f86", 3, "10 5", "ARM / VCC / GND chain"),
        (BLU, 2.4, None, "UART + GND"), (ORG, 2.6, None, "+5V"), (PUR, 1.8, None, "DIM")]
 for k, (c, w, d, t) in enumerate(LEG):
-    cx, cy = 706 + (k // 4) * 225, 910 + (k % 4) * 34
+    cx, cy = 706 + (k // 5) * 225, 902 + (k % 5) * 28
     s.line([(cx, cy), (cx + 46, cy)], c, w, d); s.text(cx + 56, cy + 4.5, t, 12.5, INK, "start", 500)
 open(f"{OUT}/elec_wiring.svg", "w").write(s.svg())
 
@@ -318,7 +320,7 @@ WIRES = [
  (16, "LIGHTS gland", "LDD 1 +Vo/-Vo, LDD 2 +Vo/-Vo", "4-core: two separate pairs"),
  (17, "TETHER gland", "HAT RJ45 (on the Pi)", "Cat6, inline coupler + 90-degree patch lead"),
  (18, "HAT hub input", "Pi Zero USB OTG", "micro-USB link board (comes with the HAT)"),
- (19, "IBT_2 header (each)", "Pico breakout terminals (see the pin table)", "x 6: RPWM, LPWM, R_EN+L_EN, VCC, GND; Dupont at the IBT_2"),
+ (19, "IBT_2 logic headers", "Pico breakout terminals (see the pin table)", "RPWM + LPWM: own wire each (12); ARM, VCC, GND: daisy-chained board to board, one wire each to the Pico"),
  (20, "Pi pins 6, 8, 10 (HAT stacking pins)", "Pico terminals 3, 2, 1", "soldered at the Pi: GND, TXD->GP1, RXD<-GP0"),
  (21, "U9A OUT+", "Pi pin 2 (5 V, HAT stacking pin)", "via the 5 V splice behind the Pi"),
  (22, "5 V splice; U9A OUT-", "D1 -> Pico VSYS (39); Pico GND (38)", "red + 1N5817; black"),
@@ -334,20 +336,19 @@ json.dump(WIRES, open(f"{OUT}/elec_wires.json", "w"))
 TH = ("T1", "T2", "T3", "T4", "T5", "T6")
 PINS = [("Pico", 1, "GP0 (UART TX)", "Pi Zero pin 10 (RXD)", "20"), ("Pico", 2, "GP1 (UART RX)", "Pi Zero pin 8 (TXD)", "20"),
         ("Pico", 3, "GND", "Pi Zero pin 6 (GND)", "20")]
-GNDPIN = {"T1": 3, "T2": 3, "T3": 8, "T4": 8, "T5": 13, "T6": 13}
 for k, t in enumerate(TH):
     PINS.append(("Pico", 4 + k * 2 + (k >= 2) + (k >= 4), f"GP{2 + 2*k} (PWM)", f"{t} header RPWM", "19"))
     PINS.append(("Pico", 5 + k * 2 + (k >= 2) + (k >= 4), f"GP{3 + 2*k} (PWM)", f"{t} header LPWM", "19"))
-PINS += [("Pico", GNDPIN[t], "GND", f"{t} header GND", "19") for t in TH]
+PINS += [("Pico", 13, "GND", "GND chain: logic GND of all six IBT_2 headers, daisy-chained T1-T4-T2-T5-T3-T6", "19")]
 PINS += [("Pico", 18, "GND", "R1 10 k, ground leg (other leg on pin 20)", "-"), ("Pico", 18, "GND", "R2 10 k, ground leg (other leg on pin 19)", "-"),
          ("Pico", 19, "GP14 (DIM)", "LDD 1 DIM", "24"), ("Pico", 19, "GP14 (DIM)", "LDD 2 DIM", "24"),
          ("Pico", 19, "GP14 (DIM)", "R2 10 k (other leg on pin 18)", "-")]
-PINS += [("Pico", 20, "GP15 (ARM)", f"{t} header R_EN + L_EN (joined in the Dupont housing)", "19") for t in TH]
+PINS += [("Pico", 20, "GP15 (ARM)", "ARM chain: R_EN + L_EN of all six IBT_2 (bridged on each header), daisy-chained", "19")]
 PINS += [("Pico", 20, "GP15 (ARM)", "R1 10 k (other leg on pin 18)", "-"),
          ("Pico", 21, "GP16 (PWM)", "Pan servo signal (orange lead)", "23"), ("Pico", 22, "GP17 (PWM)", "Tilt servo signal (orange lead)", "23"),
          ("Pico", 31, "GP26 (ADC0)", "R3 33 k, other leg to the +12V Wago (hull side of F1)", "-"),
          ("Pico", 31, "GP26 (ADC0)", "R4 10 k (other leg on pin 33)", "-"), ("Pico", 33, "AGND", "R4 10 k, ground leg", "-")]
-PINS += [("Pico", 36, "3V3 OUT", f"{t} header VCC", "19") for t in TH]
+PINS += [("Pico", 36, "3V3 OUT", "VCC chain: VCC of all six IBT_2 headers, daisy-chained", "19")]
 PINS += [("Pico", 38, "GND", "U9A OUT- (5 V return)", "22"),
          ("Pico", 39, "VSYS", "D1 1N5817, band end (D1's other end to the 5 V splice from U9A OUT+)", "22"),
          ("Pi Zero", 2, "5V", "5 V splice from U9A OUT+ (soldered to the HAT's stacking pin)", "21"),
@@ -371,11 +372,11 @@ PI_NAMES = {1: "3V3", 2: "5V", 3: "GPIO2", 4: "5V", 5: "GPIO3", 6: "GND", 7: "GP
 TEAL, P3V3 = "#0f7f86", "#b5462a"
 CAT = {"uart": GRN, "pwm": BLU, "gnd": INK, "ctrl": PUR, "servo": "#c2570c", "adc": TEAL, "5v": ORG, "3v3": P3V3, "res": "#9aa1a9"}
 TINT = {GRN: "#e9f5ec", BLU: "#e8f0fb", INK: "#eceef0", PUR: "#f1eaf9", "#c2570c": "#fcefe5", TEAL: "#e4f4f5", ORG: "#fdf1e2", P3V3: "#f9e9e5", "#9aa1a9": "#ffffff"}
-PICO_LBL = {1: ("to Pi pin 10 (RXD)", "uart"), 2: ("from Pi pin 8 (TXD)", "uart"), 3: ("Pi pin 6 + T1, T2 GND", "gnd"),
-            8: ("T3, T4 GND", "gnd"), 13: ("T5, T6 GND", "gnd"), 18: ("R1 + R2 ground legs", "gnd"),
-            19: ("DIM: LDD 1 + 2, R2", "ctrl"), 20: ("ARM: all six EN, R1", "ctrl"), 21: ("pan servo signal", "servo"), 22: ("tilt servo signal", "servo"),
+PICO_LBL = {1: ("to Pi pin 10 (RXD)", "uart"), 2: ("from Pi pin 8 (TXD)", "uart"), 3: ("Pi pin 6 (GND)", "gnd"),
+            13: ("GND chain: all six IBT_2", "gnd"), 18: ("R1 + R2 ground legs", "gnd"),
+            19: ("DIM: LDD 1 + 2, R2", "ctrl"), 20: ("ARM chain + R1", "ctrl"), 21: ("pan servo signal", "servo"), 22: ("tilt servo signal", "servo"),
             26: ("reserved: I2C0 SDA", "res"), 27: ("reserved: I2C0 SCL", "res"), 29: ("reserved: leak probe", "res"),
-            31: ("battery sense: R3, R4", "adc"), 33: ("R4 ground leg", "gnd"), 36: ("VCC of all six IBT_2", "3v3"),
+            31: ("battery sense: R3, R4", "adc"), 33: ("R4 ground leg", "gnd"), 36: ("VCC chain: all six IBT_2", "3v3"),
             38: ("U9A OUT- (5 V return)", "gnd"), 39: ("5 V in, through D1", "5v")}
 for k, t in enumerate(TH):
     PICO_LBL[4 + k * 2 + (k >= 2) + (k >= 4)] = (f"{t} RPWM", "pwm"); PICO_LBL[5 + k * 2 + (k >= 2) + (k >= 4)] = (f"{t} LPWM", "pwm")
@@ -469,7 +470,7 @@ open(f"{OUT}/elec_pizero.svg", "w").write(s.svg())
 
 # ---------------- ARM harness and servo power: how the wires physically join (guide 9.7)
 s = SVG(1700, 960)
-title(s, "ARM and servo wiring", "Left: R_EN + L_EN of all six IBT_2 joined into one wire for Pico terminal 20, with R1. Right: the servos run from U9B only; their signals come from terminals 21 and 22.")
+title(s, "ARM chain and servo wiring", "Left: ARM, VCC and GND daisy-chained across the six IBT_2, one wire each to the Pico, R1 at terminal 20. Right: the servos run from U9B only; signals from 21 and 22.")
 BRN = "#7a4a22"; SIGO = "#e08a00"
 # Pico, bottom end of the breakout (terminal number = pin number)
 px0, px1 = 770, 1040
@@ -486,27 +487,40 @@ s.text(px0 + 50, 385, "GP13", 12, "#d7eadd"); s.text(px0 + 50, 455, "GND", 12, "
 s.text(px0 + 50, 595, "GP15 ARM", 12, "#ffffff", "start", 700)
 s.text(px1 - 50, 525, "GP17", 12, "#ffffff", "end", 700); s.text(px1 - 50, 595, "GP16", 12, "#ffffff", "end", 700)
 s.line([(px0 - 15, 380), (px0 - 60, 380)], "#b9bec4", 2); s.text(px0 - 64, 384, "T6 LPWM", 12, MUTED, "end")
-# six IBT_2 logic headers
+# six IBT_2 logic headers in chain order; ARM, VCC and GND hop board to board, RPWM / LPWM go to their own terminals
 HN = ("RPWM", "LPWM", "R_EN", "L_EN", "R_IS", "L_IS", "VCC", "GND")
-SPL = (560, 590)
-for k in range(6):
-    y = 160 + k * 100; x0 = 120
-    s.text(40, y + 6, f"T{k + 1}", 17, INK, "start", 700); s.text(40, y + 24, "IBT_2", 11.5, MUTED)
+CHAIN = ("T1", "T4", "T2", "T5", "T3", "T6")          # stacked pairs next to each other: short hops
+x0 = 120; px_ = lambda i: x0 + i * 40 + 20
+xa, xb = px_(2), px_(3); XARM = (xa + xb) / 2; XV, XG = px_(6), px_(7)
+ys = [160 + k * 100 for k in range(6)]
+for k in range(5):                                   # the hops, drawn first so the headers sit on top
+    s.line([(XARM, ys[k] + 16), (XARM, ys[k + 1] + 16)], PUR, 2.8)
+    s.line([(XV, ys[k] + 9), (XV, ys[k + 1] + 9)], P3V3, 2.6)
+    s.line([(XG, ys[k] + 9), (XG, ys[k + 1] + 9)], INK, 2.6)
+s.text(40, 128, "chain order", 11.5, MUTED, "start", 600)
+for k, (y, t) in enumerate(zip(ys, CHAIN)):
+    s.text(40, y + 6, t, 17, INK, "start", 700); s.text(40, y + 24, "IBT_2", 11.5, MUTED)
     s.rect(x0 - 6, y - 14, 8 * 40 + 12, 28, "#1d2125", "#1d2125", 1, 3)
     for i, n in enumerate(HN):
-        xx = x0 + i * 40 + 20; on = n in ("R_EN", "L_EN")
-        s.rect(xx - 11, y - 9, 22, 18, "#f3e9fb" if on else "#4a5057", PUR if on else "#4a5057", 1.6, 2)
-        s.text(xx, y - 20, n, 10, PUR if on else MUTED, "middle", 700 if on else 500)
-    xa, xb = x0 + 2 * 40 + 20, x0 + 3 * 40 + 20; xm = (xa + xb) / 2
-    s.line([(xa, y + 9), (xa, y + 28), (xm, y + 40)], PUR, 2.4); s.line([(xb, y + 9), (xb, y + 28), (xm, y + 40)], PUR, 2.4)
-    s.rect(xm - 9, y + 34, 18, 22, "#d9c7f0", PUR, 1.4, 3); s.dot(xm, y + 40, PUR, 4.5)
-    s.line([(xm, y + 56), (xm, y + 66), (470, y + 66), (SPL[0] - 40, SPL[1] + (k - 2.5) * 9), (SPL[0] - 6, SPL[1])], PUR, 2.2)
-    s.text(x0 + 8 * 40 + 14, y + 5, "other 3 wires: pin table", 11, MUTED) if k == 0 else None
-s.rect(SPL[0] - 8, SPL[1] - 14, 52, 28, "#d9c7f0", PUR, 1.6, 5); s.dot(SPL[0], SPL[1], PUR, 6)
-s.line([(SPL[0] + 44, SPL[1]), (px0 - 15, 590)], PUR, 3)
-s.text(SPL[0] + 20, SPL[1] + 38, "six into one: solder,", 12.5, INK, "start", 600); s.text(SPL[0] + 20, SPL[1] + 54, "heat-shrink, one lead", 12.5, INK, "start", 600)
-s.text(232, 795, "At each header: R_EN and L_EN tails twisted and soldered", 12.5, INK, "middle", 600)
-s.text(232, 811, "to the ARM wire, heat-shrunk; both Dupont pins in the housing", 12.5, INK, "middle", 600)
+        col = PUR if n in ("R_EN", "L_EN") else P3V3 if n == "VCC" else INK if n == "GND" else BLU if "PWM" in n else None
+        s.rect(px_(i) - 11, y - 9, 22, 18, "#ffffff" if col else "#4a5057", col or "#4a5057", 1.8 if col else 1.6, 2)
+        if n in ("VCC", "GND"): s.rect(px_(i) - 15, y - 31, 30, 15, "#ffffff", "#ffffff", 0, 2)
+        s.text(px_(i), y - 20, n, 10, col or MUTED, "middle", 700 if col else 500)
+    s.rect(xa - 4, y + 11, xb - xa + 8, 7, PUR, PUR, 1, 2); s.dot(XARM, y + 16, PUR, 4.5)     # solder bridge
+    s.dot(XV, y + 9, P3V3, 4); s.dot(XG, y + 9, INK, 4)
+    for i in (0, 1): s.line([(px_(i), y + 9), (px_(i), y + 26)], BLU, 2)
+s.text(x0 + 8 * 40 + 14, ys[0] + 2, "R_EN + L_EN: solder bridge", 11.5, PUR, "start", 600)
+s.text(x0 + 8 * 40 + 14, ys[0] + 17, "on every board", 11.5, PUR, "start", 600)
+s.text(x0 + 8 * 40 + 14, ys[1] + 2, "RPWM, LPWM: own wire each,", 11.5, BLU, "start", 600)
+s.text(x0 + 8 * 40 + 14, ys[1] + 17, "to the Pico (pin table)", 11.5, BLU, "start", 600)
+s.text(x0 + 8 * 40 + 14, ys[2] + 2, "R_IS, L_IS: not connected", 11.5, MUTED)
+yl = ys[5]
+s.line([(XV, yl + 9), (XV, yl + 52), (XV + 60, yl + 52)], P3V3, 2.6); s.text(XV + 66, yl + 57, "VCC chain to Pico 3V3 OUT (pin 36)", 12.5, P3V3, "start", 700)
+s.line([(XG, yl + 9), (XG, yl + 76), (XG + 20, yl + 76)], INK, 2.6); s.text(XG + 26, yl + 81, "GND chain to Pico GND (pin 13)", 12.5, INK, "start", 700)
+s.line([(XARM, yl + 16), (XARM, yl + 110), (690, yl + 110), (690, 590), (px0 - 15, 590)], PUR, 3)
+s.text(XARM + 8, yl + 104, "ARM chain to Pico pin 20", 12.5, PUR, "start", 700)
+s.text(40, 812, "Chain hops: short 22-26 AWG wires soldered to the header pins from the back of each board", 12.5, INK, "start", 600)
+s.text(40, 828, "(or two 26 AWG wires in one Dupont crimp). Heat-shrink every joint. Start the chain at the board nearest the Pico.", 12.5, INK, "start", 600)
 # R1 between terminal 20 and terminal 18
 rx = 730
 s.line([(px0 - 15, 450), (rx, 450)], INK, 2); s.dot(rx, 590, PUR, 5)
@@ -549,7 +563,7 @@ s.text(1000, 842, "needed: the signal needs a common ground).", 13, INK)
 s.rect(40, 880, 1620, 58, "#f6f8fa", "#c3c8cd", 1.2, 8)
 s.text(60, 905, "Bench checks before plugging the servos in:  U9B OUT+ to OUT-  4.9-5.2 V.   Terminal 20 to GND:  0 V disarmed, about 3.3 V armed "
        "(1-2 V disarmed = an ARM joint not reaching R1).", 13.5, INK, "start", 600)
-s.text(60, 925, "Wire numbers: ARM is in each logic bundle (wire 19); servo power and signals are wire 23.", 13, MUTED)
+s.text(60, 925, "Wire numbers: the logic chain and the RPWM / LPWM wires are wire 19; servo power and signals are wire 23.", 13, MUTED)
 open(f"{OUT}/elec_arm_servo.svg", "w").write(s.svg())
 
 # ------------------------------------------------------------------ render

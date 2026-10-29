@@ -17,7 +17,7 @@ Wire #,From,To,Wire
 16,LIGHTS gland,"LDD 1 +Vo/-Vo, LDD 2 +Vo/-Vo",4-core: two separate pairs
 17,TETHER gland,HAT RJ45 (on the Pi),"Cat6, inline coupler + 90-degree patch lead"
 18,HAT hub input,Pi Zero USB OTG,micro-USB link board (comes with the HAT)
-19,IBT_2 header (each),Pico breakout terminals (see the pin table),"x 6: RPWM, LPWM, R_EN+L_EN, VCC, GND; Dupont at the IBT_2"
+19,IBT_2 logic headers,Pico breakout terminals (see the pin table),"RPWM + LPWM: own wire each (12); ARM, VCC, GND: daisy-chained board to board, one wire each to the Pico"
 20,"Pi pins 6, 8, 10 (HAT stacking pins)","Pico terminals 3, 2, 1","soldered at the Pi: GND, TXD->GP1, RXD<-GP0"
 21,U9A OUT+,"Pi pin 2 (5 V, HAT stacking pin)",via the 5 V splice behind the Pi
 22,5 V splice; U9A OUT-,D1 -> Pico VSYS (39); Pico GND (38),red + 1N5817; black

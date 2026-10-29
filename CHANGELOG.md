@@ -2,6 +2,9 @@
 
 Changes to the TinkerSub KB-1 files. Part numbers are the three digits debossed on each printed part.
 
+## 2026-10-29
+- **IBT_2 logic wiring daisy-chained:** R_EN and L_EN are bridged with solder on every IBT_2 header, and ARM, VCC and GND hop board to board (T1, T4, T2, T5, T3, T6) with one wire each to the Pico: ARM to pin 20, VCC to 3V3 OUT (pin 36), GND to pin 13. Only RPWM and LPWM still run one wire per pin. 36 wires to the Pico become 15. Updated: the ARM chain drawing before 9.7, the 9.7 logic step, the pin maps and `Pin_connections.csv`, the wiring diagram, the schematic notes, wire 19 in `Wire_list.csv` and the hook-up wire line (22 and 26 AWG) in `Parts_to_buy.csv`. Pico pin 8 is no longer used.
+
 ## 2026-10-26
 - **ARM and servo wiring drawing** (full page before 9.7; `Images/Electronics/arm_and_servo_wiring.png`): how R_EN + L_EN of each IBT_2 join into one ARM wire, the six-into-one splice to Pico terminal 20 with R1 to terminal 18, and the servos on U9B with C2 at the plugs and their signals from terminals 21 and 22. 9.7 now says to measure U9B (4.9-5.2 V) before plugging the servos in.
 - **Pin maps and pin table** (guide 9.6): drawings of the Pico and the Pi Zero 2W showing every used pin and where it goes (`Images/Electronics/pin_map_pico.png`, `pin_map_pi_zero.png`), and a table with one line per connection, also as `Pin_connections.csv`. Drawn from one list (`PINS` in `Source/guide/elec_drawings.py`) that the build checks against the drawings. The pull-down and sense resistors now have named ground terminals: R1 and R2 to Pico pin 18, R4 to AGND (pin 33).

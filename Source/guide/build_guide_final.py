@@ -53,7 +53,7 @@ ELEC_SECTION = [
  ("Wire", "1 m + 1 m", "14 AWG silicone wire, red + black", "Bus to the three top boards", "$8", "Amazon"),
  ("Wire", "0.5 m + 0.5 m", "16 AWG silicone wire, red + black", "Jumpers to the bottom boards", "$6", "Amazon"),
  ("Wire", "1 m + 1 m", "20 AWG silicone wire, red + black", "Aux branch: F2 to LED drivers and both 5 V bucks", "$5", "Amazon"),
- ("Wire", "1 set", "Dupont female housings + 22 AWG hook-up wire, crimp splices", "Logic bundles (Dupont at the IBT_2 headers, bare ends into the Pico terminals), UART, DIM, 5 V", "$8", "Amazon"),
+ ("Wire", "1 set", "Dupont female housings + 22 AWG hook-up wire, crimp splices", "RPWM / LPWM wires and the ARM / VCC / GND chain (Dupont at the IBT_2 headers, bare ends into the Pico terminals), UART, DIM, 5 V", "$8", "Amazon"),
  ("Misc", "-", "Zip ties 2.5-3.6 mm, heat-shrink assortment", "Boards, harness ties, every splice", "$8", "Any"),
 ]
 import purchases as PU                                     # "Everything to buy": fasteners counted from the fastener table
@@ -558,11 +558,13 @@ def build_pdf(path):
                  "5 V (21-22): U9A OUT+ to a splice just above the deck slot behind the Pi. From there: Pi pin 2 (soldered to the HAT's stacking pin), "
                  "and down through the slot and the port lower window through D1 (band toward the Pico) to the VSYS terminal (pin 39). "
                  "U9A OUT- to the Pico GND terminal (pin 38). U9B's output feeds only the servos (next steps). Never join the two 5 V outputs; the grounds are common.",
-                 "Logic (19): one bundle per board along the starboard side, outside rail 213, Dupont housings on the IBT_2 end and bare ends into the Pico's terminals "
-                 "through the lower rail window: RPWM and LPWM to the board's two pins in the 9.6 table, "
-                 "R_EN + L_EN to ARM (pin 20), VCC to 3V3 OUT (pin 36), GND to the board's Pico GND in 9.6 (3, 8 or 13). Splice the six VCC wires, and the six "
-                 "ARM pairs, so one wire goes into each terminal; VCC crosses under the breakout to the 3V3 OUT terminal on the port side. R_IS and L_IS stay empty.",
-                 "Pull-downs and sense (ARM and R1: the ARM and servo drawing before 9.7): R1 10 k from ARM (pin 20) to GND (pin 18) and R2 10 k from DIM (pin 19) to the same GND terminal (pin 18), soldered at the Pico end. "
+                 "Logic (19): first bridge R_EN to L_EN on every IBT_2 with a blob of solder across the two header pins (pins 3 and 4). Then daisy-chain three wires across the six "
+                 "boards in the order T1, T4, T2, T5, T3, T6 (each stacked pair next to each other): ARM (the bridged EN pins), VCC and GND, each a short 22-26 AWG hop from one "
+                 "board's header pin to the next, soldered to the pins from the back of the board (or two 26 AWG wires in one Dupont crimp). From the board nearest the Pico, one wire "
+                 "of each runs along the starboard side, outside rail 213, through the lower rail window to the Pico: ARM to pin 20, VCC to 3V3 OUT (pin 36, crossing under the "
+                 "breakout to the port side) and GND to pin 13. RPWM and LPWM stay separate: one wire each from every board to its own terminal in the 9.6 table, Dupont at the IBT_2 "
+                 "and bare ends into the terminals. R_IS and L_IS stay empty. The ARM chain drawing before 9.7 shows the chain.",
+                 "Pull-downs and sense (ARM and R1: the ARM chain drawing before 9.7): R1 10 k from ARM (pin 20) to GND (pin 18) and R2 10 k from DIM (pin 19) to the same GND terminal (pin 18), soldered at the Pico end. "
                  "Battery sense: R3 33 k from the +12V Wago (hull side of F1) to GP26 (pin 31), R4 10 k from GP26 to AGND (pin 33).",
                  "Pi to Pico (20): Pi pin 8 (TXD) to Pico pin 2 (GP1), Pi pin 10 (RXD) to Pico pin 1 (GP0), Pi pin 6 to Pico pin 3. With the HAT on, "
                  "solder these three (and the 5 V on pin 2) to the HAT's stacking pins 2-3 mm above the HAT and heat-shrink them; a Dupont housing there "
