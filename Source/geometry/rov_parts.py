@@ -24,6 +24,48 @@ GAP = 1.0                                # clamp split gap
 
 def cyl(r, h, z0=0.0, seg=SEG): return Manifold.cylinder(h, r, r, seg).translate((0, 0, z0))
 def box(x0, x1, y0, y1, z0, z1): return Manifold.cube((x1 - x0, y1 - y0, z1 - z0)).translate((x0, y0, z0))
+
+def thread_cutter(d, pitch, z0, z1, clr=0.25, seg=120, chamfer=0.8):
+    """(2026-10-30) Cutter for a printed internal ISO metric thread (right hand), d x pitch, from z0 to z1.
+    Brian has no M16 tap, so the cap threads are printed. The cutter is the bolt shape grown by clr radially
+    (FDM threads need ~0.2-0.3 mm). ISO basic profile: crest p/8, flanks 0.3125p, root p/4, depth 5H/8.
+    Ends get a 45 deg lead-in chamfer so the gland starts straight."""
+    H = 0.8660254 * pitch
+    R = d / 2 + clr                              # cutter crest = nut thread root (major diameter)
+    r = d / 2 - 5 * H / 8 + clr                  # cutter root = nut thread crest (minor diameter)
+    def rad(u):
+        u = u % 1.0
+        if u < 0.125: return R
+        if u < 0.4375: return R - (R - r) * (u - 0.125) / 0.3125
+        if u < 0.6875: return r
+        return r + (R - r) * (u - 0.6875) / 0.3125
+    za, zb = z0 - 1.0, z1 + 1.0
+    nz = int(np.ceil((zb - za) / (pitch / 24))) + 1
+    th = np.linspace(0, 2 * np.pi, seg, endpoint=False)
+    zs = np.linspace(za, zb, nz)
+    V = []
+    for z in zs:
+        for t in th:
+            rr = rad((z - pitch * t / (2 * np.pi)) / pitch)
+            V.append((rr * np.cos(t), rr * np.sin(t), z))
+    V += [(0, 0, za), (0, 0, zb)]
+    F = []
+    for i in range(nz - 1):
+        for j in range(seg):
+            a, b = i * seg + j, i * seg + (j + 1) % seg
+            c, e = a + seg, b + seg
+            F += [(a, b, e), (a, e, c)]
+    cb, ct = len(V) - 2, len(V) - 1
+    for j in range(seg):
+        F.append((cb, (j + 1) % seg, j))
+        F.append((ct, (nz - 1) * seg + j, (nz - 1) * seg + (j + 1) % seg))
+    from manifold3d import Mesh
+    m = Manifold(Mesh(vert_properties=np.array(V, np.float32), tri_verts=np.array(F, np.uint32)))
+    assert m.status().name == "NoError" and m.volume() > 0, ("thread cutter", m.status())
+    for zc, sgn in ((z0, 1), (z1, -1)):          # lead-in chamfers at both faces
+        cone = Manifold.cylinder(chamfer + 1.0, R + chamfer + 1.0, R - 0.01, 64) if sgn > 0 else Manifold.cylinder(chamfer + 1.0, R - 0.01, R + chamfer + 1.0, 64)
+        m = m + cone.translate((0, 0, zc - 1.0 if sgn > 0 else zc - chamfer))
+    return m
 def ycyl(r, y0, y1, x, z, seg=40): return Manifold.cylinder(y1 - y0, r, r, seg).rotate((-90, 0, 0)).translate((x, y0, z))
 def xcyl(r, x0, x1, y, z, seg=40): return Manifold.cylinder(x1 - x0, r, r, seg).rotate((0, 90, 0)).translate((x0, y, z))
 def poly(pts, z0, z1):
@@ -129,8 +171,9 @@ BF, BAT_BOLT_R, BAT_FL_OD = flange(BAT_OD, BAT_ID, sock_d=25.0, seal_l=14.0, fl_
 def battery_flange(): return BF
 def battery_endcap():
     c = endcap(BAT_OD, BAT_ID, seal_l=14.0, fl_od=BAT_OD + 24, plate_t=8.0, oring_cs=2.5)
-    c = c - cyl(7.25, 40, -5, 48).translate((0, 12, 0))          # M16 gland: battery leads (14 AWG)
-    c = c - cyl(4.5, 40, -5, 48).translate((0, -14, 0))          # VENT: M10 x 1.0 tap drill (barb / bolt + bonded washer)
+    zt = 14.0 + 8.0                                              # plug (z 1-14) + plate (z 14-22): threaded all the way
+    c = c - thread_cutter(16, 1.5, 0.0, zt).translate((0, 12, 0))   # M16 x 1.5 gland, printed thread (2026-10-30, was tapped)
+    c = c - thread_cutter(10, 1.0, 0.0, zt).translate((0, -14, 0))  # VENT: M10 x 1.0, printed thread (bolt + bonded washer)
     return c
 
 CELL_D, CELL_L = 18.4, 65.0

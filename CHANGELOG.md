@@ -2,6 +2,9 @@
 
 Changes to the TinkerSub KB-1 files. Part numbers are the three digits debossed on each printed part.
 
+## 2026-10-30
+- **Printed threads in the rear caps 202 and 302:** every gland hole and vent is now a printed ISO thread (202: 2 x M16 x 1.5, 2 x M12 x 1.5, M10 x 1.0 vent; 302: M16 x 1.5, M10 x 1.0 vent), with lead-in chamfers. No M16 or M10 tap needed; only the tail cones still take an M12 x 1.5 tap. Guide 10.3, 11 and the tools list updated. Caps printed before this: tap them as before, or reprint them (Appendix C).
+
 ## 2026-10-29
 - **IBT_2 logic wiring daisy-chained:** R_EN and L_EN are bridged with solder on every IBT_2 header, and ARM, VCC and GND hop board to board (T1, T4, T2, T5, T3, T6) with one wire each to the Pico: ARM to pin 20, VCC to 3V3 OUT (pin 36), GND to pin 13. Only RPWM and LPWM still run one wire per pin. 36 wires to the Pico become 15. Updated: the ARM chain drawing before 9.7, the 9.7 logic step, the pin maps and `Pin_connections.csv`, the wiring diagram, the schematic notes, wire 19 in `Wire_list.csv` and the hook-up wire line (22 and 26 AWG) in `Parts_to_buy.csv`. Pico pin 8 is no longer used.
 

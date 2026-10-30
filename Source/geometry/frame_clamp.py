@@ -15,7 +15,7 @@ Also here: the 5-hole rear end cap and the potted cable junction (fewer hull pen
 import numpy as np
 from manifold3d import Manifold
 import rov_parts as RP
-from rov_parts import cyl, box, xcyl, ycyl, clamp_half, HULL_OD, PIPE_34
+from rov_parts import cyl, box, xcyl, ycyl, clamp_half, HULL_OD, PIPE_34, thread_cutter
 
 W = 34.0                                   # clamp width along the hull
 R_IN = HULL_OD/2 + 0.25
@@ -121,6 +121,7 @@ def lead_tray(skid=None):
 # ---------------- fewer penetrations ----------------
 CAP_T, CAP_PCD = 10.0, 108.0
 GLANDS = {"MOTORS": (16, 45, 14.5), "LIGHTS": (12, 135, 10.5), "BATTERY": (16, 225, 14.5), "TETHER": (12, 315, 10.5)}   # BATTERY: power lead from the pod
+# (2026-10-30) every gland hole and the vent are printed threads now (M16 x 1.5, M12 x 1.5, M10 x 1.0): no taps needed
 GLAND_R = 26.0
 def endcap_rear_5hole():
     """Hull rear cap, same bolt circle as your BR-style cap: 4 glands on r 26 + M10 x 1.0 vent in the centre."""
@@ -130,8 +131,8 @@ def endcap_rear_5hole():
         c = c - cyl(1.7, CAP_T + 2, -1, 24).translate((x, y, 0))
     for name, (m, a, tap) in GLANDS.items():
         x, y = polar(GLAND_R, a)
-        c = c - cyl(tap/2, CAP_T + 2, -1, 48).translate((x, y, 0))
-    return c - cyl(9.0/2, CAP_T + 2, -1, 48)                      # VENT: M10 x 1.0 tap drill (barb / bolt + bonded washer)
+        c = c - thread_cutter(m, 1.5, 0.0, CAP_T).translate((x, y, 0))
+    return c - thread_cutter(10, 1.0, 0.0, CAP_T)                 # VENT: M10 x 1.0 (bolt + bonded washer)
 
 JB_L, JB_W, JB_H = 56.0, 36.0, 26.0
 JB_PITCH = 7.5

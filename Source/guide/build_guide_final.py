@@ -245,7 +245,7 @@ def build_pdf(path):
           table(["Tool", "Used for"], [
               ["Bambu A1 (256 mm bed)", "Every part fits. The station halves and cowl sections are the largest."],
               ["Soldering iron with heat-set insert tip", "M3, M4 and M5 brass inserts (Appendix B has a chart of every one)"],
-              ["Taps: M16 x 1.5, M12 x 1.5, M10 x 1.0 (fine pitch), M4 x 0.7, M3 x 0.5", "Cable glands, VENT ports, oil ports, light set screws"],
+              ["Taps: M12 x 1.5 (fine pitch), M4 x 0.7, M3 x 0.5", "Tail-cone glands, oil ports, light set screws (the cap threads are printed)"],
               ["Jigsaw + fine blades, drill + 3.5 / 4.5 / 5.5 / 10 mm bits, centre punch, clamps", "HDPE side plates"],
               ["Drill + 1/8\" (3.17 mm) bit or reamer", "Open the brass coupler's 3 mm end for the motor shaft"],
               ["Drill press or lathe + files", "Aluminium light discs (or have them cut)"],
@@ -618,8 +618,8 @@ def build_pdf(path):
                                            ["TETHER", "M12 x 1.5", "lower port", "Cat6 tether"],
                                            ["VENT", "M10 x 1.0", "centre", "Bolt + bonded washer; hose barb for the vacuum test"]],
                 [1.0*inch, 0.9*inch, 1.2*inch, W_TXT - 3.1*inch]),
-          steps(["Tap each hole in the rear end cap (202) to the thread in the table; the VENT is M10 x 1.0, fine pitch, not the usual 1.5. "
-                 "Each hole is labelled on the cap's outside face. Tap straight and only once: PETG threads don't like being re-cut.",
+          steps(["The threads in the rear end cap (202) are printed: no tapping. Run each gland body and the vent bolt in by hand once and back out, "
+                 "to clear any stringing; if one is stiff, work it in and out a few times. Each hole is labelled on the cap's outside face.",
                  "Thread each gland body in from the outside with its sealing washer on the outside face and a thin smear of silicone on the threads; "
                  "snug, not tight. Fit the vent bolt with a bonded washer on the outside face (rubber lip toward the cap) and snug it, no more.",
                  "Push the real cables through their glands now, nothing connected yet, from outside in: 12-core (MOTORS, about 400 mm inside: it has to reach "
@@ -652,7 +652,7 @@ def build_pdf(path):
                  "six plates (305) grooved faces out, all 24 cells + toward the rear, 8 mm pure nickel in the grooves with the centre-to-edge run doubled, "
                  "series links folded across the 3 mm gaps, four M4 rods with a 3 mm spacer (306) on each rod in both gaps. Every plate goes on with its tab notch at the top. "
                  "The pack is about 213 mm long and reads about 11.1 V.",
-                 "Tap the rear cap (302): M16 x 1.5 in the hole marked BATTERY (gland), M10 x 1.0 in VENT. Fit the gland body (sealing washer outside, "
+                 "The rear cap's (302) threads are printed: run the M16 gland body (BATTERY) and the M10 x 1.0 vent bolt (VENT) in once by hand to clear them. Fit the gland body (sealing washer outside, "
                  "silicone on the threads) and the vent bolt with a bonded washer.",
                  "Test the EMPTY pod before the pack goes in: push a 150 mm stub of the 12 AWG lead through the gland and tighten it, put a dry paper towel "
                  "inside, grease the rear cap's two 72 x 2.5 O-rings and bolt it on. Vacuum test it (section 18.1), then strap on about 2 kg, sink it for "
@@ -1025,6 +1025,8 @@ MARKS = {}
 # ------------------------------------------------------------------ Appendix C: parts and lists from earlier releases
 # One row per change that affects something already printed, cut, bought or assembled. The build steps describe only the current parts.
 RETRO = [
+ ("Rear caps 202 (hull) and 302 (pod)", "Printed before 2026-10-30", "Plain holes that needed M16 x 1.5, M12 x 1.5 and M10 x 1.0 taps.",
+  "Tap them as before, or reprint them: the threads are now printed in."),
  ("Hull flanges 201, 203, rear cap 202, pod flanges 301, caps 302 / 303, light front rings 402", "Printed before 2026-10-20",
   "Printed at 25 % infill: water can seep through the skin into the infill and past the O-rings.",
   "Reprint them (TinkerSub_KB-1_Reprint_2026-10-20.3mf prints them solid), or give every outside surface that sees water two thin coats of epoxy, "

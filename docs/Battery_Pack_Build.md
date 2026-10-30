@@ -156,7 +156,7 @@ Run the first charge and a load test on the bench, outside the pod, where you ca
 
 The pack goes in from the rear, with the BMS end facing the gland.
 
-1. Tap the rear cap M16 × 1.5 for the gland and M10 for the vent, if that isn't done yet.
+1. The rear cap's gland (M16 × 1.5) and vent (M10 × 1.0) threads are printed: run the gland body and the vent bolt in once by hand to clear them.
 2. The 12 AWG lead's other end already runs through the hull's BATTERY gland (guide section 10.3), so its pod end goes in through the pod gland from the outside before it is soldered to the BMS in Step 5. Leave enough slack inside to pull the pack out to the cap, then tighten the gland on the cable jacket.
 3. Put a block of foam against the front cap so the pack can't slide.
 4. Drop the silica gel packet in beside the BMS.
