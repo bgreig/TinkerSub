@@ -60,7 +60,7 @@ body:
       label: Your setup
       description: Only what's relevant
       placeholder: |
-        Topside: macOS 15, Python 3.13, Xbox controller
+        Topside: Raspberry Pi 4, Raspberry Pi OS (Bookworm), Python 3.11, Xbox controller
         Pi: Pi OS Bookworm 64-bit
         Pico: Arduino-Pico core 4.x, config.h changes: I_BUDGET_A = 24
         Build scripts: Python version, OS

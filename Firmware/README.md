@@ -4,7 +4,7 @@
 |---|---|---|
 | `pico_rov/` | Raspberry Pi Pico | Mixes the commands into six thrusters and applies the safety limits. Drives the IBT_2 boards, the lights and the pan/tilt servos, and reads the battery voltage. |
 | `pi_bridge/` | Pi Zero 2 W | Relays packets between UDP on the tether and the Pico's UART, with a second failsafe. Also holds the MediaMTX camera stream config and the setup notes. |
-| `topside/` | laptop | Reads the game controller, sends commands at 50 Hz and shows telemetry on screen. |
+| `topside/` | Raspberry Pi 4 (topside) | Reads the game controller, sends commands at 50 Hz and shows telemetry on screen. Setup: `topside/SETUP.md`. |
 | `test/` | your PC | Host unit tests for the Pico logic, plus a bridge integration test. |
 | `build/pico_rov.ino.uf2` | | Ready-to-flash Pico image, built with the defaults in `config.h`. |
 

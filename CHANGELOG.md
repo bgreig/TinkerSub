@@ -2,6 +2,9 @@
 
 Changes to the TinkerSub KB-1 files. Part numbers are the three digits debossed on each printed part.
 
+## 2026-11-03
+- **Topside is a Raspberry Pi 4.** The README, `Firmware/README.md`, the bridge setup and the guide's first power-up step now name a Raspberry Pi 4 topside instead of a laptop. New `Firmware/topside/SETUP.md`: image, static IP on the tether (192.168.2.1), the topside program in a virtual environment, controller pairing and video. The bug report form's example setup updated. The guide PDF picks up the change on its next build.
+
 ## 2026-11-02
 - **Pod rear cap 302: face O-ring.** A built pod failed its pressure test at the rear cap, which sealed on its two radial O-rings alone. 302 now also has a face groove on its flange side, inside the bolt circle (groove 81.0 mm ID, 3.4 mm wide, 1.85 mm deep), for an **80 x 2.5 mm** nitrile O-ring that seals on the flange's flat face. Added to the shopping list; guide 11 and the pack doc updated. A 302 printed before this: reprint it (Appendix C).
 

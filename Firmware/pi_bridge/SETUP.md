@@ -5,7 +5,7 @@
    - Wiring: Pi TXD pin 8 → Pico GP1, Pi RXD pin 10 ← Pico GP0, and GND to GND. Both sides are 3.3 V, so they connect directly with no level shifter.
 3. **Static IP on the tether** (USB-Ethernet adapter, normally `eth0`):
    `sudo nmcli con add type ethernet ifname eth0 con-name tether ipv4.method manual ipv4.addresses 192.168.2.2/24`
-   On the topside laptop, set its tether adapter to 192.168.2.1/24 with no gateway.
+   On the topside Raspberry Pi 4, set its Ethernet port to 192.168.2.1/24 with no gateway (see `../topside/SETUP.md`).
 4. **Bridge**:
    ```
    sudo apt install -y python3-serial

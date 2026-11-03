@@ -4,7 +4,7 @@
 
 ![TinkerSub KB-1](Images/Renders/front.png)
 
-TinkerSub is a small tethered underwater ROV that you build from a 3D printer, PVC pipe, a sheet of HDPE and parts from the hardware store. The thrusters are made from 1200 GPH bilge-pump motors. A Raspberry Pi Zero 2 W and a Pico drive it, a camera on a pan-tilt sees through the acrylic dome, and a laptop with a game controller flies it over a Cat6 tether.
+TinkerSub is a small tethered underwater ROV that you build from a 3D printer, PVC pipe, a sheet of HDPE and parts from the hardware store. The thrusters are made from 1200 GPH bilge-pump motors. A Raspberry Pi Zero 2 W and a Pico drive it, a camera on a pan-tilt sees through the acrylic dome, and a Raspberry Pi 4 topside controller with a game controller flies it over a Cat6 tether.
 
 KB-1 is the first version, named for Kings Bay in Crystal River, Florida.
 

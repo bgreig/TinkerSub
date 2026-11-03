@@ -771,7 +771,7 @@ def build_pdf(path):
           Paragraph("First power-up, with the sled still on the bench", H3),
           Paragraph("Do this before the sled goes in: the Pico's USB faces forward at the front of the deck and can't be reached once the sled is in the hull, "
                     "and every setting that needs a new firmware build is found here.", BODY),
-          steps(["Stand the ROV so all six props are clear to spin in air. Topside laptop on the tether at 192.168.2.1, gain at 25 %.",
+          steps(["Stand the ROV so all six props are clear to spin in air. Topside Raspberry Pi 4 on the tether at 192.168.2.1, gain at 25 %.",
                  "Fit F1 (30 A). Telemetry should show the battery voltage and 'armed 0'.",
                  "Work through the bench procedure in Firmware/README.md: VBAT_CAL against a meter at the Wago, link loss stops the thrusters within 0.5 s, "
                  "thruster directions (THRUSTER_DIR, one per motor: the left-hand props come out reversed) with short bursts only (the shaft seals and oil "
