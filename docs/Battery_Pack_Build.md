@@ -160,7 +160,7 @@ The pack goes in from the rear, with the BMS end facing the gland.
 2. The 12 AWG lead's other end already runs through the hull's BATTERY gland (guide section 10.3), so its pod end goes in through the pod gland from the outside before it is soldered to the BMS in Step 5. Leave enough slack inside to pull the pack out to the cap, then tighten the gland on the cable jacket.
 3. Put a block of foam against the front cap so the pack can't slide.
 4. Drop the silica gel packet in beside the BMS.
-5. Slide the pack in. Grease the rear cap's two 74 × 2.5 O-rings with silicone grease and bolt it on with six M5 × 16.
+5. Slide the pack in. Grease the rear cap's two 72 × 2.5 O-rings and its 80 × 2.5 face O-ring (in the groove on the flange side) with silicone grease, and bolt it on with six M5 × 14, tightened evenly in a star pattern.
 6. Fit the vent plug, then pull a vacuum through it and check that it holds, the same test as the hull.
 7. At the hull, the lead goes through the BATTERY gland to F1 and the +12 V and GND Wagos on the rear bulkhead.
 

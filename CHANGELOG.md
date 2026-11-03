@@ -2,6 +2,9 @@
 
 Changes to the TinkerSub KB-1 files. Part numbers are the three digits debossed on each printed part.
 
+## 2026-11-02
+- **Pod rear cap 302: face O-ring.** A built pod failed its pressure test at the rear cap, which sealed on its two radial O-rings alone. 302 now also has a face groove on its flange side, inside the bolt circle (groove 81.0 mm ID, 3.4 mm wide, 1.85 mm deep), for an **80 x 2.5 mm** nitrile O-ring that seals on the flange's flat face. Added to the shopping list; guide 11 and the pack doc updated. A 302 printed before this: reprint it (Appendix C).
+
 ## 2026-10-30
 - **Printed threads in the rear caps 202 and 302:** every gland hole and vent is now a printed ISO thread (202: 2 x M16 x 1.5, 2 x M12 x 1.5, M10 x 1.0 vent; 302: M16 x 1.5, M10 x 1.0 vent), with lead-in chamfers. No M16 or M10 tap needed; only the tail cones still take an M12 x 1.5 tap. Guide 10.3, 11 and the tools list updated. Caps printed before this: tap them as before, or reprint them (Appendix C).
 

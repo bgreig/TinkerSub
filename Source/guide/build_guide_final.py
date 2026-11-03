@@ -655,13 +655,13 @@ def build_pdf(path):
                  "The rear cap's (302) threads are printed: run the M16 gland body (BATTERY) and the M10 x 1.0 vent bolt (VENT) in once by hand to clear them. Fit the gland body (sealing washer outside, "
                  "silicone on the threads) and the vent bolt with a bonded washer.",
                  "Test the EMPTY pod before the pack goes in: push a 150 mm stub of the 12 AWG lead through the gland and tighten it, put a dry paper towel "
-                 "inside, grease the rear cap's two 72 x 2.5 O-rings and bolt it on. Vacuum test it (section 18.1), then strap on about 2 kg, sink it for "
+                 "inside, grease the rear cap's two 72 x 2.5 O-rings, seat the 80 x 2.5 face O-ring (greased) in the groove on the cap's flange side, and bolt it on, tightening the six screws evenly in a star pattern. Vacuum test it (section 18.1), then strap on about 2 kg, sink it for "
                  "30 minutes and check the towel. Only then open it again.",
                  "Mount the BMS on group C's rear plate, balance leads along the notch in the bottom edge. Fit the 35 A inline fuse holder at pack + "
                  "(F1, 30 A, is the second fuse, in the hull). Pass the free end of the 12 AWG battery lead (its other end is already through the hull's "
                  "BATTERY gland, section 10.3) in through the pod gland from outside and solder it to the BMS output (P+ / P-). Check polarity with a meter now and mark the red core.",
                  "Put a block of foam against the front cap, slide the pack in from the rear, grease the rear cap's two 72 x 2.5 O-rings "
-                 "and bolt it on with 6 M5 x 14 (the rear cap is 2 mm thinner than the front: an M5 x 16 bottoms out), then tighten the gland on the lead. The pack can also come out the front if you ever need it."]),
+                 "and its 80 x 2.5 face O-ring and bolt it on with 6 M5 x 14 (the rear cap is 2 mm thinner than the front: an M5 x 16 bottoms out), then tighten the gland on the lead. The pack can also come out the front if you ever need it."]),
           Paragraph("Charging: open the rear cap, or fit an inline waterproof connector on the battery lead and charge through it. "
                     "Always charge with the BMS in circuit, and never charge a wet pack.", NOTE),
           checklist(["Pack reads 11-12.6 V at the lead, BMS balance leads correct, both caps on, vacuum holds (section 18.1)."]),
@@ -1005,7 +1005,7 @@ IKEA = [   # (title, guide section, picture, printed parts, hardware[, multiplie
     ('Electronics sled', '8.1 and 9', 'f_ik_sled.png', [('207', 1), ('212', 1), ('213', 1), ('214', 1), ('215', 1)], ['4 x M3 threaded rod, 340 mm', '16 x M3 nut', 'IBT_2 boards, Pi, Pico (section 9)', 'Wago 221-415 x2, LDD-700HW x2']),
     ('Camera pan-tilt', '8.2', 'f_ik_pantilt.png', [('216', 1), ('217', 1), ('218', 1), ('219', 1)], ['2 x MG90S servo', 'Arducam + 4 x M2 x 6, 2 mm standoffs', 'M2 screws (servo, axle)', '1 mm steel wire pushrod', '8 x M3 nut']),
     ('Hull: build it and test it empty', '10', 'f_ik_hull.png', [('201', 1), ('202', 1), ('203', 1), ('204', 1)], ['4" pipe, 406 mm', '4 x AS568-238 O-ring', 'AS568-240 + -237 O-rings', '6 x M3 x 10 (radial)', '6 x M3 x 16 (cap)', '6 x M3 x 12 (ring)', '100 mm acrylic dome', '2 x M16 + 2 x M12 gland, M10 vent bolt']),
-    ('Battery pod', '11', 'f_ik_pod.png', [('301', 2), ('302', 1), ('303', 1), ('305', 6), ('306', 8)], ['3" pipe, 300 mm', '4 x 72 x 2.5 O-ring', '6 x M5 x 16 (front)', '6 x M5 x 14 (rear)', '4 x M4 rod, about 225 mm', '24 x 18650 cells (3S8P)', 'BMS + 35 A fuse', 'M16 gland, M10 vent bolt', 'Marine epoxy']),
+    ('Battery pod', '11', 'f_ik_pod.png', [('301', 2), ('302', 1), ('303', 1), ('305', 6), ('306', 8)], ['3" pipe, 300 mm', '4 x 72 x 2.5 O-ring', '80 x 2.5 O-ring (rear cap face)', '6 x M5 x 16 (front)', '6 x M5 x 14 (rear)', '4 x M4 rod, about 225 mm', '24 x 18650 cells (3S8P)', 'BMS + 35 A fuse', 'M16 gland, M10 vent bolt', 'Marine epoxy']),
     ('Light heads', '12', 'f_light_ex.png', [('401', 1), ('402', 1), ('403', 1)], ['Aluminium disc 42 x 5', 'XHP50.2 LED on 20 mm star', 'Glass window', '30 x 1.5 + 24 x 1.5 O-ring', '3 x M2.5 x 25', '2-core 18 AWG, 350 mm', 'Thermal adhesive, potting'], 'x2'),
     ('Station frames: join hull and pod', '13', 'f_ik_stations.png', [('601', 2), ('602', 2), ('603', 2), ('604', 2), ('605', 2)], ['M4 x 30 (hull joints)', 'M4 x 20 (pod joints)', 'M3 x 20 + nyloc (centre rib)', 'M4 nuts in the hex pockets']),
     ('Side plates and thrusters', '14', 'f_ik_plates.png', [('607', 2), ('608', 2), ('901', 1), ('902', 1), ('T1-T6', 6)], ['16 x M3 x 16 (pylons to brackets)', '8 x M5 x 20 (brackets)', '16 x M5 x 20 (plates to arms)', '8 x M3 x 30 + nyloc + 1 mm shim (verticals)']),
@@ -1025,6 +1025,8 @@ MARKS = {}
 # ------------------------------------------------------------------ Appendix C: parts and lists from earlier releases
 # One row per change that affects something already printed, cut, bought or assembled. The build steps describe only the current parts.
 RETRO = [
+ ("Pod rear cap 302", "Printed before 2026-11-02", "Sealed on its two radial O-rings only; a built pod failed its pressure test there.",
+  "Reprint it: it now has a face groove for an 80 x 2.5 mm O-ring that seals on the flange face, inside the bolt circle."),
  ("Rear caps 202 (hull) and 302 (pod)", "Printed before 2026-10-30", "Plain holes that needed M16 x 1.5, M12 x 1.5 and M10 x 1.0 taps.",
   "Tap them as before, or reprint them: the threads are now printed in."),
  ("Hull flanges 201, 203, rear cap 202, pod flanges 301, caps 302 / 303, light front rings 402", "Printed before 2026-10-20",

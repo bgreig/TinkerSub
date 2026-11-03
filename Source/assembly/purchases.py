@@ -79,6 +79,7 @@ ITEMS = [
  ('Camera', '100 mm', '1 mm steel music wire', 'tilt pushrod', '$3', 'Hobby shop'),
  ('Battery pod', '1', '3" Sch40 PVC pipe, 300 mm', 'battery pod', '$12', 'Hardware store'),
  ('Battery pod', '4', 'O-ring 72 x 2.5 mm, nitrile', 'pod caps, two per cap', '$5 (pack)', 'Amazon'),
+ ('Battery pod', '1', 'O-ring 80 x 2.5 mm, nitrile', 'rear cap face seal, in the groove on 302', '$5 (pack)', 'Amazon'),
  ('Battery pod', '1', 'Cable gland M16 x 1.5, nylon, clamping range 5-10 mm', 'battery lead out of the rear cap', '$8 (5-pack)', 'Amazon'),
  ('Battery pod', '24', '18650 Li-ion cell, matched (same model and batch)', '3S8P pack', '$3-5 each', 'Battery supplier'),
  ('Battery pod', '1', '3S BMS, 40 A, with balancing', 'pack', '$12', 'Amazon'),

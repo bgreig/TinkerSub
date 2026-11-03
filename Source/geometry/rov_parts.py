@@ -174,7 +174,13 @@ def battery_endcap():
     zt = 14.0 + 8.0                                              # plug (z 1-14) + plate (z 14-22): threaded all the way
     c = c - thread_cutter(16, 1.5, 0.0, zt).translate((0, 12, 0))   # M16 x 1.5 gland, printed thread (2026-10-30, was tapped)
     c = c - thread_cutter(10, 1.0, 0.0, zt).translate((0, -14, 0))  # VENT: M10 x 1.0, printed thread (bolt + bonded washer)
+    # (2026-11-02) face O-ring: Brian's rear cap failed its pressure test on the two radial O-rings alone. A face groove in the
+    # plate's underside (the face that bolts onto the flange, z = 14), between the plug (r 38.8) and the M5 bolts (r 51.45, hole
+    # edge r 48.7), seals on the flange's flat face (r 38.95-56.45). 80 x 2.5 mm nitrile O-ring: external pressure, so the ring
+    # sits on the groove's inner wall (groove ID 81.0, 1.3 % stretch); width 3.4, depth 1.85 (26 % squeeze, 78 % fill).
+    c = c - (cyl(POD_FACE_ID / 2 + POD_FACE_W, POD_FACE_D + 0.01, 14.0 - 0.01) - cyl(POD_FACE_ID / 2, POD_FACE_D + 1, 13.0))
     return c
+POD_FACE_ID, POD_FACE_W, POD_FACE_D = 81.0, 3.4, 1.85
 
 CELL_D, CELL_L = 18.4, 65.0
 RING_R = (CELL_D + 0.6)/(2*np.sin(np.pi/7))
